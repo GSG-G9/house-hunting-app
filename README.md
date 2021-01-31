@@ -10,29 +10,27 @@ Build a house-hunting application that facilitates users to rent houses, most of
 ## User Stories :open_book:
  **As a renter and rented user:**
 * I can Sign up into the app 
-* I can log in into the app 
+* I can log in to the app 
 * I can see all available houses to rent
 * I can see specific information about any house
 * I want to search by different locations, prices and the number of room in the house
-* I can add houses to my favourite list
+* I can add houses to my favorite list
 * I need to create my own profile
 * I need to compare between two houses
-* I need control panel to manage my houses
+* I need a control panel to manage my houses
 
 
 ## User Journey :airplane:
 
-As a user, I can see all available houses that able to rented , search to find the houses and I can add any liked house to my favorite list and compare the differances between two houses from my favorite list, inside my profile i have my information and control panel for my own houses valiable to rent.
+As a user, I can see all available houses that able to rent, search to find houses and I can add any liked house to my favorite list and compare the differences between two houses from my favorite list, inside my profile I have my information and control panel for my own houses available to rent.
 
 ## Prototype :art:
 [Figma Link](https://www.figma.com/file/ikAAUREYQFA0GXxGEUYZRf/home-hunting?node-id=92%3A240)
+![prototype](https://i.imgur.com/wfKGoIT.png)
 
-
-
-## DTABASE Schema :file_cabinet:
+## DATABASE Schema :file_cabinet:
 [dbdigram](https://dbdiagram.io/d/5ee9bcf79ea313663b3aa9ed)
-![](https://i.imgur.com/1lve6is.png)
-
+![dbimage](https://i.imgur.com/1lve6is.png)
 
 ## Technologies :computer:
 * BackEnd: **Node JS & Express JS**
