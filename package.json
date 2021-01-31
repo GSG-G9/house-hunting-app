@@ -1,0 +1,23 @@
+{
+  "name": "house-hunting-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G9/house-hunting-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G9/house-hunting-app/issues"
+  },
+  "homepage": "https://github.com/GSG-G9/house-hunting-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
