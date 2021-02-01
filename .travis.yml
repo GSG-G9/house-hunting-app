@@ -7,3 +7,5 @@ services:
   test:
   adapter: postgresql
   database: houseHunting
+
+  

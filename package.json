@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/GSG-G9/house-hunting-app#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "eslint": "^7.19.0",
