@@ -21,4 +21,4 @@ const options = {
   };
   const Pool = new pool(options)
   
-  module.exports = Pool;
+  module.exports = { Pool };
