@@ -1,6 +1,4 @@
-const {pool} = require('pg'); 
-
-
+const {Pool} = require('pg'); 
 let dbUrl = ''; 
 switch(process.env.NODE_ENV) {
     case 'production' :
@@ -19,6 +17,6 @@ const options = {
     connectionString: dbUrl,
     ssl: process.env.NODE_ENV === 'production',
   };
-  const Pool = new pool(options)
+  const pool =  new Pool(options);
   
-  module.exports = { Pool };
+  module.exports =  pool
