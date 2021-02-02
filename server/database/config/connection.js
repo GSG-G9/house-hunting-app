@@ -1,4 +1,4 @@
-require('env2')('.env');
+require('dotenv').config()
 const { Pool } = require('pg');
 
 let dbUrl = '';
