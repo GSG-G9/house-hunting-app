@@ -1,4 +1,4 @@
-require('env2')('.env');
+require('dotenv').config()
 const { Pool } = require('pg');
 
 let dbUrl = '';
@@ -21,7 +21,7 @@ switch (NODE_ENV) {
 }
 const options = {
   connectionString: dbUrl,
-  ssl: NODE_ENV === 'production',
+  ssl: false,
 };
 const pool = new Pool(options);
 
