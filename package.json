@@ -9,7 +9,11 @@
     "kill": "fuser -k 5000/tcp",
     "lint-fix": "eslint server/ --fix",
     "lint": "eslint server/",
-    "lint-react": "cd client && npm run lint"
+    "lint-react": "cd client && npm run lint",
+    "devs": "cd client && npm start",
+    "start-both": "npm-run-all --parallel dev devs",
+    "project-setup": "npm install && cd client && npm install",
+    "heroku-postbuild": "cd client && npm install && npm run build", 
   },
   "repository": {
     "type": "git",
