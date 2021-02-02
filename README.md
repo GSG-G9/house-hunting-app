@@ -55,7 +55,7 @@ As a user, I can see all available houses that able to rent, search to find hous
 * Mariam Isa
 
 ### Team Members :busts_in_silhouette:
-* Aasmeen Attallah 
+* Yasmeen Attallah 
 * Adham Haisami
 * Muhammed Abadsa 
 
