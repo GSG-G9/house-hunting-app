@@ -3,5 +3,5 @@ const errorHandler = require('./500');
 
 module.exports = {
   notFound,
-  errorHandler
+  errorHandler,
 };
