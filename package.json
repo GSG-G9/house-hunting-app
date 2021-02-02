@@ -16,7 +16,7 @@
     "devs": "cd client && npm start",
     "start-both": "npm-run-all --parallel dev devs",
     "project-setup": "npm install && cd client && npm install",
-    "heroku-postbuild": "cd client && npm install && npm run build", 
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
