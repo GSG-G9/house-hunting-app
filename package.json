@@ -4,9 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server",
-    "dev": "nodemon ./server"
+    "start": "NODE_ENV=production node server/index.js",
+    "dev": "NODE_ENV=development nodemon server/index.js",
+    "test": "NODE_ENV=test jest",
+    "build:db": "NODE_ENV=test node server/database/config/build",
+    "client": "cd client && npm start",
+    "kill": "fuser -k 5000/tcp",
+    "lint-fix": "eslint server/ --fix",
+    "lint": "eslint server/",
+    "lint-react": "cd client && npm run lint",
+    "project-setup": "npm install && cd client && npm install",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +33,7 @@
     "env2": "^2.2.2"
   },
   "devDependencies": {
+    "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.1",
