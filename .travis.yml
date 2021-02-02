@@ -8,4 +8,6 @@ services:
   adapter: postgresql
   database: houseHunting
 
+
+
   

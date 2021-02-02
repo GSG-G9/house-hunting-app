@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/GSG-G9/house-hunting-app#readme",
   "dependencies": {
+    "env2": "^2.2.2",
     "express": "^4.17.1",
     "pg": "^8.5.1"
   },
   "devDependencies": {
-    "env2": "^2.2.2",
     "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
@@ -33,3 +33,4 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   }
 }
+
