@@ -1,6 +1,5 @@
+require('env2')('.env');
 const { Pool } = require('pg');
-
-require('env2')('../../.env');
 
 let dbUrl = '';
 const { NODE_ENV, DEV_DB_URL, DATABASE_URL, TEST_DB_URL } = process.env;
