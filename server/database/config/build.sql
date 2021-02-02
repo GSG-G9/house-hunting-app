@@ -16,7 +16,7 @@ CREATE TABLE users (
 
 CREATE TABLE locations (
     id SERIAL PRIMARY KEY,
-    location_name TEXT,
+    location TEXT,
     created_at TIMESTAMP NOT NULL
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE houses (
     bathroom_num int,
     price DECIMAL(8,2),
     area DECIMAL(8,2),
-    image TEXT DEFAULT 'https://via.placeholder.com/150',
+    image TEXT,
     created_at TIMESTAMP NOT NULL
 );
 
