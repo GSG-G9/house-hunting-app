@@ -1,6 +1,6 @@
-require('env2')('./.env');
-const { join } = require('path');
+require('env2')('.env');
 const express = require('express');
+const { join } = require('path');
 const logger = require('morgan');
 
 const router = require('./router');

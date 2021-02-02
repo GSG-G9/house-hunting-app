@@ -1,5 +1,4 @@
 const { readFileSync } = require('fs');
-
 const { join } = require('path');
 
 const connection = require('./connection');
