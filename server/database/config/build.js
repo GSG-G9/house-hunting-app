@@ -7,11 +7,10 @@ const connection = require('./connection')
 const runBuild = ()=>{
     let sql = '';
     sql = readFileSync(join(__dirname , 'build.sql')).toString();
-    if(process.env.NODE_ENV !== 'production'){
-        sql += readFileSync(join(__dirname,'fakeData.js')).toString(); 
-    }
-    return connection.query(sql);
-}
+    const fakeData = readFileSync(join(__dirname, 'fakeData.sql')).toString(); 
+    return connection.query(sql + fakeData);
+  
+};
 
 module.exports = {runBuild}
 
