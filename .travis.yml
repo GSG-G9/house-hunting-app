@@ -5,7 +5,7 @@ services:
   - postgresql
 before_script:
   - psql -c "CREATE DATABASE houseHunting;" -U postgres
-
+  - psql -c "CREATE USER team2 WITH PASSWORD '0000';" -U postgres
   - 'npm run build:db'
 env:
   global:
