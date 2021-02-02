@@ -22,14 +22,14 @@ CREATE TABLE locations (
 
 CREATE TABLE houses (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    location_id INTEGER REFERENCES locations(id),
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    location_id INT REFERENCES locations(id),
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     category VARCHAR(30),
     availability BOOLEAN DEFAULT true,
     room_num INT,
-    bathroom_num int,
+    bathroom_num INT,
     price DECIMAL(8,2),
     area DECIMAL(8,2),
     image TEXT,
@@ -38,8 +38,8 @@ CREATE TABLE houses (
 
 CREATE TABLE favorites (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    house_id INTEGER REFERENCES houses(id),
+    user_id INT REFERENCES users(id),
+    house_id INT REFERENCES houses(id),
     created_at TIMESTAMP NOT NULL
 );
 
