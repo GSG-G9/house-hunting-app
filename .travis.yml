@@ -4,6 +4,10 @@ services:
   - Postgresql
   before_script:
   - pgcli -c 'create database houseHunting' -U postgres
+  - "npm run build:db"
+  env:
+    global:
+     - PGPORT=5432
   test:
   adapter: postgresql
   database: houseHunting
