@@ -1,15 +1,17 @@
 language: node_js
-node_js: lts/*
+node_js:
+  - lts/*
 services:
-  - Postgresql
-  before_script:
-  - pgcli -c 'create database houseHunting' -U postgres
-  - "npm run build:db"
-  env:
-    global:
-     - PGPORT=5432
-  test:
+  - postgresql
+before_script:
+  - psql -c "CREATE DATABASE houseHunting;" -U postgres
+  - psql -c "CREATE USER team2 WITH PASSWORD '0000';" -U postgres
+  - 'npm run build-db'
+env:
+  global:
+    - PGPORT=5432
+test:
   adapter: postgresql
   database: houseHunting
-
+  
   

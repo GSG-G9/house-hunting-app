@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:db": "NODE_ENV=test node server/database/data/build"
+    "build:db": "NODE_ENV=test node server/database/config/build"
   },
   "repository": {
     "type": "git",

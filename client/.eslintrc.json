@@ -1,26 +1,53 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
+    "parser": "babel-eslint",
+    "extends": ["airbnb", "prettier", "prettier/react", "plugin:react/recommended"],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true,
-            "experimentalObjectRestSpread": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+      "es6": true,
+      "ecmaVersion": 6,
+      "ecmaFeatures": {
+        "impliedStrict": true,
+        "experimentalObjectRestSpread": true
+      }
     },
-    "plugins": [
-        "react"
-    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx"]
+        }
+      }
+    },
+    "root": true,
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
     "rules": {
-        "react/jsx-filename-extension" :[1,{"extensions" :["js","jsx"]}],
-        "prettier/prettier":["error" ,{"singleQuote":true}]
-    }
-}
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [".js", ".jsx"]
+        }
+      ],
+      "no-nested-ternary": "off",
+      "react/prefer-stateless-function": [0],
+      "react/jsx-props-no-spreading": [0],
+      "quotes": [
+        2,
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "trailingComma": "es5",
+          "singleQuote": true
+        }
+      ],
+      "react/state-in-constructor": [0, "always"]
+    },
+    "plugins": ["react", "prettier"]
+  } 
