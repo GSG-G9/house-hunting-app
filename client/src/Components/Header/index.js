@@ -10,6 +10,16 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#FFFFFF',
     borderBottom: '3px solid #1D3D59',
+    height: '80px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    '& *': {
+      boxSizing: 'border-box',
+    },
+  },
+  toolBar: {
+    width: '85%',
   },
   logo: {
     flexGrow: 1,
@@ -18,8 +28,17 @@ const useStyles = makeStyles(() => ({
   },
   linkItem: {
     '& > a': {
-      paddingLeft: '1rem',
+      marginLeft: '1.25rem',
+      fontWeight: 'bold',
+      color: '#2F5C84',
     },
+  },
+  signupLik: {
+    color: '#FFFFFF !important',
+    backgroundColor: '#EB9235',
+    padding: '1rem',
+    textAlign: 'center',
+    borderRadius: '3px',
   },
 }));
 
@@ -29,15 +48,27 @@ export default function index() {
     <>
       <Container maxWidth="lg">
         <AppBar position="static" className={classes.root}>
-          <Toolbar>
+          <Toolbar className={classes.toolBar}>
             <Typography variant="h6" className={classes.logo}>
               House Hunting
             </Typography>
             <Typography className={classes.linkItem}>
-              <Link href="/">Houses</Link>
-              <Link href="/aboutus">Aboutus</Link>
-              <Link href="/signup">Signup</Link>
-              <Link href="/signin">Signin</Link>
+              <Link underline="none" href="/">
+                Houses
+              </Link>
+              <Link underline="none" href="/aboutus">
+                Aboutus
+              </Link>
+              <Link
+                underline="none"
+                href="/signup"
+                className={classes.signupLik}
+              >
+                Signup
+              </Link>
+              <Link underline="none" href="/signin">
+                Signin
+              </Link>
             </Typography>
           </Toolbar>
         </AppBar>
