@@ -10,16 +10,16 @@ VALUES
 
 INSERT INTO
   locations (location_name, created_at)
-  VALUES
-    ('Gaza', CURRENT_TIMESTAMP),
-    ('Khanyunis', CURRENT_TIMESTAMP),
-    ('ALwosta', CURRENT_TIMESTAMP),
-    ('Rafah', CURRENT_TIMESTAMP),
-    ('North', CURRENT_TIMESTAMP);
+VALUES
+  ('Gaza', CURRENT_TIMESTAMP),
+  ('Khanyunis', CURRENT_TIMESTAMP),
+  ('ALwosta', CURRENT_TIMESTAMP),
+  ('Rafah', CURRENT_TIMESTAMP),
+  ('North', CURRENT_TIMESTAMP);
 
 INSERT INTO
   houses (user_id, location_id, title, description, room_num, bathroom_num, category, price, area, created_at)
-  VALUES
+VALUES
   (1, 3, 'house with 3 rooms', 'Nulla ullamcorper pharetra ligula, nec pharetra tortor fringilla non. Nullam.', 3, 2, 'appartment', 100, 100, CURRENT_TIMESTAMP),
   (3, 2, 'house with 2 rooms', 'Nulla ullamcorper pharetra ligula, nec pharetra tortor fringilla non. Nullam.', 2, 2, 'appartment', 100, 100, CURRENT_TIMESTAMP),
   (1, 1, 'house with 5 rooms', 'Nulla ullamcorper pharetra ligula, nec pharetra tortor fringilla non. Nullam.', 5, 3, 'appartment', 150, 200, CURRENT_TIMESTAMP),
@@ -34,14 +34,14 @@ INSERT INTO
 
 INSERT INTO
   favorites (user_id, house_id, created_at)
-  VALUES
-    (1, 1, CURRENT_TIMESTAMP),
-    (2, 1, CURRENT_TIMESTAMP),
-    (1, 2, CURRENT_TIMESTAMP),
-    (1, 5, CURRENT_TIMESTAMP),
-    (1, 6, CURRENT_TIMESTAMP),
-    (3, 7, CURRENT_TIMESTAMP),
-    (3, 2, CURRENT_TIMESTAMP),
-    (4, 2, CURRENT_TIMESTAMP),
-    (4, 1, CURRENT_TIMESTAMP),
-    (5, 1, CURRENT_TIMESTAMP);
+VALUES
+  (1, 1, CURRENT_TIMESTAMP),
+  (2, 1, CURRENT_TIMESTAMP),
+  (1, 2, CURRENT_TIMESTAMP),
+  (1, 5, CURRENT_TIMESTAMP),
+  (1, 6, CURRENT_TIMESTAMP),
+  (3, 7, CURRENT_TIMESTAMP),
+  (3, 2, CURRENT_TIMESTAMP),
+  (4, 2, CURRENT_TIMESTAMP),
+  (4, 1, CURRENT_TIMESTAMP),
+  (5, 1, CURRENT_TIMESTAMP);
