@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 function Container({ houses }) {
@@ -10,5 +11,8 @@ function Container({ houses }) {
     </ul>
   );
 }
+Container.PropTypes = {
+  houses: PropTypes.array,
+};
 
 export default Container;
