@@ -11,8 +11,8 @@ function Container({ houses }) {
     </ul>
   );
 }
-Container.PropTypes = {
-  houses: PropTypes.array,
+Container.propTypes = {
+  houses: PropTypes.shape.isRequired,
 };
 
 export default Container;
