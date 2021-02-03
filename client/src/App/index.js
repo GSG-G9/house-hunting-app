@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CardComponent from '../Components/Card/index'
+import CardComponent from '../Components/Card/index';
 
 import './style.css';
 
