@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import LinkItem from '../LinkItem';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -26,20 +26,6 @@ const useStyles = makeStyles(() => ({
     color: '#1D3D59',
     fontWeight: 'bold',
   },
-  linkItem: {
-    '& > a': {
-      marginLeft: '1.25rem',
-      fontWeight: 'bold',
-      color: '#2F5C84',
-    },
-  },
-  signupLik: {
-    color: '#FFFFFF !important',
-    backgroundColor: '#EB9235',
-    padding: '1rem',
-    textAlign: 'center',
-    borderRadius: '3px',
-  },
 }));
 
 export default function index() {
@@ -53,22 +39,15 @@ export default function index() {
               House Hunting
             </Typography>
             <Typography className={classes.linkItem}>
-              <Link underline="none" href="/">
-                Houses
-              </Link>
-              <Link underline="none" href="/aboutus">
-                Aboutus
-              </Link>
-              <Link
+              <LinkItem underline="none" text="Houses" linkUrl="/" />
+              <LinkItem underline="none" text="Aboutus" linkUrl="/aboutus" />
+              <LinkItem
                 underline="none"
-                href="/signup"
-                className={classes.signupLik}
-              >
-                Signup
-              </Link>
-              <Link underline="none" href="/signin">
-                Signin
-              </Link>
+                text="Signup"
+                bgFilled
+                linkUrl="/signup"
+              />
+              <LinkItem underline="none" text="Signin" linkUrl="/signin" />
             </Typography>
           </Toolbar>
         </AppBar>
