@@ -8,3 +8,18 @@ body {
   margin: auto;
   width: 90%;
 }
+
+.rapper{
+  width: 90%;
+  max-width: 100%;
+  margin:20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3em;
+}
+
+.card{
+  width: 23%;
+  height: 200px;
+  margin: 10px;
+}

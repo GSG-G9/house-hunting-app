@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Card from '../Card';
 import './style.css';
 
-function Container({ houses }) {
-  return (
-    <ul className="rapper">
-      {houses.map((elm) => (
-        <div className="card">{elm}</div>
-      ))}
-    </ul>
-  );
+function CardContainer({ houses }) {
+  return <div className="rapper" />;
 }
-Container.propTypes = {
-  houses: PropTypes.shape.isRequired,
+CardContainer.propTypes = {
+  houses: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default Container;
+export default CardContainer;
