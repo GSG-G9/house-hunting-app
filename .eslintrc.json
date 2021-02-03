@@ -11,16 +11,15 @@
   },
   "plugins": ["prettier", "jest"],
   "rules": {
+    "import/no-unresolved": [
+      2, 
+      { "caseSensitive": false }
+   ],
     "prettier/prettier": [
       "error",
       {
         "singleQuote": true
       }
     ]
-  },"rules": {
-    "import/no-unresolved": [
-       2, 
-       { "caseSensitive": false }
-    ]
- }
+  }
 }
