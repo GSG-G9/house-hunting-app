@@ -7,7 +7,7 @@ function LinkItem({ children, linkUrl, registerClass }) {
   const classes = useStyles();
 
   return (
-    <Link to={linkUrl} className={`${classes.root} ${classes[registerClass]}`}>
+    <Link to={linkUrl} className={`${classes.root} ${registerClass}`}>
       {children}
     </Link>
   );

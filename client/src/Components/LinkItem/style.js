@@ -11,10 +11,6 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     cursor: 'pointer',
   },
-  signupLink: {
-    color: `${theme.palette.primary.contrastText} !important`,
-    backgroundColor: theme.palette.secondary.main,
-  },
 }));
 
 export default useStyles;
