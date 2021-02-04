@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../Card';
-import './style.css';
-
+import CardComponent from '../Card';
+//
 function CardContainer({ houses }) {
-  return <div className="rapper" />;
+  return (
+    <div className="rapper">
+      {houses.map((elm) => (
+        <CardComponent house={elm} />
+      ))}
+    </div>
+  );
 }
 CardContainer.propTypes = {
   houses: PropTypes.instanceOf(Array).isRequired,

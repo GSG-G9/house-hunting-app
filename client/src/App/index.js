@@ -1,9 +1,5 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import './style.css';
-import Container from '../Components/CardContainer';
-=======
 import { Switch, Route } from 'react-router-dom';
 
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -19,12 +15,14 @@ import {
   ABOUT_US,
   CONTACT_US,
 } from '../Utils/routes.constant';
+
+import CardContainer from '../Components/CardContainer';
 import theme from './theme';
->>>>>>> f4871e4c9aae193740df59e127327840d4d4230f
 
 function App() {
   return (
     <Switch>
+      <CardContainer />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <h1>welcome form hunting app!</h1>
