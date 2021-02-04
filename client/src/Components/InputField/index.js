@@ -10,7 +10,7 @@ function InputField({ className, variant, label, component }) {
   return (
     <div>
       <TextField
-        className={`${classes.root} ${className}`}
+        className={className}
         variant={variant}
         label={label}
         component={component}
