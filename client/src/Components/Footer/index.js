@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import CopyrightIcon from '@material-ui/icons/Copyright';
+
 import useStyles from './style';
 
 function Footer() {
