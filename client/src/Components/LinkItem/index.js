@@ -3,26 +3,24 @@ import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
 import useStyles from './style';
 
-function LinkItem(props) {
-  const { text, linkUrl, bgFilled } = props;
+function LinkItem({ children, linkUrl, registerClass }) {
   const classes = useStyles();
+
   return (
-    <>
-      <Link
-        underline="none"
-        href={linkUrl}
-        className={`${classes.root} ${bgFilled ? classes.signupLink : ''}`}
-      >
-        {text}
-      </Link>
-    </>
+    <Link
+      underline="none"
+      href={linkUrl}
+      className={`${classes.root} ${classes[registerClass]}`}
+    >
+      {children}
+    </Link>
   );
 }
 
 LinkItem.propTypes = {
-  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   linkUrl: PropTypes.string.isRequired,
-  bgFilled: PropTypes.bool.isRequired,
+  registerClass: PropTypes.string.isRequired,
 };
 
 export default LinkItem;

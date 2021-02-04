@@ -1,17 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: '1.25rem',
     fontWeight: 'bold',
-    color: '#2F5C84',
-  },
-  signupLink: {
-    color: '#FFFFFF !important',
-    backgroundColor: '#EB9235',
+    color: theme.palette.primary.main,
     padding: '1rem',
     textAlign: 'center',
     borderRadius: '3px',
+  },
+  signupLink: {
+    color: `${theme.palette.primary.contrastText} !important`,
+    backgroundColor: theme.palette.secondary.main,
   },
 }));
 
