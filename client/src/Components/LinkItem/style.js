@@ -8,6 +8,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '1rem',
     textAlign: 'center',
     borderRadius: '3px',
+    textDecoration: 'none',
+    cursor: 'pointer',
   },
   signupLink: {
     color: `${theme.palette.primary.contrastText} !important`,
