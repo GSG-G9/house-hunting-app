@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import { shape, string, number } from 'prop-types';
 
 import { Card } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,8 +14,6 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 import useStyles from './style';
-
-const { shape, string, number } = PropTypes;
 
 export default function CardComponent({
   house: { img, title, description, location, bdCount, baCount, price },
