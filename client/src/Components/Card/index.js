@@ -15,9 +15,13 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 import useStyles from './style';
 
-export default function CardComponent({ house }) {
-  const { img, title, description, location, bdCount, baCount, price } = house;
+const { shape, string, number } = PropTypes;
+
+export default function CardComponent({
+  house: { img, title, description, location, bdCount, baCount, price },
+}) {
   const classes = useStyles();
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -48,7 +52,6 @@ export default function CardComponent({ house }) {
     </Card>
   );
 }
-const { shape, string, number } = PropTypes;
 
 CardComponent.propTypes = {
   house: shape({
