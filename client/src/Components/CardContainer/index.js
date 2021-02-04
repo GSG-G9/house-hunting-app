@@ -1,16 +1,25 @@
 import React from 'react';
+
+import { Container } from '@material-ui/core';
+
 import PropTypes from 'prop-types';
-import CardComponent from '../Card';
-//
+
+import Card from '../Card';
+
+import useStyles from './style';
+
 function CardContainer({ houses }) {
+  const classes = useStyles();
+
   return (
-    <div className="rapper">
-      {houses.map((elm) => (
-        <CardComponent house={elm} />
+    <Container className={classes.housesContainer}>
+      {houses.map((house) => (
+        <Card house={house} />
       ))}
-    </div>
+    </Container>
   );
 }
+
 CardContainer.propTypes = {
   houses: PropTypes.instanceOf(Array).isRequired,
 };

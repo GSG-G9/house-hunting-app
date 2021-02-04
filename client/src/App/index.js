@@ -16,13 +16,11 @@ import {
   CONTACT_US,
 } from '../Utils/routes.constant';
 
-import CardContainer from '../Components/CardContainer';
 import theme from './theme';
 
 function App() {
   return (
     <Switch>
-      <CardContainer />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <h1>welcome form hunting app!</h1>
