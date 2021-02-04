@@ -9,11 +9,7 @@ function Title({ className, title, varient, component }) {
   const classes = useStyles();
   return (
     <div>
-      <Typography
-        className={`${classes.root} ${className}`}
-        variant={varient}
-        component={component}
-      >
+      <Typography className={className} variant={varient} component={component}>
         {title}
       </Typography>
     </div>
