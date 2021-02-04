@@ -16,7 +16,6 @@ import {
   CONTACT_US,
 } from '../Utils/routes.constant';
 import theme from './theme';
-import InputField from '../Components/InputField';
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <h1>welcome form hunting app!</h1>
-        <InputField />
       </ThemeProvider>
       <Route exact path={HOME_PAGE} />
       <Route path={LOGIN_PAGE} />
