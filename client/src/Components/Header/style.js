@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
     color: `${theme.palette.primary.dark}`,
     fontWeight: 'bold',
   },
+  signupLink: {
+    color: `${theme.palette.primary.contrastText} !important`,
+    backgroundColor: theme.palette.secondary.main,
+  },
 }));
 
 export default useStyles;

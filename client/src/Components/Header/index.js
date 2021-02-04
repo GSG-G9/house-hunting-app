@@ -17,7 +17,7 @@ import {
   CONTACT_US,
 } from '../../Utils/routes.constant';
 
-export default function index() {
+function Navbar() {
   const classes = useStyles();
   return (
     <AppBar position="static" className={classes.root}>
@@ -43,7 +43,7 @@ export default function index() {
             </LinkItem>
             <LinkItem
               underline="none"
-              registerClass="signupLink"
+              registerClass={classes.signupLink}
               linkUrl={SIGNUP_PAGE}
             >
               Signup
@@ -60,3 +60,5 @@ export default function index() {
     </AppBar>
   );
 }
+
+export default Navbar;
