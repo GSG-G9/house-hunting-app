@@ -6,9 +6,14 @@ import PropTypes from 'prop-types';
 import useStyles from './style';
 
 function Title({ className, title, varient, component }) {
+  const classes = useStyles();
   return (
     <div>
-      <Typography className={className} variant={varient} component={component}>
+      <Typography
+        className={`${classes.root} ${className}`}
+        variant={varient}
+        component={component}
+      >
         {title}
       </Typography>
     </div>
