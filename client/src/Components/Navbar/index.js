@@ -3,33 +3,62 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+
 import LinkItem from '../LinkItem';
 import useStyles from './style';
+import {
+  HOME_PAGE,
+  LOGIN_PAGE,
+  SIGNUP_PAGE,
+  HOUSES,
+  PROFILE,
+  FAVORITE,
+  ABOUT_US,
+  CONTACT_US,
+} from '../../Utils/routes.constant';
 
-export default function Navbar() {
+function Navbar() {
   const classes = useStyles();
   return (
-    <>
+    <AppBar position="static" className={classes.root}>
       <Container maxWidth="lg">
-        <AppBar position="static" className={classes.root}>
-          <Toolbar className={classes.toolBar}>
-            <Typography variant="h6" className={classes.logo}>
+        <Toolbar className={classes.toolBar}>
+          <Typography variant="h6" className={classes.logo}>
+            <LinkItem underline="none" linkUrl={HOME_PAGE}>
               House Hunting
-            </Typography>
-            <Typography className={classes.linkItem}>
-              <LinkItem underline="none" text="Houses" linkUrl="/" />
-              <LinkItem underline="none" text="Aboutus" linkUrl="/aboutus" />
-              <LinkItem
-                underline="none"
-                text="Signup"
-                bgFilled
-                linkUrl="/signup"
-              />
-              <LinkItem underline="none" text="Signin" linkUrl="/signin" />
-            </Typography>
-          </Toolbar>
-        </AppBar>
+            </LinkItem>
+          </Typography>
+          <Typography className={classes.linkItem}>
+            <LinkItem underline="none" linkUrl={HOUSES}>
+              Houses
+            </LinkItem>
+            <LinkItem underline="none" linkUrl={CONTACT_US}>
+              Contact us
+            </LinkItem>
+            <LinkItem underline="none" linkUrl={ABOUT_US}>
+              About us
+            </LinkItem>
+            <LinkItem underline="none" linkUrl={FAVORITE}>
+              Favorite
+            </LinkItem>
+            <LinkItem
+              underline="none"
+              registerClass={classes.signupLink}
+              linkUrl={SIGNUP_PAGE}
+            >
+              Signup
+            </LinkItem>
+            <LinkItem underline="none" linkUrl={LOGIN_PAGE}>
+              Signin
+            </LinkItem>
+            <LinkItem underline="none" linkUrl={PROFILE}>
+              Profile
+            </LinkItem>
+          </Typography>
+        </Toolbar>
       </Container>
-    </>
+    </AppBar>
   );
 }
+
+export default Navbar;
