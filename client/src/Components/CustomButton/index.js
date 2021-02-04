@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-
 import { PropTypes } from 'prop-types';
 
 export default function CustomButton({ Children, variant, color, event }) {
