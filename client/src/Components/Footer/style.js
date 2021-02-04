@@ -1,22 +1,20 @@
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   footer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
     height: '60px',
+    backgroundColor: theme.palette.primary.dark,
     '& div': {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#1D3D59',
-      width: '100%',
-      marginRight: '24px',
-      marginLeft: '24px',
     },
     '& *': {
-      color: '#EDF2F8',
+      color: theme.palette.primary.contrastText,
     },
     '& p': {
       paddingLeft: '5px',

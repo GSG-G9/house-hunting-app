@@ -6,12 +6,12 @@ import useStyles from './style';
 function Footer() {
   const classes = useStyles();
   return (
-    <Container maxWidth="lg" className={classes.footer}>
-      <div>
+    <footer className={classes.footer}>
+      <Container maxWidth="lg">
         <CopyrightIcon />
         <p>2021 all copyright reserved</p>
-      </div>
-    </Container>
+      </Container>
+    </footer>
   );
 }
 
