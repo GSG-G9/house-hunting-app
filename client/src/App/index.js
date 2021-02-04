@@ -15,6 +15,7 @@ import {
   ABOUT_US,
   CONTACT_US,
 } from '../Utils/routes.constant';
+
 import theme from './theme';
 
 function App() {
