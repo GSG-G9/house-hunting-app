@@ -1,12 +1,16 @@
 import React from 'react';
 
-import './style.css';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import theme from './theme';
 
 function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <h1>welcome form hunting app!</h1>
-    </div>
+    </ThemeProvider>
   );
 }
 
