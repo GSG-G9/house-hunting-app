@@ -5,19 +5,20 @@ import PropTypes from 'prop-types';
 
 import useStyles from './style';
 
-function Title({ title, varient }) {
-  const classes = useStyles();
+function Title({ className, title, varient, component }) {
   return (
     <div>
-      <Typography className={classes.root} variant={varient}>
+      <Typography className={className} variant={varient} component={component}>
         {title}
       </Typography>
     </div>
   );
 }
 Title.propTypes = {
-  title: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
   varient: PropTypes.string.isRequired,
+  component: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Title;
