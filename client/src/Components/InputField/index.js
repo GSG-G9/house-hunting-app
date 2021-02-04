@@ -1,17 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import TextField from '@material-ui/core/TextField';
-// import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+
 import useStyles from './style';
 
-function InputField() {
+function InputField({ className, variant, label }) {
   const classes = useStyles();
   return (
     <div>
-      <SearchIcon className={classes.icon} />
-      <TextField variant="standard" label="Search" />
+      <TextField
+        className={`${classes.root} ${className}`}
+        variant={variant}
+        label={label}
+      />
     </div>
   );
 }
+InputField.propTypes = {
+  className: PropTypes.string.isRequired,
+  variant: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 export default InputField;
