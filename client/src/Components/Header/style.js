@@ -1,23 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#FFFFFF',
-    borderBottom: '3px solid #1D3D59',
+    borderBottom: `3px solid ${theme.palette.primary.dark}`,
     height: '80px',
     justifyContent: 'center',
     alignItems: 'center',
-    boxSizing: 'border-box',
-    '& *': {
-      boxSizing: 'border-box',
-    },
   },
   toolBar: {
     width: '85%',
+    margin: '0 auto',
   },
   logo: {
     flexGrow: 1,
-    color: '#1D3D59',
+    color: `${theme.palette.primary.dark}`,
     fontWeight: 'bold',
   },
 }));
