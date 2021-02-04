@@ -1,9 +1,11 @@
 import React from 'react';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import Button from '../Button';
 import LinkItem from '../LinkItem';
 import useStyles from './style';
 import {
@@ -24,37 +26,39 @@ function Navbar() {
       <Container maxWidth="lg">
         <Toolbar className={classes.toolBar}>
           <Typography variant="h6" className={classes.logo}>
-            <LinkItem underline="none" linkUrl={HOME_PAGE}>
+            <LinkItem className={classes.linkItem} linkUrl={HOME_PAGE}>
               House Hunting
             </LinkItem>
           </Typography>
-          <Typography className={classes.linkItem}>
-            <LinkItem underline="none" linkUrl={HOUSES}>
-              Houses
-            </LinkItem>
-            <LinkItem underline="none" linkUrl={CONTACT_US}>
-              Contact us
-            </LinkItem>
-            <LinkItem underline="none" linkUrl={ABOUT_US}>
-              About us
-            </LinkItem>
-            <LinkItem underline="none" linkUrl={FAVORITE}>
-              Favorite
-            </LinkItem>
-            <LinkItem
-              underline="none"
-              registerClass={classes.signupLink}
-              linkUrl={SIGNUP_PAGE}
-            >
-              Signup
-            </LinkItem>
-            <LinkItem underline="none" linkUrl={LOGIN_PAGE}>
-              Signin
-            </LinkItem>
-            <LinkItem underline="none" linkUrl={PROFILE}>
-              Profile
-            </LinkItem>
-          </Typography>
+          <LinkItem className={classes.linkItem} linkUrl={HOUSES}>
+            Houses
+          </LinkItem>
+          <LinkItem className={classes.linkItem} linkUrl={CONTACT_US}>
+            Contact us
+          </LinkItem>
+          <LinkItem className={classes.linkItem} linkUrl={ABOUT_US}>
+            About us
+          </LinkItem>
+          <LinkItem className={classes.linkItem} linkUrl={FAVORITE}>
+            Favorite
+          </LinkItem>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick=""
+            href={SIGNUP_PAGE}
+          >
+            SignUp
+          </Button>
+          <LinkItem className={classes.linkItem} linkUrl={LOGIN_PAGE}>
+            Signin
+          </LinkItem>
+          <LinkItem className={classes.linkItem} linkUrl={PROFILE}>
+            Profile
+          </LinkItem>
+          <Button variant="outlined" color="secondary" onClick="">
+            Logout
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
