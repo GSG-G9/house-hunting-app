@@ -1,12 +1,17 @@
-import React from 'react'
-import TextField from "@material-ui/core/TextField";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
+import useStyles from './style';
+
 function InputField() {
+  const classes = useStyles();
   return (
     <div>
-      <p>I am an Item!!</p>
-      <TextField/>
+      <SearchIcon />
+      <TextField variant="standard" label="Search" />
     </div>
-  )
+  );
 }
 
-export default InputField
+export default InputField;
