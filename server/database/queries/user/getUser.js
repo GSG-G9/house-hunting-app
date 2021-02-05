@@ -8,4 +8,4 @@ const getUser = ({ email }) => {
   return connection.query(sql);
 };
 
-module.exports = { getUser };
+module.exports = getUser;
