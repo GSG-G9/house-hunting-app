@@ -3,8 +3,9 @@ const { object, string, ref, number } = require('yup');
 const boomify = require('../../utils/boomify');
 
 const SignupValidate = async (req, res, next) => {
+  const { username, email, password, confirmPassword, mobile } = req.body;
+
   try {
-    const { username, email, password, confirmPassword, mobile } = req.body;
     const schema = object().shape({
       username: string().required(),
       email: string().email().required(),
@@ -17,13 +18,16 @@ const SignupValidate = async (req, res, next) => {
       ),
       mobile: number().required(),
     });
-    await schema.isValid({
-      username,
-      email,
-      password,
-      confirmPassword,
-      mobile,
-    });
+    await schema.isValid(
+      {
+        username,
+        email,
+        password,
+        confirmPassword,
+        mobile,
+      },
+      { abortُEarly: false }
+    );
     next();
   } catch (error) {
     next(boomify(400, error.error[0]));
