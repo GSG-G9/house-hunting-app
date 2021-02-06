@@ -4,7 +4,7 @@ const boomify = require('../../utils/boomify');
 
 const SignupValidate = async (req, res, next) => {
   try {
-    const { username, email, password, confirmPassword, phone } = req.body;
+    const { username, email, password, confirmPassword, mobile } = req.body;
     const schema = yup.object().shape({
       username: yup.string().required(),
       email: yup.string().email().required(),
@@ -15,14 +15,14 @@ const SignupValidate = async (req, res, next) => {
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('password'), null], 'passwords must match'),
-      phone: yup.number().required(),
+      mobile: yup.number().required(),
     });
     await schema.isValid({
       username,
       email,
       password,
       confirmPassword,
-      phone,
+      mobile,
     });
     next();
   } catch (error) {
