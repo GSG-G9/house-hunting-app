@@ -9,7 +9,7 @@ VALUES
   ('user_7', 'user_7@house.com', '123456asd', 'khanyunis', '010021620', CURRENT_TIMESTAMP);
 
 INSERT INTO
-  locations (location_name, created_at)
+  locations (location, created_at)
 VALUES
   ('Gaza', CURRENT_TIMESTAMP),
   ('Khanyunis', CURRENT_TIMESTAMP),
