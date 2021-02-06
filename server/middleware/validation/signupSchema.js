@@ -1,21 +1,21 @@
-const yup = require('yup');
+const { object, string, ref, number } = require('yup');
 
 const boomify = require('../../utils/boomify');
 
 const SignupValidate = async (req, res, next) => {
   try {
     const { username, email, password, confirmPassword, mobile } = req.body;
-    const schema = yup.object().shape({
-      username: yup.string().required(),
-      email: yup.string().email().required(),
-      password: yup
-        .string()
+    const schema = object().shape({
+      username: string().required(),
+      email: string().email().required(),
+      password: string()
         .min(8, 'password must be at least 8 char')
         .required('password is required'),
-      confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('password'), null], 'passwords must match'),
-      mobile: yup.number().required(),
+      confirmPassword: string().oneOf(
+        [ref('password'), null],
+        'passwords must match'
+      ),
+      mobile: number().required(),
     });
     await schema.isValid({
       username,

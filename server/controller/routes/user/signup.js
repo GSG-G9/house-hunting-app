@@ -4,7 +4,7 @@ const checkUserByEmail = require('../../../database/queries/user/index');
 const boomify = require('../../../utils/boomify');
 const addUser = require('../../../database/queries/user/index');
 
-const signup = async (req, res, next) => {
+const signupController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const getEmail = await checkUserByEmail(email);
@@ -20,4 +20,4 @@ const signup = async (req, res, next) => {
     res.status(400).json({ status: 400, error: err.message });
   }
 };
-module.exports = signup;
+module.exports = signupController;
