@@ -1,5 +1,5 @@
-const login = (req, res) => {
-  res.send('Hello from login');
+const login = (req, res, next) => {
+  res.json('Hey from login ');
 };
 
 module.exports = login;

@@ -1,3 +1,3 @@
-const loginSchema = require('./loginSchema');
+const loginValidation = require('./login');
 
-module.exports = { loginSchema };
+module.exports = { loginValidation };
