@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { house } = require('./house');
+const house = require('./house');
 
 router.get('/', (req, res) => {
   res.json({
