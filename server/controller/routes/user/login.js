@@ -17,7 +17,7 @@ const login = async (req, res, next) => {
 
     if (!match) throw boomify(400, 'Invalid username/password');
 
-    const token = jwt.sign(rows[0].id, secretToken);
+    const token = await jwt.sign(rows[0].id, secretToken);
 
     res
       .json({
