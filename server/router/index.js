@@ -1,14 +1,9 @@
 const router = require('express').Router();
 
+const user = require('./user');
 const house = require('./house');
 
-router.get('/', (req, res) => {
-  res.json({
-    message: 'Hello from house-hunting app',
-    statusCode: 200,
-  });
-});
-
+router.use(user);
 router.use(house);
 
 module.exports = router;

@@ -17,23 +17,26 @@ import {
 } from '../Utils/routes.constant';
 
 import theme from './theme';
+import Layout from '../Pages/Layout';
 
 function App() {
   return (
     <Switch>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <h1>welcome form hunting app!</h1>
+        <Layout>
+          <h1>welcome form hunting app!</h1>
+          <Route exact path={HOME_PAGE} />
+          <Route path={LOGIN_PAGE} />
+          <Route path={SIGNUP_PAGE} />
+          <Route path={HOUSES} />
+          <Route path={PROFILE} />
+          <Route path={FAVORITE} />
+          <Route path={ABOUT_US} />
+          <Route path={CONTACT_US} />
+          <Route />
+        </Layout>
       </ThemeProvider>
-      <Route exact path={HOME_PAGE} />
-      <Route path={LOGIN_PAGE} />
-      <Route path={SIGNUP_PAGE} />
-      <Route path={HOUSES} />
-      <Route path={PROFILE} />
-      <Route path={FAVORITE} />
-      <Route path={ABOUT_US} />
-      <Route path={CONTACT_US} />
-      <Route />
     </Switch>
   );
 }
