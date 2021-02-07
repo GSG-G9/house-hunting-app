@@ -1,4 +1,4 @@
-const logout = (req, res, next) => {
+const logoutController = (req, res, next) => {
   try {
     return res
       .clearCookie('token')
@@ -8,4 +8,4 @@ const logout = (req, res, next) => {
   }
 };
 
-module.exports = logout;
+module.exports = logoutController;

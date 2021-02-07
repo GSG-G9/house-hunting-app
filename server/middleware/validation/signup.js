@@ -2,7 +2,7 @@ const { object, string, ref } = require('yup');
 
 const boomify = require('../../utils/boomify');
 
-const signupValidate = async (req, res, next) => {
+const signupValidation = async (req, res, next) => {
   try {
     const { username, email, password, confirmPassword, mobile } = req.body;
 
@@ -33,4 +33,4 @@ const signupValidate = async (req, res, next) => {
     next(boomify(400, error.errors[0]));
   }
 };
-module.exports = signupValidate;
+module.exports = signupValidation;

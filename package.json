@@ -29,8 +29,10 @@
   "homepage": "https://github.com/GSG-G9/house-hunting-app#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "yup": "^0.32.8"
