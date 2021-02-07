@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAllHouses } = require('../controller/routes/house/index');
+const { getAllHouses } = require('../controller/routes/house');
 
 router.get('/houses', getAllHouses);
 
