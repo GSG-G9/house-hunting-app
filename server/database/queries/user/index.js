@@ -1,3 +1,4 @@
 const checkUserByEmail = require('./checkUserByEmail');
+const addUser = require('./addUser');
 
-module.exports = { checkUserByEmail };
+module.exports = { checkUserByEmail, addUser };

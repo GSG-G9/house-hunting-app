@@ -4,12 +4,12 @@ const bcrybt = require('bcrypt');
 const { checkUserByEmail } = require('../../../database/queries/user');
 const boomify = require('../../../utils/boomify');
 
-const login = async (req, res, next) => {
+const loginController = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const {
       rows: [check],
-    } = await checkUserByEmail(email);
+    } = await checkUserByEmail({ email });
 
     if (!check) throw boomify(404, 'User does not exist');
 
@@ -30,4 +30,4 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = login;
+module.exports = loginController;
