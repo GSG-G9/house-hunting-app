@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { join } = require('path');
-const logger = require('morgan');    
+const logger = require('morgan');
 const router = require('./router');
 const { errorHandler, notFound } = require('./controller/error');
 
