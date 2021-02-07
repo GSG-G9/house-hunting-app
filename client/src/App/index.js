@@ -18,6 +18,7 @@ import {
 
 import theme from './theme';
 import Layout from '../Pages/Layout';
+import Register from '../Pages/Register';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
+          <Register />
           <h1>welcome form hunting app!</h1>
           <Route exact path={HOME_PAGE} />
           <Route path={LOGIN_PAGE} />
