@@ -1,4 +1,3 @@
-require('dotenv');
 const { Pool } = require('pg');
 
 let dbUrl = '';

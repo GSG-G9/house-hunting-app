@@ -7,14 +7,19 @@ const signupController = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const { rows } = await checkUserByEmail(email);
-    console.log(rows, 'rr');
-    if (rows.length) {
+    const {
+      rows: [check],
+    } = await checkUserByEmail({ email });
+
+    if (check) {
       throw boomify(409, 'user already exists ');
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    // const {rows:[result]} = await addUser({ ...req.body, password: hashedPassword });
-    // res.status(201).json({ status: 201, msg: `Welcome,${} ` });
+
+    await addUser({ ...req.body, password: hashedPassword });
+
+    res.status(201).json({ status: 201, message: 'SingUp Successfully' });
   } catch (err) {
     next(err);
   }

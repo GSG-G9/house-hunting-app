@@ -1,11 +1,11 @@
-const { object, string, ref, number } = require('yup');
+const { object, string, ref } = require('yup');
 
 const boomify = require('../../utils/boomify');
 
-const SignupValidate = async (req, res, next) => {
-  const { username, email, password, confirmPassword, mobile } = req.body;
-
+const signupValidate = async (req, res, next) => {
   try {
+    const { username, email, password, confirmPassword, mobile } = req.body;
+
     const schema = object().shape({
       username: string().required(),
       email: string().email().required(),
@@ -16,9 +16,9 @@ const SignupValidate = async (req, res, next) => {
         [ref('password'), null],
         'passwords must match'
       ),
-      mobile: number().required(),
+      mobile: string().min(9).required(),
     });
-    await schema.isValid(
+    await schema.validate(
       {
         username,
         email,
@@ -26,11 +26,11 @@ const SignupValidate = async (req, res, next) => {
         confirmPassword,
         mobile,
       },
-      { abortُEarly: false }
+      { abortEarly: false }
     );
     next();
   } catch (error) {
-    next(boomify(400, error.error[0]));
+    next(boomify(400, error.errors[0]));
   }
 };
-module.exports = SignupValidate;
+module.exports = signupValidate;
