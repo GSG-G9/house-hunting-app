@@ -17,14 +17,12 @@ const loginController = async (req, res, next) => {
 
     if (!match) throw boomify(400, 'Invalid username/password');
 
-    const token = await jwt.sign(check.id, process.env.SECRET_TOKEN);
+    const token = await jwt.sign(check.id, process.env.SECRET_KEY);
 
-    res
-      .json({
-        statusCode: 200,
-        message: 'Login successfully',
-      })
-      .cookie('token', token);
+    res.cookie('token', token).json({
+      statusCode: 200,
+      message: 'Login successfully',
+    });
   } catch (error) {
     next(error);
   }

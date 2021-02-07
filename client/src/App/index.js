@@ -18,6 +18,7 @@ import {
 
 import theme from './theme';
 import Layout from '../Pages/Layout';
+import Login from '../Pages/Login';
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
         <CssBaseline />
         <Layout>
           <h1>welcome form hunting app!</h1>
-          <Route exact path={HOME_PAGE} />
+          <Route exact path={HOME_PAGE}>
+            <Login />
+          </Route>
           <Route path={LOGIN_PAGE} />
           <Route path={SIGNUP_PAGE} />
           <Route path={HOUSES} />
@@ -34,6 +37,7 @@ function App() {
           <Route path={FAVORITE} />
           <Route path={ABOUT_US} />
           <Route path={CONTACT_US} />
+
           <Route />
         </Layout>
       </ThemeProvider>

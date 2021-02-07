@@ -1,0 +1,12 @@
+.login-form{
+  display: flex;
+  flex-direction: column;
+  width:350px
+
+}
+
+.input{
+  width:350px;
+
+  margin: 10px 0 ;
+}
