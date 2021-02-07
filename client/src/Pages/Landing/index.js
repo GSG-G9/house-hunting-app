@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -51,7 +50,7 @@ function Landing() {
       );
       return data;
     } catch (error) {
-      if (axios.isCancel(err)) {
+      if (axios.isCancel(error)) {
         return setErrorMsg('axios request cancelled');
       }
       return setErrorMsg(error.message);
