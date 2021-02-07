@@ -3,7 +3,7 @@ const express = require('express');
 const { join } = require('path');
 const logger = require('morgan');
 const router = require('./router');
-const { errorHandler, notFound } = require('./controller/error');
+const { serverError, clientError } = require('./controller/error');
 
 const app = express();
 
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(notFound);
-app.use(errorHandler);
+app.use(clientError);
+app.use(serverError);
 
 module.exports = app;

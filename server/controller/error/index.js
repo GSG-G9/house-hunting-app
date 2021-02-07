@@ -1,7 +1,7 @@
-const notFound = require('./404');
-const errorHandler = require('./500');
+const clientError = require('./404');
+const serverError = require('./500');
 
 module.exports = {
-  notFound,
-  errorHandler,
+  clientError,
+  serverError,
 };
