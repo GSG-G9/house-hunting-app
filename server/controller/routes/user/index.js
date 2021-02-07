@@ -1,3 +1,4 @@
-const { logout } = require('./user/logout');
+const logout = require('./user/logout');
+const signupController = require('./signup');
 
-module.exports = { logout };
+module.exports = { signupController, logout };
