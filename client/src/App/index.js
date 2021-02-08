@@ -26,11 +26,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
-          <Register />
           <h1>welcome form hunting app!</h1>
           <Route exact path={HOME_PAGE} />
           <Route path={LOGIN_PAGE} />
-          <Route path={SIGNUP_PAGE} />
+          <Route path={SIGNUP_PAGE}>
+            <Register />
+          </Route>
           <Route path={HOUSES} />
           <Route path={PROFILE} />
           <Route path={FAVORITE} />
