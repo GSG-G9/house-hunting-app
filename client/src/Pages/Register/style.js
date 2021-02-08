@@ -5,6 +5,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'flex-start',
+    minWidth: '100%',
   },
   img: {
     alignSelf: 'center',
@@ -13,16 +14,27 @@ const useStyles = makeStyles({
   logo: {
     width: 400,
   },
-  form: {
+  formSection: {
     justifySelf: 'flex-end',
     minWidth: '50%',
+  },
+  form: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignContent: 'flex-start',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-start',
   },
   input: {
     width: 500,
+    marginBottom: 30,
+  },
+  button: {
+    alignSelf: 'flex-end',
+    margin: 40,
+    width: 100,
+  },
+  alert: {
+    width: 500,
+    height: 50,
   },
 });
 export default useStyles;
