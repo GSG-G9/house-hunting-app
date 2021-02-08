@@ -27,7 +27,9 @@ function App() {
         <CssBaseline />
         <Layout>
           <h1>welcome form hunting app!</h1>
-          <Route exact path={HOME_PAGE} render={() => <Landing />} />
+          <Route exact path={HOME_PAGE}>
+            <Landing />
+          </Route>
           <Route path={LOGIN_PAGE} />
           <Route path={SIGNUP_PAGE} />
           <Route path={HOUSES} />

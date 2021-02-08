@@ -30,63 +30,26 @@ function Landing() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
 
-  const sortByTopRating = (housesData) => {
-    const cloningHouse = [...housesData];
-    return cloningHouse.sort((a, b) => {
-      if (a.rating > b.rating) {
-        return -1;
-      }
-      if (a.rating < b.rating) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-
-  const sortByRecentlyAdded = (housesData) => {
-    const cloningHouse = [...housesData];
-    return cloningHouse.sort((a, b) => {
-      if (a.created_at > b.created_at) {
-        return -1;
-      }
-      if (a.created_at < b.created_at) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-
   async function fetchingData(source, limit = 6, skip = 0) {
     try {
       const { data } = await axios.get(
-        `/api/v1/houses?limit=${limit}&skip=${skip}`,
-        {
-          cancelToken: source.token,
-        }
+        `/api/v1/houses?limit=${limit}&skip=${skip}`
       );
       return data;
     } catch (error) {
-      if (axios.isCancel(error)) {
-        return setErrorMsg('axios request cancelled');
-      }
       return setErrorMsg(error.message);
     }
   }
 
   useEffect(() => {
-    const cancelToken = axios.CancelToken;
-    const source = cancelToken.source();
     setLoading(true);
-    fetchingData(source)
+    fetchingData()
       .then((res) => res)
       .then(({ data }) => {
         setHouses(data);
         setLoading(false);
       })
       .catch((err) => setErrorMsg(err));
-    return () => {
-      source.cancel('axios request cancelled');
-    };
   }, []);
 
   return (
@@ -104,7 +67,9 @@ function Landing() {
                 <CircularProgress color="primary" />
               </div>
             ) : (
-              <CardContainer houses={sortByTopRating(houses) || []} />
+              <CardContainer
+                houses={houses.sort((a, b) => a.rating - b.rating)}
+              />
             )}
           </div>
           <Divider className={classes.divider} />
@@ -117,7 +82,7 @@ function Landing() {
                 <CircularProgress color="primary" />
               </div>
             ) : (
-              <CardContainer houses={sortByRecentlyAdded(houses) || []} />
+              <CardContainer houses={houses.sort((a, b) => a.id - b.id)} />
             )}
           </div>
         </>

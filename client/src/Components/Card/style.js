@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '1%',
     marginLeft: '1%',
     marginBottom: '1rem',
-    border: '1px solid #c7c7c7',
+    border: `1px solid ${theme.palette.primary.contrastText}`,
   },
   media: {
     maxHeight: '200px',
