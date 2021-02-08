@@ -19,38 +19,25 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [mobile, setMobile] = useState('');
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [error, SetError] = useState('');
   const [open, setOpen] = useState(false);
 
-const validationSchema = yup.object({
-  username: yup.string().required(),
-      email: yup.string().email().required(),
-      password: yup.string()
-        .min(8, 'password must be at least 8 char')
-        .required('password is required'),
-      confirmPassword: yup.string().oneOf(
-        [ref('password'), null],
-        'passwords must match'
-      ),
-      mobile: yup.number().min(9).required(),
-     });
+  const validationSchema = yup.object({
+    username: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup
+      .string()
+      .min(8, 'password must be at least 8 char')
+      .required('password is required'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'passwords must match'),
+    mobile: yup.number().min(9).required(),
+  });
+  const values = { username, email, password, confirmPassword, mobile };
 
-     const validateFormValues = (schema) => async (values) => {
-	if (typeof schema === 'function') {
-		schema = schema();
-	}
-	try {
-		await schema.validate(values, { abortEarly: false });
-	} catch (err) {
-		const errors = err.inner.reduce((formError, innerError) => {
-			return setIn(formError, innerError.path, innerError.message);
-		}, {});
-
-		return errors;
-	}
-};
-const validate = validateFormValues(validationSchema);
+  validationSchema.validate(values, { abortEarly: false });
 
   const clear = () => {
     setUsername('');
@@ -119,7 +106,6 @@ const validate = validateFormValues(validationSchema);
             type="text"
             onChange={handleUsername}
             label="user name"
-            validate={validate}
           />
           <Input
             className={classes.input}
@@ -128,7 +114,6 @@ const validate = validateFormValues(validationSchema);
             onChange={handleEmail}
             value={email}
             label="Email"
-            validate={validate}
           />
           <Input
             className={classes.input}
@@ -137,7 +122,6 @@ const validate = validateFormValues(validationSchema);
             onChange={handlePassword}
             value={password}
             label="password"
-            validate={validate}
           />
           <Input
             className={classes.input}
@@ -146,7 +130,6 @@ const validate = validateFormValues(validationSchema);
             onChange={handleConfirmPassword}
             value={confirmPassword}
             label="confirm password"
-            validate={validate}
           />
           <Input
             className={classes.input}
@@ -155,7 +138,6 @@ const validate = validateFormValues(validationSchema);
             onChange={handleMobile}
             value={mobile}
             label="mobile"
-            validate={validate}
           />
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
@@ -174,7 +156,7 @@ const validate = validateFormValues(validationSchema);
             event={(handleClick, handleSubmit)}
           >
             Sign Up
-            {setLoading && <CircularProgress />}
+            {loading && <CircularProgress />}
           </CustomButton>
         </form>
       </section>
