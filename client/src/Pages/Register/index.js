@@ -107,7 +107,12 @@ function Register() {
         <SearchImg className={classes.logo} />
       </section>
       <section className={classes.formSection}>
-        <Typography variant="h3" component="h2" color="primary">
+        <Typography
+          variant="h3"
+          component="h2"
+          color="primary"
+          className={classes.header}
+        >
           Sign Up
         </Typography>
         <form className={classes.form}>

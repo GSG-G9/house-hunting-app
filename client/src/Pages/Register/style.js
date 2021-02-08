@@ -18,6 +18,9 @@ const useStyles = makeStyles({
     justifySelf: 'flex-end',
     minWidth: '50%',
   },
+  header: {
+    marginBottom: 20,
+  },
   form: {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -28,7 +31,6 @@ const useStyles = makeStyles({
     marginBottom: 30,
   },
   button: {
-    alignSelf: 'flex-end',
     width: 500,
   },
   alert: {
