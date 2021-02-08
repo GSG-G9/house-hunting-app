@@ -49,18 +49,19 @@ function Register() {
   };
 
   return (
-    <>
-      <section>
+    <section className={classes.root}>
+      <section className={classes.img}>
         <img src={logo} className={classes.logo} alt="Logo" />
       </section>
       <section>
-        <form>
+        <form className={classes.form}>
           <Input
             value={username}
             className={classes.input}
             variant="outlined"
             type="text"
             onChange={handleUsername}
+            placeholder="username"
           />
           <Input
             className={classes.input}
@@ -68,6 +69,7 @@ function Register() {
             type="email"
             onChange={handleEmail}
             value={email}
+            placeholder="Email"
           />
           <Input
             className={classes.input}
@@ -75,6 +77,7 @@ function Register() {
             type="password"
             onChange={handlePassword}
             value={password}
+            placeholder="password"
           />
           <Input
             className={classes.input}
@@ -82,13 +85,15 @@ function Register() {
             type="password"
             onChange={handleConfirmPassword}
             value={confirmPassword}
+            placeholder="confirm password"
           />
           <Input
             className={classes.input}
             variant="outlined"
-            type="number"
+            type="tel"
             onChange={handleMobile}
             value={mobile}
+            placeholder="mobile"
           />
           <CustomButton
             variant="contained"
@@ -99,7 +104,7 @@ function Register() {
           </CustomButton>
         </form>
       </section>
-    </>
+    </section>
   );
 }
 export default Register;
