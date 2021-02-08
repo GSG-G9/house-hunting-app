@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import * as yup from 'yup';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
+import validationSchema from '../../Utils/validations/register';
 import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.svg';
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
-import { LOGIN_PAGE } from '../../Utils/routes.constant';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 import useStyles from './style';
 
@@ -75,18 +75,7 @@ function Register() {
         confirmPassword,
         mobile,
       };
-      const validationSchema = yup.object({
-        username: yup.string().required(),
-        email: yup.string().email().required(),
-        password: yup
-          .string()
-          .min(8, 'password must be at least 8 char')
-          .required('password is required'),
-        confirmPassword: yup
-          .string()
-          .oneOf([yup.ref('password'), null], 'passwords must match'),
-        mobile: yup.number().min(9).required(),
-      });
+
       await validationSchema.validate(userDate, {
         abortEarly: false,
       });
@@ -94,7 +83,7 @@ function Register() {
       setOpen(true);
       clear();
       setLoading(false);
-      history.push(LOGIN_PAGE);
+      history.push(HOME_PAGE);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setLoading(false);
@@ -124,6 +113,7 @@ function Register() {
             onChange={handleChange}
             label="user name"
             name="username"
+            required
           />
           <Input
             className={classes.input}
@@ -133,6 +123,7 @@ function Register() {
             value={email}
             label="Email"
             name="email"
+            required
           />
           <Input
             className={classes.input}
@@ -142,6 +133,7 @@ function Register() {
             value={password}
             label="password"
             name="password"
+            required
           />
           <Input
             className={classes.input}
@@ -151,6 +143,7 @@ function Register() {
             value={confirmPassword}
             label="confirm password"
             name="confirmPassword"
+            required
           />
           <Input
             className={classes.input}
@@ -160,10 +153,11 @@ function Register() {
             value={mobile}
             label="mobile"
             name="mobile"
+            required
           />
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
-              This is a success message!
+              Congrats! Signed up Successfully
             </Alert>
           </Snackbar>
           {error && (
@@ -177,8 +171,7 @@ function Register() {
             color="primary"
             event={handleSubmit}
           >
-            Sign Up
-            {loading && <CircularProgress />}
+            {loading ? <CircularProgress size={25} /> : 'Sign Up'}
           </Button>
         </form>
       </section>
