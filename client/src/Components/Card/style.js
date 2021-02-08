@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
-    color: '#1D3D59',
+    color: theme.palette.primary.dark,
     marginLeft: '5px',
   },
   favIcon: {
