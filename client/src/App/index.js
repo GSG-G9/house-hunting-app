@@ -19,6 +19,7 @@ import {
 import theme from './theme';
 import Layout from '../Pages/Layout';
 import Landing from '../Pages/Landing';
+import Register from '../Pages/Register';
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
             <Landing />
           </Route>
           <Route path={LOGIN_PAGE} />
-          <Route path={SIGNUP_PAGE} />
+          <Route path={SIGNUP_PAGE}>
+            <Register />
+          </Route>
           <Route path={HOUSES} />
           <Route path={PROFILE} />
           <Route path={FAVORITE} />
