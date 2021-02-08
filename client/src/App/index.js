@@ -18,6 +18,7 @@ import {
 
 import theme from './theme';
 import Layout from '../Pages/Layout';
+import Landing from '../Pages/Landing';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <CssBaseline />
         <Layout>
           <h1>welcome form hunting app!</h1>
-          <Route exact path={HOME_PAGE} />
+          <Route exact path={HOME_PAGE} render={() => <Landing />} />
           <Route path={LOGIN_PAGE} />
           <Route path={SIGNUP_PAGE} />
           <Route path={HOUSES} />

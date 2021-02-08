@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Container, Divider, Typography } from '@material-ui/core';
 
 import CardContainer from '../../Components/CardContainer';
 import useStyles from './style';
@@ -8,13 +9,11 @@ function Landing() {
   const classes = useStyles();
 
   const [houses, setHouses] = useState([]);
-  const [topRatingHouses, setTopRatingHouses] = useState([]);
-  const [recentlyAddedHouses, setRecentlyAddedHouses] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
 
   const sortByTopRating = (housesData) => {
     const cloningHouse = [...housesData];
-    const sortingHouse = cloningHouse.sort((a, b) => {
+    return cloningHouse.sort((a, b) => {
       if (a.rating > b.rating) {
         return -1;
       }
@@ -23,12 +22,11 @@ function Landing() {
       }
       return 0;
     });
-    setTopRatingHouses(sortingHouse);
   };
 
   const sortByRecentlyAdded = (housesData) => {
     const cloningHouse = [...housesData];
-    const sortingHouse = cloningHouse.sort((a, b) => {
+    return cloningHouse.sort((a, b) => {
       if (a.created_at > b.created_at) {
         return -1;
       }
@@ -37,7 +35,6 @@ function Landing() {
       }
       return 0;
     });
-    setRecentlyAddedHouses(sortingHouse);
   };
 
   async function fetchingData(source, limit = 6, skip = 0) {
@@ -71,18 +68,23 @@ function Landing() {
     };
   }, []);
 
-  useEffect(() => {
-    sortByTopRating(houses);
-    sortByRecentlyAdded(houses);
-  }, [houses]);
-
   return (
-    <div className={classes.root}>
+    <Container maxWidth="lg" className={classes.root}>
       {errorMsg && <div>{errorMsg}</div>}
-      <CardContainer houses={houses} />
-      <CardContainer houses={topRatingHouses} />
-      <CardContainer houses={recentlyAddedHouses} />
-    </div>
+      <div className={classes.housesSection}>
+        <Typography variant="h2" className={classes.sectionTitle}>
+          Top-rated
+        </Typography>
+        <CardContainer houses={sortByTopRating(houses) || []} />
+      </div>
+      <Divider className={classes.divider} />
+      <div className={classes.housesSection}>
+        <Typography variant="h2" className={classes.sectionTitle}>
+          Newest
+        </Typography>
+        <CardContainer houses={sortByRecentlyAdded(houses) || []} />
+      </div>
+    </Container>
   );
 }
 
