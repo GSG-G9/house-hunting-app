@@ -4,20 +4,12 @@ const { verifying } = require('../../utils/jwtFunctions');
 const protect = async (req, res, next) => {
   try {
     const { token } = req.cookies;
-    let decoded;
-    try {
-      decoded = await verifying(token);
-    } catch (error) {
-      throw boomify(401, 'Invalid credentials.');
-    }
-
-    const { user_id: userId } = decoded;
-
+    const { userId } = await verifying(token);
     req.userId = userId;
-    return next();
+    next();
   } catch (error) {
-    return next(error);
+    next(boomify(401, 'unauthorized.'));
   }
 };
 
-module.exports = { protect };
+module.exports = protect;

@@ -1,4 +1,4 @@
-const bcrybt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const { checkUserByEmail } = require('../../../database/queries/user');
 const { signatureToken } = require('../../../utils/jwtFunctions');
@@ -13,11 +13,11 @@ const loginController = async (req, res, next) => {
 
     if (!check) throw boomify(404, 'User does not exist');
 
-    const match = await bcrybt.compare(password, check.password);
+    const match = await bcrypt.compare(password, check.password);
 
     if (!match) throw boomify(400, 'Invalid username/password');
 
-    const token = await signatureToken(check.id);
+    const token = await signatureToken({ userId: check.id });
 
     res.cookie('token', token).json({
       statusCode: 200,
