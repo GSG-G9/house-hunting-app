@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as yup from 'yup';
-import axios from 'axios';
+import Axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import Typography from '@material-ui/core/Typography';
 
+import validationSchema from '../../Utils/validations/login';
 import Input from '../../Components/Input';
-import CustomButton from '../../Components/Button';
+import Button from '../../Components/Button';
 import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.svg';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 import useStyles from './style';
 
@@ -42,31 +44,25 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (event) => {
     try {
-      e.preventDefault();
+      event.preventDefault();
       setIsLoading(true);
       const userData = {
         email,
         password,
       };
-      const validationSchema = yup.object({
-        email: yup.string().email().required(),
-        password: yup
-          .string()
-          .min(8, 'password must be at least 8 char')
-          .required('password is required'),
-      });
+
       await validationSchema.validate(userData, {
         abortEarly: false,
       });
-      await axios.post('api/v1/login', userData);
+      await Axios.post('api/v1/login', userData);
       setOpen(true);
-      setIsLoading(false);
       clear();
-      history.push('/ggg');
+      setIsLoading(false);
+      history.push(HOME_PAGE);
     } catch (err) {
-      setError(err.response ? e.response.data.message : 'somthing went wrong');
+      setError(err.response ? err.response.data.message : err.errors[0]);
       setIsLoading(false);
     }
   };
@@ -77,7 +73,9 @@ function Login() {
         <SearchImg className={classes.logo} width="250" />
       </div>
       <div className={classes.formSection}>
-        <h1 className={classes.header}>Sign In</h1>
+        <Typography color="primary" className={classes.header}>
+          Sign In
+        </Typography>
         <form className={classes.form}>
           <Input
             className={classes.input}
@@ -86,41 +84,39 @@ function Login() {
             value={email}
             type="email"
             label="Email"
+            required
           />
-          <br />
           <Input
+            type="password"
             className={classes.input}
             variant="outlined"
             onChange={handlePassword}
             value={password}
             label="Password"
+            required
           />
-          <br />
-
-          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+          <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
               Login Successfully!
             </Alert>
           </Snackbar>
           {error && (
             <Alert className={classes.alert} severity="error">
-              {' '}
-              {error}{' '}
+              {error}
             </Alert>
           )}
-          <CustomButton
+          <Button
             className={classes.button}
-            vairent="contained"
+            variant="contained"
             color="primary"
             event={handleSubmit}
           >
-            LogIN
-            {isLoading && (
-              <div className={classes.spinner}>
-                <CircularProgress />
-              </div>
+            {isLoading ? (
+              <CircularProgress size={25} color="secondary" />
+            ) : (
+              'LogIn'
             )}
-          </CustomButton>
+          </Button>
         </form>
       </div>
     </div>
