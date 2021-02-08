@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import Proptypes from 'prop-types';
 import axios from 'axios';
-import { Container, Divider, Typography } from '@material-ui/core';
+import {
+  Container,
+  Divider,
+  Typography,
+  CircularProgress,
+} from '@material-ui/core';
 
 import CardContainer from '../../Components/CardContainer';
 import useStyles from './style';
+
+function ServerError({ className }) {
+  return (
+    <div className={className}>
+      <h3>
+        Oops <span>!</span>
+      </h3>
+      <h4>500</h4>
+      <p>Internal Server Error</p>
+    </div>
+  );
+}
 
 function Landing() {
   const classes = useStyles();
 
   const [houses, setHouses] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
 
   const sortByTopRating = (housesData) => {
@@ -57,10 +76,12 @@ function Landing() {
   useEffect(() => {
     const cancelToken = axios.CancelToken;
     const source = cancelToken.source();
+    setLoading(true);
     fetchingData(source)
       .then((res) => res)
       .then(({ data }) => {
         setHouses(data);
+        setLoading(false);
       })
       .catch((err) => setErrorMsg(err));
     return () => {
@@ -70,22 +91,44 @@ function Landing() {
 
   return (
     <Container maxWidth="lg" className={classes.root}>
-      {errorMsg && <div>{errorMsg}</div>}
-      <div className={classes.housesSection}>
-        <Typography variant="h2" className={classes.sectionTitle}>
-          Top-rated
-        </Typography>
-        <CardContainer houses={sortByTopRating(houses) || []} />
-      </div>
-      <Divider className={classes.divider} />
-      <div className={classes.housesSection}>
-        <Typography variant="h2" className={classes.sectionTitle}>
-          Newest
-        </Typography>
-        <CardContainer houses={sortByRecentlyAdded(houses) || []} />
-      </div>
+      {errorMsg ? (
+        <ServerError errMsg={errorMsg} className={classes.serverError} />
+      ) : (
+        <>
+          <div className={classes.housesSection}>
+            <Typography variant="h2" className={classes.sectionTitle}>
+              Top-rated
+            </Typography>
+            {loading ? (
+              <div className={classes.spinner}>
+                <CircularProgress color="primary" />
+              </div>
+            ) : (
+              <CardContainer houses={sortByTopRating(houses) || []} />
+            )}
+          </div>
+          <Divider className={classes.divider} />
+          <div className={classes.housesSection}>
+            <Typography variant="h2" className={classes.sectionTitle}>
+              Newest
+            </Typography>
+            {loading ? (
+              <div className={classes.spinner}>
+                <CircularProgress color="primary" />
+              </div>
+            ) : (
+              <CardContainer houses={sortByRecentlyAdded(houses) || []} />
+            )}
+          </div>
+        </>
+      )}
+      ;
     </Container>
   );
 }
+
+ServerError.propTypes = {
+  className: Proptypes.string.isRequired,
+};
 
 export default Landing;

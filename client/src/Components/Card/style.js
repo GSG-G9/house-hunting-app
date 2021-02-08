@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
   },
   border: {
     backgroundColor: '#EB9235',
+    border: '1px solid transparent',
+    color: '#f5f5f5',
+    '&:hover': {
+      color: theme.palette.primary.main,
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
   },
   cardTitle: {
     color: theme.palette.primary.main,
