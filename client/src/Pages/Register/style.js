@@ -29,8 +29,7 @@ const useStyles = makeStyles({
   },
   button: {
     alignSelf: 'flex-end',
-    margin: 40,
-    width: 100,
+    width: 500,
   },
   alert: {
     width: 500,

@@ -26,7 +26,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
-          <h1>welcome form hunting app!</h1>
           <Route exact path={HOME_PAGE} />
           <Route path={LOGIN_PAGE} />
           <Route path={SIGNUP_PAGE}>
