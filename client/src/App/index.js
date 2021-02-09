@@ -21,6 +21,7 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
+import Favorite from '../Pages/FavoriteList';
 
 function App() {
   return (
@@ -39,7 +40,9 @@ function App() {
           </Route>
           <Route path={HOUSES} />
           <Route path={PROFILE} />
-          <Route path={FAVORITE} />
+          <Route path={FAVORITE}>
+            <Favorite />
+          </Route>
           <Route path={ABOUT_US} />
           <Route path={CONTACT_US} />
 
