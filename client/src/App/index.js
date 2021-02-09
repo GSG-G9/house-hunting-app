@@ -20,6 +20,7 @@ import theme from './theme';
 import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
+import Landing from '../Pages/Landing';
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
-          <Route exact path={HOME_PAGE} />
+          <Route exact path={HOME_PAGE}>
+            <Landing />
+          </Route>
           <Route path={LOGIN_PAGE}>
             <Login />
           </Route>
