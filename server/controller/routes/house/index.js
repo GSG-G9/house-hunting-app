@@ -1,3 +1,4 @@
-const { getAllHouses } = require('./getHouses');
+const getAllHouses = require('./getHouses');
+const addNewHouse = require('./addNewHouse');
 
-module.exports = { getAllHouses };
+module.exports = { getAllHouses, addNewHouse };
