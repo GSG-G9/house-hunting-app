@@ -6,12 +6,12 @@ const getHouseByLocation = async (req, res, next) => {
 
     const { rows } = await getHouseLocation({ location });
 
-    res.json({
+    return res.json({
       status: 200,
       data: rows,
     });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
