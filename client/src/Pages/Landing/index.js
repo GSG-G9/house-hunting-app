@@ -18,26 +18,28 @@ function Landing() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
 
-  async function fetchingData(source, limit = 6, skip = 0) {
+  const fetchingData = async (isCurrent, limit = 6, skip = 0) => {
     try {
+      setLoading(true);
       const { data } = await axios.get(
         `/api/v1/houses?limit=${limit}&skip=${skip}`
       );
-      return data;
+      if (isCurrent) {
+        setHouses(data.data);
+        setLoading(false);
+      }
     } catch (error) {
-      return setErrorMsg(error.message);
+      setLoading(false);
+      setErrorMsg(error.response.data);
     }
-  }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    fetchingData()
-      .then((res) => res)
-      .then(({ data }) => {
-        setHouses(data);
-        setLoading(false);
-      })
-      .catch((err) => setErrorMsg(err));
+    let isCurrent = true;
+    fetchingData(isCurrent);
+    return () => {
+      isCurrent = false;
+    };
   }, []);
 
   return (
