@@ -4,9 +4,8 @@ const { checkUserByEmail, addUser } = require('../../../database/queries/user');
 const boomify = require('../../../utils/boomify');
 
 const signupController = async (req, res, next) => {
-  const { email, password } = req.body;
-
   try {
+    const { email, password } = req.body;
     const {
       rows: [check],
     } = await checkUserByEmail({ email });
