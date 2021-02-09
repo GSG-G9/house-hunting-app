@@ -2,11 +2,12 @@ const { getHouseLocation } = require('../../../database/queries/house');
 
 const getHouseByLocation = async (req, res, next) => {
   try {
-    const { location } = req.query;
+    const { location } = req.params;
+
     const { rows } = await getHouseLocation({ location });
 
     res.json({
-      status: 400,
+      status: 200,
       data: rows,
     });
   } catch (err) {
