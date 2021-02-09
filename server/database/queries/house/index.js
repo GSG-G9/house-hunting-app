@@ -1,5 +1,5 @@
 const { getAllHousesData } = require('./getAllHousesData');
 
-const getFavorite = require('./getFavorite');
+const getFavoriteHouses = require('./getFavorite');
 
-module.exports = { getAllHousesData, getFavorite };
+module.exports = { getAllHousesData, getFavoriteHouses };

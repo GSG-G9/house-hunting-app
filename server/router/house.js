@@ -1,11 +1,12 @@
 const router = require('express').Router();
 
-const {
-  getAllHouses,
-  getFavoriteHouses,
-} = require('../controller/routes/house');
+const protect = require('../middleware/auth/checkToken');
+
+const { getAllHouses, getFavoriteList } = require('../controller/routes/house');
 
 router.get('/houses', getAllHouses);
-router.get('/favorite', getFavoriteHouses);
+
+router.use(protect);
+router.get('/favorite', getFavoriteList);
 
 module.exports = router;
