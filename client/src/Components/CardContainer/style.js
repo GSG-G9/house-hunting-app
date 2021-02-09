@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     padding: '3em',
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
   },
 }));
 
