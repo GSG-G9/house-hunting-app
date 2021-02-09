@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Proptypes from 'prop-types';
 import axios from 'axios';
 import {
   Container,
@@ -7,28 +6,17 @@ import {
   Typography,
   CircularProgress,
 } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import CardContainer from '../../Components/CardContainer';
 import useStyles from './style';
-
-function ServerError({ className }) {
-  return (
-    <div className={className}>
-      <h3>
-        Oops <span>!</span>
-      </h3>
-      <h4>500</h4>
-      <p>Internal Server Error</p>
-    </div>
-  );
-}
 
 function Landing() {
   const classes = useStyles();
 
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState({});
 
   async function fetchingData(source, limit = 6, skip = 0) {
     try {
@@ -54,8 +42,13 @@ function Landing() {
 
   return (
     <Container maxWidth="lg" className={classes.root}>
-      {errorMsg ? (
-        <ServerError errMsg={errorMsg} className={classes.serverError} />
+      {errorMsg.message ? (
+        <div className={classes.alertContainer}>
+          <Alert severity="error">
+            <AlertTitle>Error</AlertTitle>
+            {errorMsg.message}
+          </Alert>
+        </div>
       ) : (
         <>
           <div className={classes.housesSection}>
@@ -87,13 +80,8 @@ function Landing() {
           </div>
         </>
       )}
-      ;
     </Container>
   );
 }
-
-ServerError.propTypes = {
-  className: Proptypes.string.isRequired,
-};
 
 export default Landing;
