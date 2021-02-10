@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const addNewHouseData = ({
+const addNewHouse = ({
   userId,
   locationId,
   title,
@@ -32,4 +32,4 @@ const addNewHouseData = ({
   return connection.query(sql);
 };
 
-module.exports = addNewHouseData;
+module.exports = addNewHouse;
