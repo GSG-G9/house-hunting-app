@@ -1,15 +1,9 @@
 const router = require('express').Router();
-const { protect } = require('../middleware/auth');
-const {
-  getAllHouses,
-  addNewHouse,
-  getHouseByLocation,
-} = require('../controller/routes/house');
-const { addHouseValidation } = require('../middleware/validation');
 
-router.get('/houses', getAllHouses);
-router.get('/houses/:location', getHouseByLocation);
-router.use(protect);
+const { addHouseValidation } = require('../middleware/validation');
+const { addNewHouse, getFavoriteList } = require('../controller/routes/house');
+
 router.post('/houses', addHouseValidation, addNewHouse);
+router.get('/favorite', getFavoriteList);
 
 module.exports = router;
