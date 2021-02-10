@@ -21,7 +21,7 @@ function AddHouse() {
 
   const [title, setTitle] = useState();
   const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('Gaza');
+  const [locationId, setLocationId] = useState(1);
   const [category, setCategory] = useState('Apartment');
   const [rooms, setRooms] = useState(1);
   const [bathrooms, setBathRooms] = useState(1);
@@ -53,7 +53,7 @@ function AddHouse() {
         setRooms(value);
         break;
       case 'location':
-        setLocation(value);
+        setLocationId(value);
         break;
       case 'category':
         setCategory(value);
@@ -83,7 +83,7 @@ function AddHouse() {
       const houseData = {
         title,
         description,
-        location,
+        locationId,
         category,
         rooms,
         bathrooms,
@@ -110,7 +110,13 @@ function AddHouse() {
     }
   };
 
-  const locations = ['Gaza', 'Khanyunis', 'ALwosta', 'Rafah', 'North'];
+  const locations = [
+    { city: 'Gaza', value: 1 },
+    { city: 'Khanyunis', value: 2 },
+    { city: 'ALwosta', value: 3 },
+    { city: 'Rafah', value: 4 },
+    { city: 'North', value: 5 },
+  ];
   const categories = ['Apartment', 'Single-Family', 'studio', 'roof'];
 
   return (
@@ -154,15 +160,15 @@ function AddHouse() {
           variant="outlined"
           select
           onChange={handleChange}
-          value={location}
+          value={locationId}
           label="Location"
-          name="location"
+          name="locationId"
           required
         >
-          {locations.map((city, idx) => (
+          {locations.map((options, idx) => (
             // eslint-disable-next-line react/no-array-index-key
-            <MenuItem key={idx} value={city}>
-              {city}
+            <MenuItem key={idx} value={options.value}>
+              {options.city}
             </MenuItem>
           ))}
         </TextField>
@@ -183,46 +189,48 @@ function AddHouse() {
             </MenuItem>
           ))}
         </TextField>
-        <Input
-          className={classes.numberInput}
-          variant="outlined"
-          type="number"
-          onChange={handleChange}
-          value={rooms}
-          label="Rooms"
-          name="rooms"
-          required
-        />
-        <Input
-          className={classes.numberInput}
-          variant="outlined"
-          type="number"
-          onChange={handleChange}
-          value={bathrooms}
-          label="Bathrooms"
-          name="bathrooms"
-          required
-        />
-        <Input
-          className={classes.numberInput}
-          variant="outlined"
-          type="number"
-          onChange={handleChange}
-          value={area}
-          label="Area"
-          name="area"
-          required
-        />
-        <Input
-          className={classes.numberInput}
-          variant="outlined"
-          type="number"
-          onChange={handleChange}
-          value={price}
-          label="Price"
-          name="price"
-          required
-        />
+        <div className={classes.numberInputBox}>
+          <Input
+            className={classes.numberInput}
+            variant="outlined"
+            type="number"
+            onChange={handleChange}
+            value={rooms}
+            label="Rooms"
+            name="rooms"
+            required
+          />
+          <Input
+            className={classes.numberInput}
+            variant="outlined"
+            type="number"
+            onChange={handleChange}
+            value={bathrooms}
+            label="Bathrooms"
+            name="bathrooms"
+            required
+          />
+          <Input
+            className={classes.numberInput}
+            variant="outlined"
+            type="number"
+            onChange={handleChange}
+            value={area}
+            label="Area"
+            name="area"
+            required
+          />
+          <Input
+            className={classes.numberInput}
+            variant="outlined"
+            type="number"
+            onChange={handleChange}
+            value={price}
+            label="Price"
+            name="price"
+            required
+          />
+        </div>
         <Input
           className={classes.input}
           variant="outlined"

@@ -5,7 +5,7 @@ const validationSchema = object({
   description: string()
     .min(50, 'Description must be at least 50 char.')
     .required(),
-  location: string().required(),
+  locationId: number().integer().required(),
   rooms: number().required().positive().integer().min(1),
   bathrooms: number().required().positive().integer().min(1),
   category: string().required(),

@@ -36,20 +36,27 @@ const useStyles = makeStyles({
   },
   input: {
     width: 500,
-    marginBottom: 10,
+    marginBottom: 30,
+  },
+  numberInputBox: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    width: 500,
   },
   numberInput: {
     justifyContent: 'start',
-    marginBottom: 10,
-    width: 500,
+    marginBottom: 30,
+    width: '48%',
     '& div': {
-      width: 150,
+      width: '100%',
     },
   },
   button: {
     width: 500,
     marginBottom: 60,
-    height: 60,
+    height: 45,
+    fontWeight: 'bold',
     marginTop: 10,
     backgroundColor: theme.palette.secondary.dark,
     '&:hover': {

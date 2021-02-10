@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     backgroundColor: theme.palette.primary.main,
-    maxWidth: '235px',
+    maxWidth: '100%',
     [theme.breakpoints.down('md')]: {
       flexGrow: 1,
       display: 'none',
@@ -57,6 +57,18 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: '3em',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('lg')]: {
+      display: 'flex',
+    },
     '& h3': {
       paddingTop: '1.5em',
       paddingBottom: '1.8em',
@@ -104,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sideBarContainer: {
+    width: '25%',
     backgroundColor: theme.palette.primary.main,
   },
 }));
