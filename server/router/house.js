@@ -9,8 +9,6 @@ const { addHouseValidation } = require('../middleware/validation');
 
 router.get('/houses', getAllHouses);
 router.get('/houses/:location', getHouseByLocation);
-
-// Protect route
 router.use(protect);
 router.post('/houses', addHouseValidation, addNewHouse);
 

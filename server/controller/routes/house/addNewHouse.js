@@ -1,10 +1,10 @@
-const { addNewHouseData } = require('../../../database/queries/house');
+const { addNewHouse } = require('../../../database/queries/house');
 
-const addNewHouse = async (req, res, next) => {
+const addNewHouseController = async (req, res, next) => {
   try {
     const { userId } = req;
 
-    await addNewHouseData({ userId, ...req.body });
+    await addNewHouse({ userId, ...req.body });
 
     return res.status(201).json({
       statusCode: 201,
@@ -15,4 +15,4 @@ const addNewHouse = async (req, res, next) => {
   }
 };
 
-module.exports = addNewHouse;
+module.exports = addNewHouseController;

@@ -1,5 +1,5 @@
 const getAllHousesData = require('./getAllHousesData');
-const addNewHouseData = require('./addNewHousedata');
 const getHouseLocation = require('./getHouseByLocation');
+const addNewHouse = require('./addNewHouse');
 
-module.exports = { getAllHousesData, getHouseLocation, addNewHouseData };
+module.exports = { getAllHousesData, getHouseLocation, addNewHouse };
