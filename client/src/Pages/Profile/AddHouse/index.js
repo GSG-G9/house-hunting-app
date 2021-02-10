@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import {
   Typography,
@@ -19,6 +20,7 @@ function AddHouse() {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('Gaza');
+  const [category, setCategory] = useState('');
   const [rooms, setRooms] = useState(1);
   const [bathRooms, setBathRooms] = useState(1);
   const [price, setPrice] = useState(0);
@@ -43,6 +45,9 @@ function AddHouse() {
       case 'location':
         setLocation(value);
         break;
+      case 'category':
+        setCategory(value);
+        break;
       case 'bathRooms':
         setBathRooms(value);
         break;
@@ -61,7 +66,7 @@ function AddHouse() {
   };
 
   // eslint-disable-next-line consistent-return
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       setLoading(true);
@@ -69,6 +74,7 @@ function AddHouse() {
         title,
         description,
         location,
+        category,
         rooms,
         bathRooms,
         price,
@@ -77,6 +83,7 @@ function AddHouse() {
       };
       console.log(houseData);
       setLoading(false);
+      await axios.post(`api/v1/houses`, houseData);
       return houseData;
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
@@ -85,6 +92,7 @@ function AddHouse() {
   };
 
   const locations = ['Gaza', 'Khanyunis', 'ALwosta', 'Rafah', 'North'];
+  const categories = ['Apartment', 'Single-Family', 'studio', 'roof'];
 
   return (
     <div>
@@ -128,6 +136,23 @@ function AddHouse() {
           required
         >
           {locations.map((city, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <MenuItem key={idx} value={city}>
+              {city}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          className={classes.input}
+          variant="outlined"
+          select
+          onChange={handleChange}
+          value={category}
+          label="Category"
+          name="category"
+          required
+        >
+          {categories.map((city, idx) => (
             // eslint-disable-next-line react/no-array-index-key
             <MenuItem key={idx} value={city}>
               {city}
