@@ -6,6 +6,8 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 import Add from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper';
 
+import AddHouse from '../AddHouse';
+
 import useStyles from './style';
 
 function SideBar() {
@@ -22,65 +24,100 @@ function SideBar() {
         <Tabs
           value={value}
           onChange={handleChange}
-          variant="fullWidth"
-          indicatorColor="secondary"
-          textColor="secondary"
-          aria-label="icon label tabs example"
+          variant="scrollable"
+          aria-label="Vertical tabs example"
         >
-          <Tab icon={<PersonPinIcon />} label="BIO" />
-          <Tab icon={<HouseOutlined />} label="Houses" />
-          <Tab icon={<Add />} label="Add new houses" />
+          <Tab
+            icon={<PersonPinIcon />}
+            label="BIO"
+            {...{
+              id: `vertical-tab-${0}`,
+              'aria-controls': `vertical-tabpanel-${0}`,
+            }}
+          />
+          <Tab
+            icon={<HouseOutlined />}
+            label="Houses"
+            {...{
+              id: `vertical-tab-${1}`,
+              'aria-controls': `vertical-tabpanel-${1}`,
+            }}
+          />
+          <Tab
+            icon={<Add />}
+            label="Add new houses"
+            {...{
+              id: `vertical-tab-${2}`,
+              'aria-controls': `vertical-tabpanel-${2}`,
+            }}
+          />
         </Tabs>
       </Paper>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
-      >
+      <div className={classes.sideBarContainer}>
         <div className={classes.userAvatar}>
           <Avatar className={classes.avatar}>H</Avatar>
           <Typography variant="h3">User Name</Typography>
         </div>
-        <Tab
-          label="BIO"
-          icon={<PersonPinIcon />}
-          className={classes.tab}
-          {...{
-            id: `vertical-tab-${0}`,
-            'aria-controls': `vertical-tabpanel-${0}`,
-          }}
-        />
-        <Tab
-          label="Houses"
-          icon={<HouseOutlined />}
-          className={classes.tab}
-          {...{
-            id: `vertical-tab-${1}`,
-            'aria-controls': `vertical-tabpanel-${1}`,
-          }}
-        />
-        <Tab
-          label="Add new houses"
-          icon={<Add />}
-          className={classes.tab}
-          {...{
-            id: `vertical-tab-${2}`,
-            'aria-controls': `vertical-tabpanel-${2}`,
-          }}
-        />
-      </Tabs>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          className={classes.tabs}
+        >
+          <Tab
+            label="BIO"
+            icon={<PersonPinIcon />}
+            className={classes.tab}
+            {...{
+              id: `vertical-tab-${0}`,
+              'aria-controls': `vertical-tabpanel-${0}`,
+            }}
+          />
+          <Tab
+            label="Houses"
+            icon={<HouseOutlined />}
+            className={classes.tab}
+            {...{
+              id: `vertical-tab-${1}`,
+              'aria-controls': `vertical-tabpanel-${1}`,
+            }}
+          />
+          <Tab
+            label="Add new houses"
+            icon={<Add />}
+            className={classes.tab}
+            {...{
+              id: `vertical-tab-${2}`,
+              'aria-controls': `vertical-tabpanel-${2}`,
+            }}
+          />
+        </Tabs>
+      </div>
+      <div
+        role="tabpanel"
+        hidden={value !== 0}
+        id={`vertical-tabpanel-${0}`}
+        aria-labelledby={`vertical-tab-${0}`}
+        className={classes.mainContent}
+      >
+        {value === 0 && (
+          <Box p={3}>
+            <Typography>User Info</Typography>
+          </Box>
+        )}
+      </div>
       <div
         role="tabpanel"
         hidden={value !== 1}
-        id={`vertical-tabpanel-${1}`}
+        id={`vertical-tabpanel-${2}`}
         aria-labelledby={`vertical-tab-${1}`}
+        className={classes.mainContent}
       >
         {value === 1 && (
           <Box p={3}>
-            <Typography>User Info</Typography>
+            <Typography>AAAAA</Typography>
           </Box>
         )}
       </div>
@@ -89,22 +126,11 @@ function SideBar() {
         hidden={value !== 2}
         id={`vertical-tabpanel-${2}`}
         aria-labelledby={`vertical-tab-${2}`}
+        className={classes.mainContent}
       >
         {value === 2 && (
           <Box p={3}>
-            <Typography>AAAAA</Typography>
-          </Box>
-        )}
-      </div>
-      <div
-        role="tabpanel"
-        hidden={value !== 3}
-        id={`vertical-tabpanel-${3}`}
-        aria-labelledby={`vertical-tab-${3}`}
-      >
-        {value === 3 && (
-          <Box p={3}>
-            <Typography>HOUSES</Typography>
+            <AddHouse />
           </Box>
         )}
       </div>

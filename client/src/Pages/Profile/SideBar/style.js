@@ -88,6 +88,24 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  mainContent: {
+    margin: '0 auto',
+    '& > div': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      '& form': {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+      },
+    },
+  },
+  sideBarContainer: {
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 export default useStyles;
