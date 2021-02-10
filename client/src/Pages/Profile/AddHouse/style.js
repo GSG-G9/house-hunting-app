@@ -11,6 +11,9 @@ const useStyles = makeStyles({
     width: 1000,
     minHeight: '100vh',
   },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
   img: {
     alignSelf: 'center',
     minWidth: '50%',

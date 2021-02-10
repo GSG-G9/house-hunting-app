@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
 
 import {
   Typography,
   MenuItem,
-  TextField,
   CircularProgress,
   Snackbar,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/addNewHouse';
-import { HOME_PAGE } from '../../../Utils/routes.constant';
+import { locations, categories } from './staticData';
 
 import useStyles from './style';
 
 function AddHouse() {
   const classes = useStyles();
-  const history = useHistory();
 
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [locationId, setLocationId] = useState(1);
-  const [category, setCategory] = useState('Apartment');
+  const [locationId, setLocationId] = useState();
+  const [category, setCategory] = useState('');
   const [rooms, setRooms] = useState(1);
   const [bathrooms, setBathRooms] = useState(1);
   const [price, setPrice] = useState(0);
@@ -42,7 +42,17 @@ function AddHouse() {
     setOpen(false);
   };
 
-  // eslint-disable-next-line consistent-return
+  const clear = () => {
+    setLoading(false);
+    setTitle('');
+    setDescription('');
+    setRooms(1);
+    setBathRooms(1);
+    setPrice(0);
+    setArea(0);
+    setImage('');
+  };
+
   const handleChange = ({ target: { value, name } }) => {
     switch (name) {
       case 'title':
@@ -74,11 +84,9 @@ function AddHouse() {
         setImage(value);
         break;
       default:
-        return '';
     }
   };
 
-  // eslint-disable-next-line consistent-return
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -99,40 +107,21 @@ function AddHouse() {
 
       await validationSchema.validate(houseData, { abortEarly: false });
 
-      await axios.post(`api/v1/houses`, houseData);
+      await Axios.post(`api/v1/houses`, houseData);
 
       setOpen(true);
-
+      clear();
       setLoading(false);
-      setTitle('');
-      setDescription('');
-      setRooms(1);
-      setBathRooms(1);
-      setPrice(0);
-      setArea(10);
-      setImage('');
-
-      history.push(HOME_PAGE);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setLoading(false);
     }
   };
-
-  const locations = [
-    { city: 'Gaza', value: 1 },
-    { city: 'Khanyunis', value: 2 },
-    { city: 'ALwosta', value: 3 },
-    { city: 'Rafah', value: 4 },
-    { city: 'North', value: 5 },
-  ];
-  const categories = ['Apartment', 'Single-Family', 'studio', 'roof'];
-
   return (
     <div>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-          {error || 'Congrats! Signed up Successfully'}
+          {error || 'houses added successfully'}
         </Alert>
       </Snackbar>
       <Typography
@@ -164,40 +153,42 @@ function AddHouse() {
           name="description"
           required
         />
-        <TextField
-          className={classes.input}
-          variant="outlined"
-          select
-          onChange={handleChange}
-          value={locationId}
-          label="Location"
-          name="locationId"
-          required
-        >
-          {locations.map((options, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <MenuItem key={idx} value={options.value}>
-              {options.city}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          className={classes.input}
-          variant="outlined"
-          select
-          onChange={handleChange}
-          value={category}
-          label="Category"
-          name="category"
-          required
-        >
-          {categories.map((cat, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <MenuItem key={idx} value={cat}>
-              {cat}
-            </MenuItem>
-          ))}
-        </TextField>
+
+        <FormControl className={classes.input}>
+          <InputLabel id="demo-simple-select-label">Location</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={locationId}
+            onChange={handleChange}
+            label="Location"
+            name="location"
+          >
+            {locations.map(({ value, city }) => (
+              <MenuItem key={value} value={value}>
+                {city}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl className={classes.input}>
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={category}
+            onChange={handleChange}
+            label="Category"
+            name="category"
+          >
+            {categories.map((cat) => (
+              <MenuItem key={cat} value={cat}>
+                {cat}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <div className={classes.numberInputBox}>
           <Input
             className={classes.numberInput}
@@ -222,7 +213,7 @@ function AddHouse() {
           <Input
             className={classes.numberInput}
             variant="outlined"
-            type="number"
+            type="text"
             onChange={handleChange}
             value={area}
             label="Area"
@@ -232,7 +223,7 @@ function AddHouse() {
           <Input
             className={classes.numberInput}
             variant="outlined"
-            type="number"
+            type="text"
             onChange={handleChange}
             value={price}
             label="Price"
