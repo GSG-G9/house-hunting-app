@@ -4,22 +4,12 @@ const boomify = require('../../utils/boomify');
 
 const addHouseValidation = async (req, res, next) => {
   try {
-    const {
-      title,
-      description,
-      rooms,
-      bathrooms,
-      category,
-      price,
-      area,
-      image,
-    } = req.body;
-
     const houseSchema = object().shape({
       title: string().min(8, 'Title must be at least 8 char').required(),
       description: string()
         .min(50, 'Description must be at least 50 char')
         .required(),
+      location_id: number().required().positive(),
       rooms: number().required().positive().integer().min(1),
       bathrooms: number().required().positive().integer().min(1),
       category: string().required(),
@@ -28,10 +18,7 @@ const addHouseValidation = async (req, res, next) => {
       image: string().required().url(),
     });
 
-    await houseSchema.validate(
-      { title, description, rooms, bathrooms, category, price, area, image },
-      { abortEarly: false }
-    );
+    await houseSchema.validate(req.body, { abortEarly: false });
     return next();
   } catch (error) {
     return next(boomify(400, error.errors[0]));
