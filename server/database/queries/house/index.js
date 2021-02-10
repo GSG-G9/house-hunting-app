@@ -1,6 +1,11 @@
-const { getAllHousesData } = require('./getAllHousesData');
+const getAllHousesData = require('./getAllHousesData');
 const getHouseLocation = require('./getHouseByLocation');
-
+const addNewHouse = require('./addNewHouse');
 const getFavoriteHouses = require('./getFavorite');
 
-module.exports = { getAllHousesData, getFavoriteHouses, getHouseLocation };
+module.exports = {
+  getAllHousesData,
+  getHouseLocation,
+  addNewHouse,
+  getFavoriteHouses,
+};

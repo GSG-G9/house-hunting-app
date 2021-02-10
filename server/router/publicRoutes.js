@@ -6,18 +6,19 @@ const {
 } = require('../middleware/validation');
 
 const {
+  signupController,
+  loginController,
+} = require('../controller/routes/user');
+
+const {
   getAllHouses,
   getHouseByLocation,
 } = require('../controller/routes/house');
-const {
-  loginController,
-  signupController,
-} = require('../controller/routes/user');
-
-router.get('/houses', getAllHouses);
-router.get('/houses/:location', getHouseByLocation);
 
 router.post('/signup', signupValidation, signupController);
 router.post('/login', loginValidation, loginController);
+
+router.get('/houses', getAllHouses);
+router.get('/houses/:location', getHouseByLocation);
 
 module.exports = router;
