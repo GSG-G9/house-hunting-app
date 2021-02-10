@@ -10,7 +10,7 @@ function SearchPage() {
   const [location, setLocation] = useState();
   const [catagories, setCatagories] = useState();
   const [rooms, setRooms] = useState(0);
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(100);
   const [error, setError] = useState();
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -32,10 +32,9 @@ function SearchPage() {
   };
   const handleData = async () => {
     try {
-      const Location = 'Gaza';
       const {
         data: { data },
-      } = await Axios.get(`api/v1/houses/${Location}`);
+      } = await Axios.get(`api/v1/houses/${location}`);
 
       setHouses(data);
     } catch (err) {
