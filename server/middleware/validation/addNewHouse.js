@@ -7,6 +7,7 @@ const addHouseValidation = async (req, res, next) => {
     const {
       title,
       description,
+      location,
       rooms,
       bathrooms,
       category,
@@ -20,6 +21,7 @@ const addHouseValidation = async (req, res, next) => {
       description: string()
         .min(50, 'Description must be at least 50 char')
         .required(),
+      location: string().required(),
       rooms: number().required().positive().integer().min(1),
       bathrooms: number().required().positive().integer().min(1),
       category: string().required(),
@@ -29,7 +31,17 @@ const addHouseValidation = async (req, res, next) => {
     });
 
     await houseSchema.validate(
-      { title, description, rooms, bathrooms, category, price, area, image },
+      {
+        title,
+        description,
+        location,
+        rooms,
+        bathrooms,
+        category,
+        price,
+        area,
+        image,
+      },
       { abortEarly: false }
     );
     return next();
