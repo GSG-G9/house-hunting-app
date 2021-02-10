@@ -12,7 +12,6 @@ const {
 const {
   loginController,
   signupController,
-  logoutController,
 } = require('../controller/routes/user');
 
 router.get('/houses', getAllHouses);
@@ -20,6 +19,5 @@ router.get('/houses/:location', getHouseByLocation);
 
 router.post('/signup', signupValidation, signupController);
 router.post('/login', loginValidation, loginController);
-router.get('/logout', logoutController);
 
 module.exports = router;
