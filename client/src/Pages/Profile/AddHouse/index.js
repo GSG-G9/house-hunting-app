@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import {
   Typography,
@@ -13,11 +14,13 @@ import Alert from '@material-ui/lab/Alert';
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/addNewHouse';
+import { HOME_PAGE } from '../../../Utils/routes.constant';
 
 import useStyles from './style';
 
 function AddHouse() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [title, setTitle] = useState();
   const [description, setDescription] = useState('');
@@ -91,10 +94,15 @@ function AddHouse() {
         area,
         image,
       };
-      console.log(houseData);
+
       setLoading(true);
+
       await validationSchema.validate(houseData, { abortEarly: false });
+
       await axios.post(`api/v1/houses`, houseData);
+
+      setOpen(true);
+
       setLoading(false);
       setTitle('');
       setDescription('');
@@ -103,7 +111,8 @@ function AddHouse() {
       setPrice(0);
       setArea(10);
       setImage('');
-      return houseData;
+
+      history.push(HOME_PAGE);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setLoading(false);

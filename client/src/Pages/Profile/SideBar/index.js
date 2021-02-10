@@ -10,6 +10,13 @@ import AddHouse from '../AddHouse';
 
 import useStyles from './style';
 
+function a11yProps(index) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
+}
+
 function SideBar() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -27,30 +34,9 @@ function SideBar() {
           variant="scrollable"
           aria-label="Vertical tabs example"
         >
-          <Tab
-            icon={<PersonPinIcon />}
-            label="BIO"
-            {...{
-              id: `vertical-tab-${0}`,
-              'aria-controls': `vertical-tabpanel-${0}`,
-            }}
-          />
-          <Tab
-            icon={<HouseOutlined />}
-            label="Houses"
-            {...{
-              id: `vertical-tab-${1}`,
-              'aria-controls': `vertical-tabpanel-${1}`,
-            }}
-          />
-          <Tab
-            icon={<Add />}
-            label="Add new houses"
-            {...{
-              id: `vertical-tab-${2}`,
-              'aria-controls': `vertical-tabpanel-${2}`,
-            }}
-          />
+          <Tab icon={<PersonPinIcon />} label="BIO" {...a11yProps(0)} />
+          <Tab icon={<HouseOutlined />} label="Houses" {...a11yProps(1)} />
+          <Tab icon={<Add />} label="Add new houses" {...a11yProps(2)} />
         </Tabs>
       </Paper>
       <div className={classes.sideBarContainer}>
@@ -70,28 +56,19 @@ function SideBar() {
             label="BIO"
             icon={<PersonPinIcon />}
             className={classes.tab}
-            {...{
-              id: `vertical-tab-${0}`,
-              'aria-controls': `vertical-tabpanel-${0}`,
-            }}
+            {...a11yProps(0)}
           />
           <Tab
             label="Houses"
             icon={<HouseOutlined />}
             className={classes.tab}
-            {...{
-              id: `vertical-tab-${1}`,
-              'aria-controls': `vertical-tabpanel-${1}`,
-            }}
+            {...a11yProps(1)}
           />
           <Tab
             label="Add new houses"
             icon={<Add />}
             className={classes.tab}
-            {...{
-              id: `vertical-tab-${2}`,
-              'aria-controls': `vertical-tabpanel-${2}`,
-            }}
+            {...a11yProps(2)}
           />
         </Tabs>
       </div>
