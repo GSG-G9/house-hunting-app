@@ -8,4 +8,4 @@ const getAllHousesData = (limit = 10, skip = 0) => {
   return connection.query(sql);
 };
 
-module.exports = { getAllHousesData };
+module.exports = getAllHousesData;

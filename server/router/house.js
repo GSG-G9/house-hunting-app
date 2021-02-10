@@ -1,11 +1,9 @@
 const router = require('express').Router();
 
-const {
-  getAllHouses,
-  getHouseByLocation,
-} = require('../controller/routes/house');
+const { addHouseValidation } = require('../middleware/validation');
+const { addNewHouse, getFavoriteList } = require('../controller/routes/house');
 
-router.get('/houses', getAllHouses);
-router.get('/houses/:location', getHouseByLocation);
+router.post('/houses', addHouseValidation, addNewHouse);
+router.get('/favorite', getFavoriteList);
 
 module.exports = router;

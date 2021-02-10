@@ -11,4 +11,4 @@ const getAllHouses = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllHouses };
+module.exports = getAllHouses;
