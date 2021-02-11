@@ -3,6 +3,7 @@ import Axios from 'axios';
 
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Alert from '@material-ui/lab/Alert';
 
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
@@ -13,7 +14,7 @@ function SearchPage() {
   const classes = useStyles();
 
   const [houses, setHouses] = useState([]);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState('');
   const [location, setLocation] = useState();
   const [catagories, setCatagories] = useState();
   const [rooms, setRooms] = useState(0);
@@ -45,19 +46,19 @@ function SearchPage() {
     try {
       const {
         data: { data },
-      } = await Axios.get(`api/v1/houses/${search || location}`);
+      } = await Axios.get(`api/v1/houses/${location}`);
       const filter = data.filter(
         (house) =>
           Math.round(house.price) === price &&
           house.room_num === parseInt(rooms, 10) &&
-          house.category === catagories
+          house.category === catagories &&
+          house.description
+            .toLowerCase()
+            .includes(search.toLowerCase().trim()) &&
+          house.title.toLowerCase().includes(search.toLowerCase().trim())
       );
-      if (location) {
-        setSearch('');
-        setHouses(filter);
-      } else {
-        setHouses(data);
-      }
+      console.log(search, 2458);
+      setHouses(filter);
     } catch (err) {
       setError(err);
     }
@@ -81,7 +82,12 @@ function SearchPage() {
         <Typography variant="h5" component="h2" color="primary">
           {houses.length} houses Available
         </Typography>
-        <CardContainer houses={houses} />
+        {houses.length > 0 ? (
+          <CardContainer houses={houses} />
+        ) : (
+          <Alert severity="info">No Houses Available </Alert>
+        )}
+        {error && <Alert severity="error">{error} </Alert>}
       </div>
     </div>
   );
