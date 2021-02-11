@@ -5,6 +5,11 @@ const useStyles = makeStyles((theme) => ({
     width: '85%',
     paddingBottom: '3em',
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
   housesSection: {
     paddingTop: '2em',
   },

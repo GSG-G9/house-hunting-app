@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
 
   divider: {
     width: 1000,
+    height: '2px',
   },
 }));
 
