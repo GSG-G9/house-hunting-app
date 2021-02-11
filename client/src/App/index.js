@@ -21,6 +21,7 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
+import Profile from '../Pages/Profile';
 
 function App() {
   return (
@@ -38,7 +39,9 @@ function App() {
             <Register />
           </Route>
           <Route path={HOUSES} />
-          <Route path={PROFILE} />
+          <Route path={PROFILE}>
+            <Profile />
+          </Route>
           <Route path={FAVORITE} />
           <Route path={ABOUT_US} />
           <Route path={CONTACT_US} />
