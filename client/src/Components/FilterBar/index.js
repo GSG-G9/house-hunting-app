@@ -38,7 +38,7 @@ function Filter({ onChange, handlePrice }) {
       <InputLabel>Price </InputLabel>
       <Slider
         name="price"
-        onChange={handlePrice}
+        onChange={onChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         min={100}

@@ -12,7 +12,8 @@ function SearchPage() {
   const [rooms, setRooms] = useState(0);
   const [price, setPrice] = useState(100);
   const [error, setError] = useState();
-  const handleChange = ({ target: { name, value } }) => {
+
+  const handleChange = (event, val, { target: { name, value } }) => {
     switch (name) {
       case 'location':
         setLocation(value);
@@ -23,13 +24,13 @@ function SearchPage() {
       case 'rooms':
         setRooms(value);
         break;
-
+      case 'price':
+        setPrice(val);
+        break;
       default:
     }
   };
-  const handlePrice = (event, val) => {
-    setPrice(val);
-  };
+
   const handleData = async () => {
     try {
       const {
@@ -44,7 +45,8 @@ function SearchPage() {
   return (
     <div>
       <Search onClick={handleData} />
-      <Filter onChange={handleChange} handlePrice={handlePrice} />
+      {console.log(price, 1)}
+      <Filter onChange={handleChange} />
       <CardContainer houses={houses} />
     </div>
   );
