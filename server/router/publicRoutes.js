@@ -20,7 +20,7 @@ router.post('/signup', signupValidation, signupController);
 router.post('/login', loginValidation, loginController);
 
 router.get('/houses', getAllHouses);
-router.get('/houses/newest', getNewestHouses);
+router.get('/newest-houses', getNewestHouses);
 router.get('/houses/:location', getHouseByLocation);
 
 module.exports = router;
