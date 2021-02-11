@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
 import Filter from '../../Components/AdvanceSearch';
+import useStyles from './style';
 
 function SearchPage() {
+  const classes = useStyles();
+
   const [houses, setHouses] = useState([]);
   const [search, setSearch] = useState();
   const [location, setLocation] = useState();
@@ -48,7 +52,6 @@ function SearchPage() {
           house.room_num === parseInt(rooms, 10) &&
           house.category === catagories
       );
-      console.log(search, location, 145);
       if (location) {
         setSearch('');
         setHouses(filter);
@@ -70,13 +73,16 @@ function SearchPage() {
   }, [houses]);
 
   return (
-    <div>
-      <Typography variant="h5" component="h2">
-        {houses.length} houses Available
-      </Typography>
+    <div className={classes.header}>
       <Search onClick={handleData} value={search} onChange={handleChange} />
       <Filter onChange={handleChange} handlePrice={handlePrice} />
-      <CardContainer houses={houses} />
+      <div className={classes.container}>
+        <Divider className={classes.divider} />
+        <Typography variant="h5" component="h2" color="primary">
+          {houses.length} houses Available
+        </Typography>
+        <CardContainer houses={houses} />
+      </div>
     </div>
   );
 }
