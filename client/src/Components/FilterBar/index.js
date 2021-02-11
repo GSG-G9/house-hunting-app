@@ -2,7 +2,7 @@ import React from 'react';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import { func, string } from 'prop-types';
+import { func } from 'prop-types';
 
 import Slider from '@material-ui/core/Slider';
 
@@ -38,7 +38,7 @@ function Filter({ onChange, handlePrice }) {
       <InputLabel>Price </InputLabel>
       <Slider
         name="price"
-        onChange={onChange}
+        onChange={handlePrice}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         min={100}
@@ -49,7 +49,6 @@ function Filter({ onChange, handlePrice }) {
 }
 Filter.propTypes = {
   onChange: func.isRequired,
-  value: string.isRequired,
   handlePrice: func.isRequired,
 };
 

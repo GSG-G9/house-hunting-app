@@ -13,7 +13,7 @@ function SearchPage() {
   const [price, setPrice] = useState(100);
   const [error, setError] = useState();
 
-  const handleChange = (event, val, { target: { name, value } }) => {
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'location':
         setLocation(value);
@@ -24,20 +24,24 @@ function SearchPage() {
       case 'rooms':
         setRooms(value);
         break;
-      case 'price':
-        setPrice(val);
-        break;
+
       default:
     }
   };
-
+  const handlePrice = (event, val) => {
+    setPrice(val);
+  };
   const handleData = async () => {
     try {
       const {
         data: { data },
       } = await Axios.get(`api/v1/houses/${location}`);
-
-      setHouses(data);
+      const filter = data.filter(
+        (house) =>
+          Math.round(house.price) === price &&
+          house.room_num === parseInt(rooms, 10)
+      );
+      setHouses(filter);
     } catch (err) {
       setError(err);
     }
@@ -45,8 +49,7 @@ function SearchPage() {
   return (
     <div>
       <Search onClick={handleData} />
-      {console.log(price, 1)}
-      <Filter onChange={handleChange} />
+      <Filter onChange={handleChange} handlePrice={handlePrice} />
       <CardContainer houses={houses} />
     </div>
   );
