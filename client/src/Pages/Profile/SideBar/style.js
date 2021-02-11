@@ -5,50 +5,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     minHeight: '700px',
     backgroundColor: '#FFFFFF',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-      display: 'block',
-    },
-  },
-  horTabs: {
-    backgroundColor: theme.palette.primary.main,
-    '& button': {
-      color: '#F5F5F5',
-      '& span': {
-        color: '#f5f5f5',
-        fontSize: '1.2em',
-      },
-    },
-    [theme.breakpoints.down('md')]: {
-      flexGrow: 1,
-      display: 'flex',
-      height: '72px',
-    },
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-    [theme.breakpoints.down('lg')]: {
-      display: 'block',
-    },
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
   },
   tabs: {
     backgroundColor: theme.palette.primary.main,
     maxWidth: '100%',
-    [theme.breakpoints.down('md')]: {
-      flexGrow: 1,
-      display: 'none',
-    },
-    [theme.breakpoints.down('lg')]: {
-      flexGrow: 1,
-      display: 'none',
-    },
-    [theme.breakpoints.up('lg')]: {
-      flexGrow: 1,
-      display: 'flex',
-    },
+    display: 'flex',
   },
   userAvatar: {
     width: '100%',
@@ -57,18 +18,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: '3em',
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.down('lg')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('lg')]: {
-      display: 'flex',
-    },
     '& h3': {
       paddingTop: '1.5em',
       paddingBottom: '1.8em',

@@ -1,9 +1,9 @@
 export const locations = [
-  { id: 'city_1', city: 'Gaza', value: 1 },
-  { id: 'city_2', city: 'Khanyunis', value: 2 },
-  { id: 'city_3', city: 'ALwosta', value: 3 },
-  { id: 'city_4', city: 'Rafah', value: 4 },
-  { id: 'city_5', city: 'North', value: 5 },
+  { id: 1, city: 'Gaza' },
+  { id: 2, city: 'Khanyunis' },
+  { id: 3, city: 'ALwosta' },
+  { id: 4, city: 'Rafah' },
+  { id: 5, city: 'North' },
 ];
 
 export const categories = [

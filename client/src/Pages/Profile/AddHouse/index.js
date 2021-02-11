@@ -6,11 +6,9 @@ import {
   MenuItem,
   CircularProgress,
   Snackbar,
+  TextField,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
@@ -24,8 +22,8 @@ function AddHouse() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [locationId, setLocationId] = useState();
-  const [category, setCategory] = useState('');
+  const [locationId, setLocationId] = useState(1);
+  const [category, setCategory] = useState('Apartment');
   const [rooms, setRooms] = useState(1);
   const [bathrooms, setBathRooms] = useState(1);
   const [price, setPrice] = useState(0);
@@ -45,6 +43,8 @@ function AddHouse() {
   const clear = () => {
     setLoading(false);
     setTitle('');
+    setLocationId(1);
+    setCategory('Apartment');
     setDescription('');
     setRooms(1);
     setBathRooms(1);
@@ -111,10 +111,10 @@ function AddHouse() {
 
       setOpen(true);
       clear();
-      return setLoading(false);
+      setLoading(false);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
-      return setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -154,33 +154,31 @@ function AddHouse() {
           name="description"
           required
         />
-
-        <FormControl className={classes.input}>
-          <InputLabel id="demo-simple-select-label">Location</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+        <div className={classes.numberInputBox}>
+          <TextField
+            id="filled-select-location"
+            select
+            label="Select"
+            className={classes.numberInput}
             value={locationId}
             onChange={handleChange}
-            label="Location"
+            variant="outlined"
             name="location"
           >
-            {locations.map(({ id, city, value }) => (
-              <MenuItem key={id} value={value}>
+            {locations.map(({ id, city }) => (
+              <MenuItem key={id} value={id}>
                 {city}
               </MenuItem>
             ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={classes.input}>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+          </TextField>
+          <TextField
+            id="filled-select-category"
+            select
+            className={classes.numberInput}
+            label="Select"
             value={category}
             onChange={handleChange}
-            label="Category"
+            variant="outlined"
             name="category"
           >
             {categories.map(({ id, category: cat }) => (
@@ -188,8 +186,8 @@ function AddHouse() {
                 {cat}
               </MenuItem>
             ))}
-          </Select>
-        </FormControl>
+          </TextField>
+        </div>
         <div className={classes.numberInputBox}>
           <Input
             className={classes.numberInput}
@@ -214,7 +212,7 @@ function AddHouse() {
           <Input
             className={classes.numberInput}
             variant="outlined"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={area}
             label="Area"
@@ -224,7 +222,7 @@ function AddHouse() {
           <Input
             className={classes.numberInput}
             variant="outlined"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={price}
             label="Price"
