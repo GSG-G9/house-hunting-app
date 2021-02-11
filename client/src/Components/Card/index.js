@@ -34,7 +34,10 @@ export default function CardComponent({
       <CardActionArea>
         <CardMedia className={classes.media}>
           <img
-            src="https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6"
+            src={
+              img ||
+              'https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6'
+            }
             alt="house"
           />
         </CardMedia>
