@@ -42,7 +42,7 @@ function SearchPage() {
   const handlePrice = (event, val) => {
     setPrice(val);
   };
-  const handleData = async () => {
+  const handleData = async (isCurrent) => {
     try {
       const {
         data: { data },
@@ -52,13 +52,15 @@ function SearchPage() {
           Math.round(house.price) === price &&
           house.room_num === parseInt(rooms, 10) &&
           house.category === catagories &&
-          house.description
+          (house.description
             .toLowerCase()
-            .includes(search.toLowerCase().trim()) &&
-          house.title.toLowerCase().includes(search.toLowerCase().trim())
+            .includes(search.toLowerCase().trim()) ||
+            house.title.toLowerCase().includes(search.toLowerCase().trim()))
       );
-      console.log(search, 2458);
-      setHouses(filter);
+
+      if (isCurrent) {
+        setHouses(filter);
+      }
     } catch (err) {
       setError(err);
     }
@@ -67,7 +69,6 @@ function SearchPage() {
   useEffect(() => {
     let isCurrent = true;
     handleData(isCurrent);
-
     return () => {
       isCurrent = false;
     };
