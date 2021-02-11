@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { Card } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -19,10 +20,11 @@ const { shape, string, number } = PropTypes;
 
 export default function CardComponent({
   house: {
+    id,
     image: img,
     title,
     description,
-    location,
+    location_id: location,
     room_num: bdCount,
     bathroom_num: baCount,
     price,
@@ -66,7 +68,9 @@ export default function CardComponent({
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardAction}>
-        <Button className={classes.border}>more details</Button>
+        <Link to={`houses/${id}`} className={classes.border}>
+          more details
+        </Link>
         <Button>
           <FavoriteBorderIcon className={classes.favIcon} />
         </Button>

@@ -3,10 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    color: theme.palette.primary.main,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     margin: '3em auto',
+    color: theme.palette.primary.main,
     width: '80%',
     padding: '0',
     border: '1px solid #c7c7c7',

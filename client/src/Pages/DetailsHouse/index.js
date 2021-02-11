@@ -7,6 +7,7 @@ import PhoneRoundedIcon from '@material-ui/icons/PhoneRounded';
 import Add from '@material-ui/icons/Add';
 
 import Button from '../../Components/Button';
+import RelatedHouse from './RelatedHouse';
 import useStyles from './style';
 
 function DetailsHouse() {
@@ -66,6 +67,9 @@ function DetailsHouse() {
             </Button>
           </div>
         </Grid>
+      </Grid>
+      <Grid lg="12">
+        <RelatedHouse />
       </Grid>
     </Container>
   );
