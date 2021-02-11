@@ -78,7 +78,6 @@ function AddHouse() {
     }
   };
 
-  // eslint-disable-next-line consistent-return
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -112,21 +111,26 @@ function AddHouse() {
       setArea(10);
       setImage('');
 
-      history.push(HOME_PAGE);
+      return history.push(HOME_PAGE);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
-      setLoading(false);
+      return setLoading(false);
     }
   };
 
   const locations = [
-    { city: 'Gaza', value: 1 },
-    { city: 'Khanyunis', value: 2 },
-    { city: 'ALwosta', value: 3 },
-    { city: 'Rafah', value: 4 },
-    { city: 'North', value: 5 },
+    { id: 'city_1', city: 'Gaza', value: 1 },
+    { id: 'city_2', city: 'Khanyunis', value: 2 },
+    { id: 'city_3', city: 'ALwosta', value: 3 },
+    { id: 'city_4', city: 'Rafah', value: 4 },
+    { id: 'city_5', city: 'North', value: 5 },
   ];
-  const categories = ['Apartment', 'Single-Family', 'studio', 'roof'];
+  const categories = [
+    { id: 'cat_1', category: 'Apartment' },
+    { id: 'cat_2', category: 'Single-Family' },
+    { id: 'cat_3', category: 'studio' },
+    { id: 'cat_4', category: 'roof' },
+  ];
 
   return (
     <div>
@@ -174,10 +178,9 @@ function AddHouse() {
           name="locationId"
           required
         >
-          {locations.map((options, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <MenuItem key={idx} value={options.value}>
-              {options.city}
+          {locations.map((city) => (
+            <MenuItem key={city.id} value={city.value}>
+              {city.city}
             </MenuItem>
           ))}
         </TextField>
@@ -191,9 +194,8 @@ function AddHouse() {
           name="category"
           required
         >
-          {categories.map((cat, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <MenuItem key={idx} value={cat}>
+          {categories.map((cat) => (
+            <MenuItem key={cat.id} value={cat.category}>
               {cat}
             </MenuItem>
           ))}
