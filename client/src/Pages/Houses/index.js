@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
-import Filter from '../../Components/FilterBar';
+import Filter from '../../Components/AdvanceSearch';
 
 function SearchPage() {
   const [houses, setHouses] = useState([]);
@@ -39,8 +39,10 @@ function SearchPage() {
       const filter = data.filter(
         (house) =>
           Math.round(house.price) === price &&
-          house.room_num === parseInt(rooms, 10)
+          house.room_num === parseInt(rooms, 10) &&
+          house.category === catagories
       );
+
       setHouses(filter);
     } catch (err) {
       setError(err);

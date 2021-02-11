@@ -28,7 +28,7 @@ function Filter({ onChange, handlePrice }) {
       </Select>
       <InputLabel htmlFor="catagories"> Catagories </InputLabel>
       <Select id="catagories" onChange={onChange} name="catagories">
-        <MenuItem value="Apartment">Apartment</MenuItem>
+        <MenuItem value="apartment">Apartment</MenuItem>
         <MenuItem value="Roof">Roof</MenuItem>
         <MenuItem value="Classis">Classic</MenuItem>
         <MenuItem value="Studio">Studio</MenuItem>
