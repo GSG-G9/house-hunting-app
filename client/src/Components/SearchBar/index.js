@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 
 import SearchIcon from '@material-ui/icons/SearchSharp';
 
@@ -8,11 +8,19 @@ import Button from '../Button';
 
 import useStyles from './style';
 
-function SearchBar({ onClick }) {
+function SearchBar({ onClick, value, onChange }) {
   const classes = useStyles();
   return (
     <>
-      <Input type="email" variant="outlined" size="small" label="search " />
+      <Input
+        type="search"
+        variant="outlined"
+        size="small"
+        label="search "
+        value={value}
+        onChange={onChange}
+        name="search"
+      />
 
       <Button className={classes.button} color="secondary" onClick={onClick}>
         <SearchIcon />
@@ -22,6 +30,8 @@ function SearchBar({ onClick }) {
 }
 SearchBar.propTypes = {
   onClick: func.isRequired,
+  onChange: func.isRequired,
+  value: string.isRequired,
 };
 
 export default SearchBar;

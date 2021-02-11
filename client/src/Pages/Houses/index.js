@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+
+import Typography from '@material-ui/core/Typography';
 
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
@@ -7,6 +9,7 @@ import Filter from '../../Components/AdvanceSearch';
 
 function SearchPage() {
   const [houses, setHouses] = useState([]);
+  const [search, setSearch] = useState();
   const [location, setLocation] = useState();
   const [catagories, setCatagories] = useState();
   const [rooms, setRooms] = useState(0);
@@ -15,6 +18,9 @@ function SearchPage() {
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
+      case 'search':
+        setSearch(value);
+        break;
       case 'location':
         setLocation(value);
         break;
@@ -48,9 +54,21 @@ function SearchPage() {
       setError(err);
     }
   };
+
+  useEffect(() => {
+    let isCurrent = true;
+    handleData(isCurrent);
+    return () => {
+      isCurrent = false;
+    };
+  }, [houses]);
+
   return (
     <div>
-      <Search onClick={handleData} />
+      <Typography variant="h5" component="h2">
+        {houses.length} houses Available
+      </Typography>
+      <Search onClick={handleData} value={search} onChange={handleChange} />
       <Filter onChange={handleChange} handlePrice={handlePrice} />
       <CardContainer houses={houses} />
     </div>
