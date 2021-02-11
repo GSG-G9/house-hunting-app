@@ -8,6 +8,7 @@ const {
 const {
   signupController,
   loginController,
+  authController,
 } = require('../controller/routes/user');
 
 const {
@@ -22,5 +23,6 @@ router.post('/login', loginValidation, loginController);
 router.get('/houses', getAllHouses);
 router.get('/newest-houses', getNewestHouses);
 router.get('/houses/:location', getHouseByLocation);
+router.get('/isauth', authController);
 
 module.exports = router;
