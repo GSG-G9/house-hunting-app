@@ -3,6 +3,7 @@ import Axios from 'axios';
 
 import { DataGrid } from '@material-ui/data-grid';
 import Typography from '@material-ui/core/Typography';
+import Alert from '@material-ui/lab/Alert';
 
 import CustomButton from '../../Components/Button';
 import columns from './columns';
@@ -21,14 +22,13 @@ function Favorite() {
       const {
         data: { data },
       } = await Axios('api/v1/favorite');
-      console.log(data);
       if (isCurrent) {
         setHouses(data);
       }
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      setErrorMsg(error);
+      setErrorMsg(error.message);
     }
   };
 
@@ -43,22 +43,31 @@ function Favorite() {
   return (
     <div className={classes.root}>
       <Typography className={classes.title}>My Favorites House</Typography>
-      <CustomButton
-        className={classes.button}
-        variant="contained"
-        color="secondary"
-      >
-        Compare
-      </CustomButton>
-      <div style={{ height: 400, width: '80%' }}>
-        <DataGrid
-          rows={houses}
-          columns={columns}
-          pageSize={5}
-          checkboxSelection
-          loading={isLoading}
-        />
-      </div>
+
+      {errorMsg ? (
+        <Alert className={classes.alert} severity="error">
+          {errorMsg}
+        </Alert>
+      ) : (
+        <div>
+          <CustomButton
+            className={classes.button}
+            variant="contained"
+            color="secondary"
+          >
+            Compare
+          </CustomButton>
+          <div style={{ height: 400 }}>
+            <DataGrid
+              rows={houses}
+              columns={columns}
+              pageSize={5}
+              checkboxSelection
+              loading={isLoading}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
