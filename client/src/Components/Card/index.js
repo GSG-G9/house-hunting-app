@@ -13,6 +13,8 @@ import HotelIcon from '@material-ui/icons/Hotel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
+import { locations } from '../../Utils/staticData';
+
 import useStyles from './style';
 
 const { shape, string, number } = PropTypes;
@@ -29,6 +31,11 @@ export default function CardComponent({
   },
 }) {
   const classes = useStyles();
+
+  const getCityName = (locationId) => {
+    const { city } = locations.find(({ id }) => id === locationId);
+    return city;
+  };
 
   return (
     <Card className={classes.root} elevation="0">
@@ -47,8 +54,10 @@ export default function CardComponent({
             <Typography gutterBottom variant="h5" component="h2">
               {title.slice(0, 1).toUpperCase() + title.slice(1)}
             </Typography>
-            <LocationOnIcon className={classes.icon} />{' '}
-            {locationsName[location]}
+            <Typography className={classes.location}>
+              <LocationOnIcon className={classes.icon} />
+              {getCityName(location)}
+            </Typography>
           </div>
           <Typography
             variant="body2"
