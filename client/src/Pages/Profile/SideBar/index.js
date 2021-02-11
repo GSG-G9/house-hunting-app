@@ -88,7 +88,7 @@ function SideBar() {
       <div
         role="tabpanel"
         hidden={value !== 1}
-        id={`vertical-tabpanel-${2}`}
+        id={`vertical-tabpanel-${1}`}
         aria-labelledby={`vertical-tab-${1}`}
         className={classes.mainContent}
       >

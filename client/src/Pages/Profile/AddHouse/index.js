@@ -42,7 +42,6 @@ function AddHouse() {
     setOpen(false);
   };
 
-  // eslint-disable-next-line consistent-return
   const handleChange = ({ target: { value, name } }) => {
     switch (name) {
       case 'title':
@@ -74,7 +73,6 @@ function AddHouse() {
         setImage(value);
         break;
       default:
-        return '';
     }
   };
 
@@ -136,7 +134,7 @@ function AddHouse() {
     <div>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-          {error || 'Congrats! Signed up Successfully'}
+          {error || 'The house added Successfully'}
         </Alert>
       </Snackbar>
       <Typography
@@ -178,9 +176,9 @@ function AddHouse() {
           name="locationId"
           required
         >
-          {locations.map((city) => (
-            <MenuItem key={city.id} value={city.value}>
-              {city.city}
+          {locations.map(({ id, value }) => (
+            <MenuItem key={id} value={value}>
+              {value}
             </MenuItem>
           ))}
         </TextField>
@@ -194,8 +192,8 @@ function AddHouse() {
           name="category"
           required
         >
-          {categories.map((cat) => (
-            <MenuItem key={cat.id} value={cat.category}>
+          {categories.map(({ id, category: cat }) => (
+            <MenuItem key={id} value={cat}>
               {cat}
             </MenuItem>
           ))}
