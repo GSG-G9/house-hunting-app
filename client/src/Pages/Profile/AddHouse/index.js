@@ -6,7 +6,6 @@ import {
   MenuItem,
   CircularProgress,
   Snackbar,
-  TextField,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
@@ -26,8 +25,8 @@ function AddHouse() {
   const [category, setCategory] = useState('Apartment');
   const [rooms, setRooms] = useState(1);
   const [bathrooms, setBathRooms] = useState(1);
-  const [price, setPrice] = useState(0);
-  const [area, setArea] = useState(10);
+  const [price, setPrice] = useState(100);
+  const [area, setArea] = useState(100);
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -48,9 +47,10 @@ function AddHouse() {
     setDescription('');
     setRooms(1);
     setBathRooms(1);
-    setPrice(0);
-    setArea(0);
+    setPrice(100);
+    setArea(100);
     setImage('');
+    setError('');
   };
 
   const handleChange = ({ target: { value, name } }) => {
@@ -91,6 +91,7 @@ function AddHouse() {
     try {
       e.preventDefault();
       setLoading(true);
+      setError('');
       const houseData = {
         title,
         description,
@@ -109,20 +110,29 @@ function AddHouse() {
 
       await Axios.post(`api/v1/houses`, houseData);
 
-      setOpen(true);
+      setLoading(false);
       clear();
-      setLoading(false);
+      setOpen(true);
     } catch (err) {
-      setError(err.response ? err.response.data.message : err.errors[0]);
+      let errorMsg;
+      if (err.errors) {
+        const [firstError] = err.errors;
+        errorMsg = firstError;
+      } else if (err.response) {
+        errorMsg = err.response.data.message;
+      } else {
+        errorMsg = 'some error happened please try again later';
+      }
       setLoading(false);
+      setError(errorMsg);
     }
   };
 
   return (
     <div>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-          {error || 'The house added Successfully'}
+        <Alert onClose={handleClose} severity="success">
+          The house added Successfully
         </Alert>
       </Snackbar>
       <Typography
@@ -155,7 +165,7 @@ function AddHouse() {
           required
         />
         <div className={classes.numberInputBox}>
-          <TextField
+          <Input
             id="filled-select-location"
             select
             label="Select"
@@ -170,8 +180,8 @@ function AddHouse() {
                 {city}
               </MenuItem>
             ))}
-          </TextField>
-          <TextField
+          </Input>
+          <Input
             id="filled-select-category"
             select
             className={classes.numberInput}
@@ -186,7 +196,7 @@ function AddHouse() {
                 {cat}
               </MenuItem>
             ))}
-          </TextField>
+          </Input>
         </div>
         <div className={classes.numberInputBox}>
           <Input
@@ -225,7 +235,7 @@ function AddHouse() {
             type="number"
             onChange={handleChange}
             value={price}
-            label="Price"
+            label="Price ₪"
             name="price"
             required
           />
