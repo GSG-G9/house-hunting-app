@@ -44,7 +44,7 @@ function Landing() {
     );
     fetchingData(
       isCurrent,
-      { url: '/api/v1/houses/newest', limit: 6, skip: 0 },
+      { url: '/api/v1/newest-houses', limit: 6, skip: 0 },
       setNewHouses
     );
     return () => {

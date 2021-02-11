@@ -22,13 +22,14 @@ export default function CardComponent({
     image: img,
     title,
     description,
-    location,
+    location_id: location,
     room_num: bdCount,
     bathroom_num: baCount,
     price,
   },
 }) {
   const classes = useStyles();
+
   return (
     <Card className={classes.root} elevation="0">
       <CardActionArea>
@@ -46,7 +47,8 @@ export default function CardComponent({
             <Typography gutterBottom variant="h5" component="h2">
               {title.slice(0, 1).toUpperCase() + title.slice(1)}
             </Typography>
-            <LocationOnIcon className={classes.icon} /> {location}
+            <LocationOnIcon className={classes.icon} />{' '}
+            {locationsName[location]}
           </div>
           <Typography
             variant="body2"
