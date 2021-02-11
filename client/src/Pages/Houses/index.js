@@ -41,15 +41,20 @@ function SearchPage() {
     try {
       const {
         data: { data },
-      } = await Axios.get(`api/v1/houses/${location}`);
+      } = await Axios.get(`api/v1/houses/${search || location}`);
       const filter = data.filter(
         (house) =>
           Math.round(house.price) === price &&
           house.room_num === parseInt(rooms, 10) &&
           house.category === catagories
       );
-
-      setHouses(filter);
+      console.log(search, location, 145);
+      if (location) {
+        setSearch('');
+        setHouses(filter);
+      } else {
+        setHouses(data);
+      }
     } catch (err) {
       setError(err);
     }
@@ -58,6 +63,7 @@ function SearchPage() {
   useEffect(() => {
     let isCurrent = true;
     handleData(isCurrent);
+
     return () => {
       isCurrent = false;
     };
