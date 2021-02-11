@@ -13,7 +13,7 @@ import Alert from '@material-ui/lab/Alert';
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/addNewHouse';
-import { locations, categories } from './staticData';
+import { locations, categories } from '../../../Utils/staticData';
 
 import useStyles from './style';
 

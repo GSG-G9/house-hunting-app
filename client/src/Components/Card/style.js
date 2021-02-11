@@ -71,9 +71,13 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '6px',
     },
   },
+  location: {
+    fontSize: '12px',
+  },
   icon: {
     color: theme.palette.primary.dark,
     marginLeft: '5px',
+    verticalAlign: 'middle',
   },
   favIcon: {
     color: '#960C0C',

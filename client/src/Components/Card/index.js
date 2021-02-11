@@ -14,6 +14,8 @@ import HotelIcon from '@material-ui/icons/Hotel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
+import { locations } from '../../Utils/staticData';
+
 import useStyles from './style';
 
 const { shape, string, number } = PropTypes;
@@ -34,12 +36,21 @@ export default function CardComponent({
   },
 }) {
   const classes = useStyles();
+
+  const getCityName = (locationId) => {
+    const { city } = locations.find(({ id: _id }) => _id === locationId);
+    return city;
+  };
+
   return (
     <Card className={classes.root} elevation="0">
       <CardActionArea>
         <CardMedia className={classes.media}>
           <img
-            src="https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6"
+            src={
+              img ||
+              'https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6'
+            }
             alt="house"
           />
         </CardMedia>
@@ -48,7 +59,10 @@ export default function CardComponent({
             <Typography gutterBottom variant="h5" component="h2">
               {title.slice(0, 1).toUpperCase() + title.slice(1)}
             </Typography>
-            <LocationOnIcon className={classes.icon} /> {location}
+            <Typography className={classes.location}>
+              <LocationOnIcon className={classes.icon} />
+              {getCityName(location)}
+            </Typography>
           </div>
           <Typography
             variant="body2"
@@ -73,7 +87,7 @@ export default function CardComponent({
       <CardActions className={classes.cardAction}>
         <Link
           to={{
-            pathname: `houses/${id}`,
+            pathname: `/houses/${id}`,
             state: {
               id,
               img,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container, Grid, Typography } from '@material-ui/core';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
@@ -10,6 +10,7 @@ import Add from '@material-ui/icons/Add';
 import Button from '../../Components/Button';
 import RelatedHouse from './RelatedHouse';
 import useStyles from './style';
+import { locations } from '../../Utils/staticData';
 
 function DetailsHouse() {
   const classes = useStyles();
@@ -26,6 +27,15 @@ function DetailsHouse() {
     },
   } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const getCityName = (locationId) => {
+    const { city } = locations.find(({ id: _id }) => _id === locationId);
+    return city;
+  };
+
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Grid container>
@@ -40,7 +50,7 @@ function DetailsHouse() {
             <span>${price} pm</span>
             <span>
               <LocationOnRoundedIcon />
-              <Typography>{location}</Typography>{' '}
+              <Typography>{getCityName(location)}</Typography>{' '}
             </span>
           </Typography>
           <Typography className={classes.descDetails}>{description}</Typography>
