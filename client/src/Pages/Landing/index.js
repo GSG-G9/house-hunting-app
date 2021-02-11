@@ -77,7 +77,7 @@ function Landing() {
                 <CircularProgress color="primary" />
               </div>
             ) : (
-              <CardContainer houses={houses.sort((a, b) => b.id - a.id)} />
+              <CardContainer houses={houses.sort((a, b) => a.id - b.id)} />
             )}
           </div>
         </>

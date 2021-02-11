@@ -21,6 +21,7 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
+import DetailsHouse from '../Pages/DetailsHouse';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path={SIGNUP_PAGE}>
             <Register />
+          </Route>
+          <Route path={`${HOUSES}/:houseId`}>
+            <DetailsHouse />
           </Route>
           <Route path={HOUSES} />
           <Route path={PROFILE} />
