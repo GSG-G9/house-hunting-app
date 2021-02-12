@@ -20,9 +20,9 @@ const {
 router.post('/signup', signupValidation, signupController);
 router.post('/login', loginValidation, loginController);
 
+router.get('/is-auth', authController);
 router.get('/houses', getAllHouses);
 router.get('/newest-houses', getNewestHouses);
 router.get('/houses/:location', getHouseByLocation);
-router.get('/isauth', authController);
 
 module.exports = router;
