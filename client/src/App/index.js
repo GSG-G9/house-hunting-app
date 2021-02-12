@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import DetailsHouse from '../Pages/DetailsHouse';
 
 import {
   HOME_PAGE,
@@ -21,7 +22,7 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
-import DetailsHouse from '../Pages/DetailsHouse';
+// import DetailsHouse from '../Pages/DetailsHouse';
 import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
 
@@ -40,15 +41,15 @@ function App() {
           <Route path={SIGNUP_PAGE}>
             <Register />
           </Route>
-          <Route path={`${HOUSES}/:houseId`}>
-            <DetailsHouse />
-          </Route>
           <Route path={HOUSES} />
           <Route path={PROFILE}>
             <Profile />
           </Route>
           <Route path={FAVORITE}>
             <Favorite />
+          </Route>
+          <Route path={`${HOUSES}/:houseId`}>
+            <DetailsHouse />
           </Route>
           <Route path={ABOUT_US} />
           <Route path={CONTACT_US} />

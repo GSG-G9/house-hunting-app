@@ -14,15 +14,16 @@ import HotelIcon from '@material-ui/icons/Hotel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-import { locations } from '../../Utils/staticData';
 import { HOUSES } from '../../Utils/routes.constant';
+import { locations } from '../../Utils/staticData';
 
 import useStyles from './style';
 
 const { shape, string, number } = PropTypes;
 
-export default function CardComponent({
-  house: {
+export default function CardComponent({ house }) {
+  const classes = useStyles();
+  const {
     id,
     image: img,
     title,
@@ -32,12 +33,9 @@ export default function CardComponent({
     bathroom_num: baCount,
     price,
     username,
-    email,
     mobile,
-  },
-}) {
-  const classes = useStyles();
-
+    email,
+  } = house;
   const getCityName = (locationId) => {
     const { city } = locations.find(({ id: _id }) => _id === locationId);
     return city;
@@ -72,6 +70,12 @@ export default function CardComponent({
           >
             {description.split(' ').splice(0, 10).join(' ')}
           </Typography>
+
+          <div className={classes.iconBox}>
+            <Typography>owner name : {username} </Typography>
+            <Typography>mobile : {mobile} </Typography>
+          </div>
+
           <div className={classes.cardDetails}>
             <Typography variant="h6">${price}</Typography>
             <div className={classes.iconBox}>
@@ -90,13 +94,10 @@ export default function CardComponent({
           to={{
             pathname: `${HOUSES}/${id}`,
             state: {
-              id,
               img,
               title,
               description,
               location,
-              bdCount,
-              baCount,
               price,
               username,
               email,

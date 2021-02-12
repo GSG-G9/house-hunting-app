@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Container, Grid, Typography } from '@material-ui/core';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
@@ -8,7 +8,6 @@ import PhoneRoundedIcon from '@material-ui/icons/PhoneRounded';
 import Add from '@material-ui/icons/Add';
 
 import Button from '../../Components/Button';
-import RelatedHouse from './RelatedHouse';
 import useStyles from './style';
 import { locations } from '../../Utils/staticData';
 import { HOME_PAGE } from '../../Utils/routes.constant';
@@ -28,10 +27,6 @@ function DetailsHouse() {
     },
   } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const getCityName = (locationId) => {
     const { city } = locations.find(({ id: _id }) => _id === locationId);
     return city;
@@ -42,7 +37,13 @@ function DetailsHouse() {
       <Grid container>
         <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
           <div className={classes.imageBox}>
-            <img src={img} alt="house" />
+            <img
+              src={
+                img ||
+                'https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6'
+              }
+              alt="house"
+            />
           </div>
         </Grid>
         <Grid xs="12" sm="12" md="6" lg="6" className={classes.desc}>
@@ -73,7 +74,7 @@ function DetailsHouse() {
             <Button
               variant="contained"
               color="primary"
-              className={classes.favriteBtn}
+              className={classes.favoriteBtn}
             >
               <Add /> favorite
             </Button>
@@ -82,9 +83,6 @@ function DetailsHouse() {
             </Link>
           </div>
         </Grid>
-      </Grid>
-      <Grid lg="12">
-        <RelatedHouse />
       </Grid>
     </Container>
   );

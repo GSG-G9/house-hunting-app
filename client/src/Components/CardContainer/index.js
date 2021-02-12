@@ -18,7 +18,6 @@ function CardContainer({ houses }) {
     </Container>
   );
 }
-
 CardContainer.propTypes = {
   houses: PropTypes.instanceOf(Array).isRequired,
 };
