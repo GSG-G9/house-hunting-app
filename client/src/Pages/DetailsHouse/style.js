@@ -62,20 +62,36 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   descBtn: {
-    marginTop: '4em',
+    margin: '4em auto',
+    marginBottom: '0',
     display: 'flex',
     justifyContent: 'space-around',
-    margin: '0 auto',
-    ' & button': {
-      height: '45px',
-      marginRight: '2em',
-    },
-    ' & button:last-of-type': {
-      marginRight: '0em',
+    width: '80%',
+    flexWrap: 'wrap',
+    '& button': {
+      fontWeight: 'bold',
     },
   },
-  favriteBtn: {
-    color: '#F5F5F5',
+  backLink: {
+    backgroundColor: '#F5F5F5',
+    border: `1px solid ${theme.palette.primary.main}`,
+    color: theme.palette.primary.main,
+    textDecoration: 'none',
+    textAlign: 'center',
+    width: '120px',
+    lineHeight: '27px',
+    padding: '0.5em',
+    borderRadius: '3px',
+    fontWeight: 'bold',
+    transition: 'all 0.25s',
+    boxShadow:
+      '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+    '&:hover': {
+      color: '#F5F5F5',
+      border: `1px solid ${theme.palette.primary.main}`,
+      backgroundColor: theme.palette.primary.main,
+      transition: 'all 0.25s',
+    },
   },
 }));
 export default useStyles;

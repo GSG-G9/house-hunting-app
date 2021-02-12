@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Container, Grid, Typography } from '@material-ui/core';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -11,6 +11,7 @@ import Button from '../../Components/Button';
 import RelatedHouse from './RelatedHouse';
 import useStyles from './style';
 import { locations } from '../../Utils/staticData';
+import { HOME_PAGE } from '../../Utils/routes.constant';
 
 function DetailsHouse() {
   const classes = useStyles();
@@ -71,14 +72,14 @@ function DetailsHouse() {
           <div className={classes.descBtn}>
             <Button
               variant="contained"
-              color="secondary"
+              color="primary"
               className={classes.favriteBtn}
             >
               <Add /> favorite
             </Button>
-            <Button variant="outlined" color="primary">
+            <Link to={`${HOME_PAGE}`} className={classes.backLink}>
               Back
-            </Button>
+            </Link>
           </div>
         </Grid>
       </Grid>
