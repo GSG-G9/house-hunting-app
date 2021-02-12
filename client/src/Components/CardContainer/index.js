@@ -12,9 +12,9 @@ function CardContainer({ houses }) {
   const classes = useStyles();
   return (
     <Container className={classes.housesContainer}>
-      {houses.map((house) => (
-        <Card key={house.id} house={house} />
-      ))}
+      {houses.length
+        ? houses.map((house) => <Card key={house.id} house={house} />)
+        : 'no result'}
     </Container>
   );
 }
