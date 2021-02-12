@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
@@ -83,7 +81,7 @@ function SearchPage() {
           setHouses(data);
         }
       } catch (err) {
-        setError(err.message);
+        setError(err.response.data.message);
         setLoading(false);
       }
     })();
@@ -96,6 +94,7 @@ function SearchPage() {
     <Container maxWidth="lg" className={classes.header}>
       <Search onClick={handleClick} value={search} onChange={handleChange} />
       {loading && <CircularProgress size={25} color="primary" />}
+
       <Filter
         onChange={handleChange}
         handlePrice={handlePrice}
@@ -104,14 +103,17 @@ function SearchPage() {
         roomValue={rooms}
         locationValue={location}
       />
-      <div className={classes.container}>
-        <Typography variant="h5" component="h4" color="primary">
-          {first ? houses.length : filtered.length} houses Available on
-          {location}
-        </Typography>
-        <CardContainer houses={first ? houses : filtered} />
-        {error && <Alert severity="error"> Internal server Error : 500 </Alert>}
-      </div>
+      {error ? (
+        <Alert severity="error"> Internal server Error : 500 </Alert>
+      ) : (
+        <div className={classes.container}>
+          <Typography variant="h5" component="h4" color="primary">
+            {first ? houses.length : filtered.length} houses Available on
+            {location}
+          </Typography>
+          <CardContainer houses={first ? houses : filtered} />
+        </div>
+      )}
     </Container>
   );
 }
