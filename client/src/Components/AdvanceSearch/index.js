@@ -2,14 +2,21 @@ import React from 'react';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import { func } from 'prop-types';
+import { func, number, string } from 'prop-types';
 
 import Slider from '@material-ui/core/Slider';
 
 import Input from '../Input';
 import useStyles from './style';
 
-function Filter({ onChange, handlePrice }) {
+function Filter({
+  onChange,
+  handlePrice,
+  priceValue,
+  catValue,
+  roomValue,
+  locationValue,
+}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -19,6 +26,9 @@ function Filter({ onChange, handlePrice }) {
         onChange={onChange}
         name="location"
         label="location"
+        value={locationValue}
+        variant="outlined"
+        className={classes.input}
       >
         <MenuItem value="Gaza">Gaza</MenuItem>
         <MenuItem value="Khanyunis">Khanyunis</MenuItem>
@@ -26,17 +36,20 @@ function Filter({ onChange, handlePrice }) {
         <MenuItem value="Rafah">Rafah</MenuItem>
         <MenuItem value="North">North</MenuItem>
       </Select>
-      <InputLabel htmlFor="catagories"> Catagories </InputLabel>
+      <InputLabel htmlFor="category"> category </InputLabel>
       <Select
-        id="catagories"
+        id="category"
         onChange={onChange}
-        name="catagories"
-        labelId="catagories"
+        name="category"
+        labelId="category"
+        value={catValue}
+        variant="outlined"
+        className={classes.input}
       >
         <MenuItem value="apartment">Apartment</MenuItem>
-        <MenuItem value="Roof">Roof</MenuItem>
-        <MenuItem value="Classis">Classic</MenuItem>
-        <MenuItem value="Studio">Studio</MenuItem>
+        <MenuItem value="roof">Roof</MenuItem>
+        <MenuItem value="classis">Classic</MenuItem>
+        <MenuItem value="studio">Studio</MenuItem>
       </Select>
       <InputLabel>Rooms</InputLabel>
       <Input
@@ -44,6 +57,8 @@ function Filter({ onChange, handlePrice }) {
         type="number"
         name="rooms"
         onChange={onChange}
+        value={roomValue}
+        variant="outlined"
       />
       <InputLabel>Price </InputLabel>
       <Slider
@@ -52,8 +67,10 @@ function Filter({ onChange, handlePrice }) {
         onChange={handlePrice}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
-        min={100}
-        max={500}
+        value={priceValue}
+        min={50}
+        max={900}
+        variant="outlined"
       />
     </div>
   );
@@ -61,6 +78,10 @@ function Filter({ onChange, handlePrice }) {
 Filter.propTypes = {
   onChange: func.isRequired,
   handlePrice: func.isRequired,
+  priceValue: number.isRequired,
+  catValue: string.isRequired,
+  roomValue: number.isRequired,
+  locationValue: string.isRequired,
 };
 
 export default Filter;

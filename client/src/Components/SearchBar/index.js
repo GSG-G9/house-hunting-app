@@ -22,7 +22,7 @@ function SearchBar({ onClick, value, onChange }) {
         name="search"
       />
 
-      <Button className={classes.button} color="secondary" onClick={onClick}>
+      <Button className={classes.button} onClick={onClick}>
         <SearchIcon />
       </Button>
     </>

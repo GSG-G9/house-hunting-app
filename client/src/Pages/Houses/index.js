@@ -1,9 +1,12 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import Alert from '@material-ui/lab/Alert';
+import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
@@ -14,13 +17,22 @@ function SearchPage() {
   const classes = useStyles();
 
   const [houses, setHouses] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState('');
-  const [location, setLocation] = useState();
-  const [catagories, setCatagories] = useState();
-  const [rooms, setRooms] = useState(0);
+  const [location, setLocation] = useState('Gaza');
+  const [category, setCategory] = useState('apartment');
+  const [rooms, setRooms] = useState(2);
   const [price, setPrice] = useState(100);
+  const [first, setFirst] = useState(false);
   const [error, setError] = useState();
+  const [loading, setLoading] = useState();
 
+  const clear = () => {
+    setCategory('');
+    setLocation('');
+    setPrice();
+    setRooms();
+  };
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'search':
@@ -29,8 +41,8 @@ function SearchPage() {
       case 'location':
         setLocation(value);
         break;
-      case 'catagories':
-        setCatagories(value);
+      case 'category':
+        setCategory(value);
         break;
       case 'rooms':
         setRooms(value);
@@ -42,55 +54,70 @@ function SearchPage() {
   const handlePrice = (event, val) => {
     setPrice(val);
   };
-  const handleData = async (isCurrent) => {
-    try {
-      const {
-        data: { data },
-      } = await Axios.get(`api/v1/houses/${location}`);
-      const filter = data.filter(
-        (house) =>
-          Math.round(house.price) === price &&
-          house.room_num === parseInt(rooms, 10) &&
-          house.category === catagories &&
-          (house.description
-            .toLowerCase()
-            .includes(search.toLowerCase().trim()) ||
-            house.title.toLowerCase().includes(search.toLowerCase().trim()))
+  const handleClick = () => {
+    setFirst(false);
+    const filterHouses = houses
+      .filter((house) => (price ? Math.round(house.price) >= price : true))
+      .filter((house) => (rooms ? house.room_num === +rooms : true))
+      .filter((house) => (category ? house.category === category : true))
+      .filter((house) =>
+        search
+          ? house.description
+              .toLowerCase()
+              .includes(search.toLowerCase().trim()) ||
+            house.title.toLowerCase().includes(search.toLowerCase().trim())
+          : true
       );
-
-      if (isCurrent) {
-        setHouses(filter);
-      }
-    } catch (err) {
-      setError(err);
-    }
+    setFiltered(filterHouses);
   };
 
   useEffect(() => {
+    setFirst(true);
+  }, []);
+
+  useEffect(() => {
     let isCurrent = true;
-    handleData(isCurrent);
+    (async () => {
+      try {
+        setLoading(true);
+        const {
+          data: { data },
+        } = await Axios.get(`api/v1/houses/${location}`);
+        if (isCurrent) {
+          setLoading(false);
+          setHouses(data);
+        }
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    })();
     return () => {
       isCurrent = false;
     };
-  }, []);
+  }, [location]);
 
   return (
-    <div className={classes.header}>
-      <Search onClick={handleData} value={search} onChange={handleChange} />
-      <Filter onChange={handleChange} handlePrice={handlePrice} />
+    <Container maxWidth="lg" className={classes.header}>
+      <Search onClick={handleClick} value={search} onChange={handleChange} />
+      {loading && <CircularProgress size={25} color="primary" />}
+      <Filter
+        onChange={handleChange}
+        handlePrice={handlePrice}
+        priceValue={price}
+        catValue={category}
+        roomValue={rooms}
+        locationValue={location}
+      />
       <div className={classes.container}>
-        <Divider className={classes.divider} />
-        <Typography variant="h5" component="h2" color="primary">
-          {houses.length} houses Available
+        <Typography variant="h5" component="h4" color="primary">
+          {first ? houses.length : filtered.length} houses Available on
+          {location}
         </Typography>
-        {houses.length > 0 ? (
-          <CardContainer houses={houses} />
-        ) : (
-          <Alert severity="info">No Houses Available </Alert>
-        )}
-        {error && <Alert severity="error">{error} </Alert>}
+        <CardContainer houses={first ? houses : filtered} />
+        {error && <Alert severity="error"> Internal server Error : 500 </Alert>}
       </div>
-    </div>
+    </Container>
   );
 }
 
