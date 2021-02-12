@@ -8,6 +8,7 @@ const {
 const {
   signupController,
   loginController,
+  authController,
 } = require('../controller/routes/user');
 
 const {
@@ -16,6 +17,7 @@ const {
   getNewestHouses,
 } = require('../controller/routes/house');
 
+router.get('/is-auth', authController);
 router.post('/signup', signupValidation, signupController);
 router.post('/login', loginValidation, loginController);
 
