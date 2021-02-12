@@ -16,6 +16,8 @@ import {
   CONTACT_US,
 } from '../Utils/routes.constant';
 
+import Authenticator from '../Context/Autherization';
+
 import theme from './theme';
 import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
@@ -25,31 +27,33 @@ import Profile from '../Pages/Profile';
 
 function App() {
   return (
-    <Switch>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Route exact path={HOME_PAGE}>
-            <Landing />
-          </Route>
-          <Route path={LOGIN_PAGE}>
-            <Login />
-          </Route>
-          <Route path={SIGNUP_PAGE}>
-            <Register />
-          </Route>
-          <Route path={HOUSES} />
-          <Route path={PROFILE}>
-            <Profile />
-          </Route>
-          <Route path={FAVORITE} />
-          <Route path={ABOUT_US} />
-          <Route path={CONTACT_US} />
+    <Authenticator>
+      <Switch>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Route exact path={HOME_PAGE}>
+              <Landing />
+            </Route>
+            <Route path={LOGIN_PAGE}>
+              <Login />
+            </Route>
+            <Route path={SIGNUP_PAGE}>
+              <Register />
+            </Route>
+            <Route path={HOUSES} />
+            <Route path={PROFILE}>
+              <Profile />
+            </Route>
+            <Route path={FAVORITE} />
+            <Route path={ABOUT_US} />
+            <Route path={CONTACT_US} />
 
-          <Route />
-        </Layout>
-      </ThemeProvider>
-    </Switch>
+            <Route />
+          </Layout>
+        </ThemeProvider>
+      </Switch>
+    </Authenticator>
   );
 }
 
