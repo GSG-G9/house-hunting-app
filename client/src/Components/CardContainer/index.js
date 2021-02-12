@@ -13,7 +13,7 @@ function CardContainer({ houses }) {
   return (
     <Container className={classes.housesContainer}>
       {houses.length
-        ? houses.map((house) => <Card house={house} />)
+        ? houses.map((house) => <Card key={house.id} house={house} />)
         : 'no result'}
     </Container>
   );

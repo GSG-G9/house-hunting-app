@@ -43,9 +43,6 @@ function App() {
           <Route path={HOUSES}>
             <Search />
           </Route>
-          <Route path={PROFILE} />
-          <Route path={FAVORITE} />
-          <Route path={HOUSES} />
           <Route path={PROFILE}>
             <Profile />
           </Route>
