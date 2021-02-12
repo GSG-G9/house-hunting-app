@@ -27,12 +27,6 @@ function SearchPage() {
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
-  const clear = () => {
-    setCategory('');
-    setLocation('');
-    setPrice();
-    setRooms();
-  };
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'search':
