@@ -28,7 +28,6 @@ function SearchPage() {
   const [loading, setLoading] = useState();
 
   const handleChange = ({ target: { name, value } }) => {
-    setHouses([]);
     switch (name) {
       case 'search':
         setSearch(value);
@@ -51,6 +50,7 @@ function SearchPage() {
   };
   const handleClick = () => {
     setFirst(false);
+
     const filterHouses = houses
       .filter((house) => (price ? Math.round(house.price) >= price : true))
       .filter((house) => (rooms ? house.room_num === +rooms : true))
