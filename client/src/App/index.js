@@ -21,6 +21,7 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
+import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
 
 function App() {
@@ -42,11 +43,11 @@ function App() {
           <Route path={PROFILE}>
             <Profile />
           </Route>
-          <Route path={FAVORITE} />
+          <Route path={FAVORITE}>
+            <Favorite />
+          </Route>
           <Route path={ABOUT_US} />
           <Route path={CONTACT_US} />
-
-          <Route />
         </Layout>
       </ThemeProvider>
     </Switch>
