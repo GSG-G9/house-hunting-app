@@ -15,6 +15,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 import { locations } from '../../Utils/staticData';
+import { HOUSES } from '../../Utils/routes.constant';
 
 import useStyles from './style';
 
@@ -87,7 +88,7 @@ export default function CardComponent({
       <CardActions className={classes.cardAction}>
         <Link
           to={{
-            pathname: `/houses/${id}`,
+            pathname: `${HOUSES}/${id}`,
             state: {
               id,
               img,
