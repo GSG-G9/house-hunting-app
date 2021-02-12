@@ -9,7 +9,7 @@ const validationSchema = object({
   rooms: number().required().positive().integer().min(1),
   bathrooms: number().required().positive().integer().min(1),
   category: string().required(),
-  price: number().required().positive(),
+  price: number().required(),
   area: number().required().min(10),
   image: string().required().url(),
 });
