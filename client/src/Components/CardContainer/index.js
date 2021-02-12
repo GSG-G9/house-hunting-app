@@ -13,7 +13,7 @@ function CardContainer({ houses }) {
   return (
     <Container className={classes.housesContainer}>
       {houses.map((house) => (
-        <Card house={house} />
+        <Card key={house.id} house={house} />
       ))}
     </Container>
   );

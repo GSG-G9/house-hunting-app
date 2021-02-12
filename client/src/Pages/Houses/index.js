@@ -72,7 +72,7 @@ function SearchPage() {
     return () => {
       isCurrent = false;
     };
-  }, [houses]);
+  }, []);
 
   return (
     <div className={classes.header}>

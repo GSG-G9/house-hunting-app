@@ -12,6 +12,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import { HOUSES } from '../../Utils/routes.constant';
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
+
 import useStyles from './style';
 
 function Landing() {
@@ -19,21 +20,21 @@ function Landing() {
   const history = useHistory();
 
   const [houses, setHouses] = useState([]);
+  const [newHouses, setNewHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
 
   const handleSearchBar = () => {
     history.push(HOUSES);
   };
-
-  const fetchingData = async (isCurrent, limit = 6, skip = 0) => {
+  const fetchingData = async (isCurrent, { url, limit, skip }, cb) => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `/api/v1/houses?limit=${limit}&skip=${skip}`
+        `${url}?limit=${limit || 6}&skip=${skip || 0}`
       );
       if (isCurrent) {
-        setHouses(data.data);
+        cb(data.data);
         setLoading(false);
       }
     } catch (error) {
@@ -44,7 +45,16 @@ function Landing() {
 
   useEffect(() => {
     let isCurrent = true;
-    fetchingData(isCurrent);
+    fetchingData(
+      isCurrent,
+      { url: '/api/v1/houses', limit: 6, skip: 0 },
+      setHouses
+    );
+    fetchingData(
+      isCurrent,
+      { url: '/api/v1/newest-houses', limit: 6, skip: 0 },
+      setNewHouses
+    );
     return () => {
       isCurrent = false;
     };
@@ -88,7 +98,7 @@ function Landing() {
                 <CircularProgress color="primary" />
               </div>
             ) : (
-              <CardContainer houses={houses.sort((a, b) => b.id - a.id)} />
+              <CardContainer houses={newHouses.sort((a, b) => b.id - a.id)} />
             )}
           </div>
         </>
