@@ -1,7 +1,5 @@
 export default [
-  // { field: 'id', headerName: 'ID', width: 70 },
   { field: 'title', headerName: 'Title', width: 200 },
-  // { field: 'description', headerName: 'Description', width: 160 },
   { field: 'category', headerName: 'Type', width: 130 },
 
   {
