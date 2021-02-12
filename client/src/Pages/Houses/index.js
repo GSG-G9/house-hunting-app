@@ -28,6 +28,7 @@ function SearchPage() {
   const [loading, setLoading] = useState();
 
   const handleChange = ({ target: { name, value } }) => {
+    setHouses([]);
     switch (name) {
       case 'search':
         setSearch(value);
