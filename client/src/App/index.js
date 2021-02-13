@@ -23,7 +23,11 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
+import Search from '../Pages/Houses';
+import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
+import PrivateRoute from '../Components/Route/Private';
+import PublicRoute from '../Components/Route/PublicRoute';
 
 function App() {
   return (
@@ -32,23 +36,26 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Layout>
-            <Route exact path={HOME_PAGE}>
+            <PublicRoute exact path={HOME_PAGE}>
               <Landing />
-            </Route>
-            <Route path={LOGIN_PAGE}>
+            </PublicRoute>
+            <PublicRoute path={LOGIN_PAGE}>
               <Login />
-            </Route>
-            <Route path={SIGNUP_PAGE}>
+            </PublicRoute>
+            <PublicRoute path={SIGNUP_PAGE}>
               <Register />
-            </Route>
-            <Route path={HOUSES} />
-            <Route path={PROFILE}>
+            </PublicRoute>
+            <PublicRoute path={HOUSES}>
+              <Search />
+            </PublicRoute>
+            <PrivateRoute path={PROFILE}>
               <Profile />
-            </Route>
-            <Route path={FAVORITE} />
+            </PrivateRoute>
+            <PrivateRoute path={FAVORITE}>
+              <Favorite />
+            </PrivateRoute>
             <Route path={ABOUT_US} />
             <Route path={CONTACT_US} />
-
             <Route />
           </Layout>
         </ThemeProvider>
