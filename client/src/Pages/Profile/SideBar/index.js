@@ -7,6 +7,7 @@ import Add from '@material-ui/icons/Add';
 
 import TabPanel from './tabPanel';
 import AddHouse from '../AddHouse';
+import UserInfo from '../UserInfo';
 
 import useStyles from './style';
 
@@ -61,7 +62,7 @@ function SideBar() {
         </Tabs>
       </div>
       <TabPanel value={value} index={0} className={classes.mainContent}>
-        user info
+        <UserInfo />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.mainContent}>
         houses
