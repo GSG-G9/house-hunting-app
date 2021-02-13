@@ -6,11 +6,11 @@ const getUser = async (req, res, next) => {
     const { userId } = req;
     const { rows } = await getUserData(userId);
 
-    if (rows.length === 0) {
-      throw boomify(404, 'User Not Found!');
+    if (!rows.length) {
+      throw boomify(500, 'Something went wrong!');
     }
 
-    return res.json({ data: rows[0] });
+    return res.json({ data: { ...rows[0], password: '' } });
   } catch (error) {
     return next(error);
   }
