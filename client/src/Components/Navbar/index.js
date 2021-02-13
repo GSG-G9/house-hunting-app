@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import Axios from 'axios';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,9 +19,22 @@ import {
   ABOUT_US,
   CONTACT_US,
 } from '../../Utils/routes.constant';
+import { AuthContext } from '../../Context/Autherization';
 
 function Navbar() {
   const classes = useStyles();
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
+  const [error, setError] = useState('');
+
+  const handleClick = async () => {
+    try {
+      await Axios('api/v1/logout');
+      setIsAuth(false);
+    } catch (err) {
+      setError(err);
+    }
+  };
   return (
     <AppBar position="static" className={classes.root}>
       <Container maxWidth="lg">
@@ -39,26 +53,37 @@ function Navbar() {
           <LinkItem className={classes.linkItem} linkUrl={ABOUT_US}>
             About us
           </LinkItem>
-          <LinkItem className={classes.linkItem} linkUrl={FAVORITE}>
-            Favorite
-          </LinkItem>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick=""
-            href={SIGNUP_PAGE}
-          >
-            SignUp
-          </Button>
-          <LinkItem className={classes.linkItem} linkUrl={LOGIN_PAGE}>
-            Signin
-          </LinkItem>
-          <LinkItem className={classes.linkItem} linkUrl={PROFILE}>
-            Profile
-          </LinkItem>
-          <Button variant="outlined" color="secondary" onClick="">
-            Logout
-          </Button>
+          {!isAuth ? (
+            <>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick=""
+                href={SIGNUP_PAGE}
+              >
+                SignUp
+              </Button>
+              <LinkItem className={classes.linkItem} linkUrl={LOGIN_PAGE}>
+                Signin
+              </LinkItem>
+            </>
+          ) : (
+            <>
+              <LinkItem className={classes.linkItem} linkUrl={PROFILE}>
+                Profile
+              </LinkItem>
+              <LinkItem className={classes.linkItem} linkUrl={FAVORITE}>
+                Favorite
+              </LinkItem>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleClick}
+              >
+                Logout
+              </Button>
+            </>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

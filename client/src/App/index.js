@@ -16,7 +16,7 @@ import {
   CONTACT_US,
 } from '../Utils/routes.constant';
 
-import Authenticator from '../Context/Autherization';
+import AuthProvider from '../Context/Autherization';
 
 import theme from './theme';
 import Layout from '../Pages/Layout';
@@ -27,7 +27,7 @@ import Profile from '../Pages/Profile';
 
 function App() {
   return (
-    <Authenticator>
+    <AuthProvider>
       <Switch>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -53,7 +53,7 @@ function App() {
           </Layout>
         </ThemeProvider>
       </Switch>
-    </Authenticator>
+    </AuthProvider>
   );
 }
 

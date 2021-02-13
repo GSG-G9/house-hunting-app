@@ -1,20 +1,18 @@
 import React, { useState, useEffect, createContext } from 'react';
 import Axios from 'axios';
 
-const ContextApi = createContext();
+export const AuthContext = createContext();
 
-function Authenticator({ children }) {
+function AuthProvider({ children }) {
   const [id, setId] = useState('');
   const [isAuth, setIsAuth] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   const fetchData = async () => {
     try {
-      const { data } = await Axios('api/v1/isauth');
+      const { data } = await Axios('api/v1/is-auth');
       setIsAuth(data.isAuth);
-      if (isAuth) {
-        setId(data.userId);
-      }
+      setId(data.userId);
     } catch (error) {
       setErrorMsg(error);
     }
@@ -25,8 +23,10 @@ function Authenticator({ children }) {
   }, [id]);
 
   return (
-    <ContextApi.Provider value={(id, isAuth)}>{children}</ContextApi.Provider>
+    <AuthContext.Provider value={{ setIsAuth, isAuth }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 
-export default Authenticator;
+export default AuthProvider;
