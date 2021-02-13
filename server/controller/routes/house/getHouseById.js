@@ -5,9 +5,8 @@ const getHouseById = async (req, res, next) => {
   try {
     const { houseId } = req.params;
     const { rows } = await getHouseData(houseId);
-    console.log(houseId);
-    if (!rows.length) {
-      boomify(404, 'House not found!');
+    if (rows.length === 0) {
+      throw boomify(404, 'House not found!');
     }
 
     res.json({ data: rows[0] });

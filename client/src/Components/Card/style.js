@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     paddingInline: '1.7em',
   },
-  border: {
+  detailsLink: {
     backgroundColor: '#EB9235',
     border: '1px solid transparent',
     color: '#f5f5f5',

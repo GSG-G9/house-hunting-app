@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '0',
     border: '1px solid #c7c7c7',
   },
+  alertBox: {
+    marginBlock: '3em',
+    width: '400px',
+  },
   imgSection: {
     display: 'flex',
     alignItems: 'center',

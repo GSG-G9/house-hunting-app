@@ -31,9 +31,6 @@ export default function CardComponent({
     room_num: bdCount,
     bathroom_num: baCount,
     price,
-    username,
-    email,
-    mobile,
   },
 }) {
   const classes = useStyles();
@@ -86,24 +83,7 @@ export default function CardComponent({
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardAction}>
-        <Link
-          to={{
-            pathname: `${HOUSES}/${id}`,
-            state: {
-              img,
-              title,
-              description,
-              location,
-              bdCount,
-              baCount,
-              price,
-              username,
-              email,
-              mobile,
-            },
-          }}
-          className={classes.border}
-        >
+        <Link to={`${HOUSES}/${id}`} className={classes.detailsLink}>
           more details
         </Link>
         <Button>

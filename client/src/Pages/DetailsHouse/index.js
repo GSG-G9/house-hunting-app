@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   Container,
   Grid,
@@ -25,37 +25,12 @@ function DetailsHouse() {
   const [houses, setHouses] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
-  const { pathname, state } = useLocation();
-
-  const houseId = pathname.split('/')[2];
-
-  const houseData = {
-    img: '',
-    title: '',
-    description: '',
-    price: '',
-    username: '',
-    email: '',
-    mobile: '',
-  };
-  if (state) {
-    console.log(state);
-    houseData.img = state.img;
-    houseData.title = state.title;
-    houseData.description = state.description;
-    houseData.locationId = state.location;
-    houseData.price = state.price;
-    houseData.username = state.username;
-    houseData.email = state.email;
-    houseData.mobile = state.mobile;
-    setIsLoading(false);
-  }
+  const { houseId } = useParams();
 
   const fetchingData = async (isCurrent) => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(`/api/v1/houses/${houseId}`);
-      console.log(data);
+      const { data } = await axios.get(`/api/v1/houses/id/${houseId}`);
       if (isCurrent) {
         setHouses(data.data);
         setIsLoading(false);
@@ -69,83 +44,89 @@ function DetailsHouse() {
   useEffect(() => {
     let isCurrent = true;
     window.scrollTo(0, 0);
-    if (!state) {
-      fetchingData(isCurrent);
-    }
+    fetchingData(isCurrent);
 
     return () => {
       isCurrent = false;
     };
   }, []);
 
-  const getCityName = (_locationId) => {
-    console.log(_locationId);
-    const { city } = locations.find(({ id: _id }) => _id === _locationId);
+  const getCityName = (locationId) => {
+    const { city } = locations.find(({ id }) => id === locationId);
     return city;
   };
 
+  let renderElm;
+
+  if (errorMsg.message) {
+    renderElm = (
+      <div className={classes.alertBox}>
+        <Alert severity="error">{errorMsg.message}</Alert>
+      </div>
+    );
+  } else if (isLoading) {
+    renderElm = <CircularProgress />;
+  } else {
+    renderElm = (
+      <>
+        <Grid container>
+          <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
+            <div className={classes.imageBox}>
+              <img src={houses.image} alt="house" />
+            </div>
+          </Grid>
+          <Grid xs="12" sm="12" md="6" lg="6" className={classes.desc}>
+            <Typography variant="h2">{houses.title}</Typography>
+            <Typography className={classes.priceDetails}>
+              <span>${houses.price} pm</span>
+              <span>
+                <LocationOnRoundedIcon />
+                <Typography>
+                  {getCityName(houses.location_id || 1)}
+                </Typography>{' '}
+              </span>
+            </Typography>
+            <Typography className={classes.descDetails}>
+              {houses.description}
+            </Typography>
+            <div className={classes.descAddress}>
+              <Typography>
+                <AccountCircleIcon />
+                {houses.location_id}
+              </Typography>
+              <Typography>
+                <EmailRoundedIcon />
+                {houses.email}
+              </Typography>
+              <Typography>
+                <PhoneRoundedIcon />
+                {houses.mobile}
+              </Typography>
+            </div>
+            <div className={classes.descBtn}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.favriteBtn}
+              >
+                <Add /> favorite
+              </Button>
+              <Link to={`${HOME_PAGE}`} className={classes.backLink}>
+                Back
+              </Link>
+            </div>
+          </Grid>
+        </Grid>
+        <Grid lg="12" container>
+          <RelatedHouse location={getCityName(houses.location_id || 1)} />
+        </Grid>
+      </>
+    );
+  }
+
   return (
     <Container maxWidth="lg" className={classes.root}>
-      <Grid container>
-        <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
-          <div className={classes.imageBox}>
-            <img src={houseData.img || houses.image} alt="house" />
-          </div>
-        </Grid>
-        <Grid xs="12" sm="12" md="6" lg="6" className={classes.desc}>
-          {errorMsg && <Alert />}
-          {isLoading ? (
-            <CircularProgress />
-          ) : (
-            <>
-              <Typography variant="h2">
-                {houseData.title || houses.title}
-              </Typography>
-              <Typography className={classes.priceDetails}>
-                <span>${houseData.price || houses.price} pm</span>
-                <span>
-                  <LocationOnRoundedIcon />
-                  <Typography>
-                    {getCityName(houseData.locationId || houseId)}
-                  </Typography>{' '}
-                </span>
-              </Typography>
-              <Typography className={classes.descDetails}>
-                {houseData.description || houses.description}
-              </Typography>
-              <div className={classes.descAddress}>
-                <Typography>
-                  <AccountCircleIcon />
-                  {houseData.username || houses.location_id}
-                </Typography>
-                <Typography>
-                  <EmailRoundedIcon />
-                  {houseData.email || houses.email}
-                </Typography>
-                <Typography>
-                  <PhoneRoundedIcon />
-                  {houseData.mobile || houses.mobile}
-                </Typography>
-              </div>
-            </>
-          )}
-          <div className={classes.descBtn}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.favriteBtn}
-            >
-              <Add /> favorite
-            </Button>
-            <Link to={`${HOME_PAGE}`} className={classes.backLink}>
-              Back
-            </Link>
-          </div>
-        </Grid>
-      </Grid>
-      <Grid lg="12">
-        <RelatedHouse />
-      </Grid>
+      {renderElm}
     </Container>
   );
 }

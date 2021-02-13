@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingInline: '0',
+    width: '100%',
   },
   relatedHouse: {
     paddingTop: '2em',
