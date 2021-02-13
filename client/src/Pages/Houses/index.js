@@ -21,7 +21,7 @@ function SearchPage() {
   const [category, setCategory] = useState('apartment');
   const [rooms, setRooms] = useState(2);
   const [price, setPrice] = useState(100);
-  const [first, setFirst] = useState(false);
+  const [clear, setClear] = useState(false);
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
@@ -47,7 +47,7 @@ function SearchPage() {
     setPrice(val);
   };
   const handleClick = () => {
-    setFirst(false);
+    setClear(false);
 
     const filterHouses = houses
       .filter((house) => (price ? Math.round(house.price) >= price : true))
@@ -65,10 +65,7 @@ function SearchPage() {
   };
 
   useEffect(() => {
-    setFirst(true);
-  }, []);
-
-  useEffect(() => {
+    setClear(true);
     let isCurrent = true;
     (async () => {
       try {
@@ -108,10 +105,10 @@ function SearchPage() {
       ) : (
         <div className={classes.container}>
           <Typography variant="h5" component="h4" color="primary">
-            {first ? houses.length : filtered.length} houses Available on
+            {clear ? houses.length : filtered.length} houses Available on
             {location}
           </Typography>
-          <CardContainer houses={first ? houses : filtered} />
+          <CardContainer houses={clear ? houses : filtered} />
         </div>
       )}
     </Container>
