@@ -22,6 +22,7 @@ import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
 import DetailsHouse from '../Pages/DetailsHouse';
+import Search from '../Pages/Houses';
 import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
 
@@ -44,6 +45,9 @@ function App() {
             <DetailsHouse />
           </Route>
           <Route path={HOUSES} />
+          <Route path={HOUSES}>
+            <Search />
+          </Route>
           <Route path={PROFILE}>
             <Profile />
           </Route>

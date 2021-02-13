@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
   Container,
@@ -8,18 +9,24 @@ import {
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+import { HOUSES } from '../../Utils/routes.constant';
 import CardContainer from '../../Components/CardContainer';
+import Search from '../../Components/SearchBar';
 
 import useStyles from './style';
 
 function Landing() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [houses, setHouses] = useState([]);
   const [newHouses, setNewHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
 
+  const handleSearchBar = () => {
+    history.push(HOUSES);
+  };
   const fetchingData = async (isCurrent, { url, limit, skip }, cb) => {
     try {
       setLoading(true);
@@ -64,6 +71,9 @@ function Landing() {
         </div>
       ) : (
         <>
+          <div className={classes.header}>
+            <Search onClick={handleSearchBar} />
+          </div>
           <div className={classes.housesSection}>
             <Typography variant="h2" className={classes.sectionTitle}>
               Top-rated
