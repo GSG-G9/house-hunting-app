@@ -21,7 +21,7 @@ function SearchPage() {
   const [category, setCategory] = useState('apartment');
   const [rooms, setRooms] = useState(2);
   const [price, setPrice] = useState(100);
-  const [clear, setClear] = useState(true);
+  const [clear, setClear] = useState(false);
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
@@ -51,7 +51,7 @@ function SearchPage() {
 
     const filterHouses = houses
       .filter((house) => (price ? Math.round(house.price) >= price : true))
-      .filter((house) => (rooms ? house.room_num === +rooms : true))
+      .filter((house) => (rooms ? house.room_num >= +rooms : true))
       .filter((house) => (category ? house.category === category : true))
       .filter((house) =>
         search
@@ -61,7 +61,6 @@ function SearchPage() {
             house.title.toLowerCase().includes(search.toLowerCase().trim())
           : true
       );
-    console.log(filterHouses, 111);
     setFiltered(filterHouses);
   };
 
@@ -76,7 +75,6 @@ function SearchPage() {
         } = await Axios.get(`api/v1/houses/${location}`);
         if (isCurrent) {
           setLoading(false);
-          console.log(data);
           setHouses(data);
         }
       } catch (err) {
