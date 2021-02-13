@@ -51,7 +51,7 @@ function SearchPage() {
 
     const filterHouses = houses
       .filter((house) => (price ? Math.round(house.price) >= price : true))
-      .filter((house) => (rooms ? house.room_num === +rooms : true))
+      .filter((house) => (rooms ? house.room_num >= +rooms : true))
       .filter((house) => (category ? house.category === category : true))
       .filter((house) =>
         search
@@ -105,7 +105,7 @@ function SearchPage() {
       ) : (
         <div className={classes.container}>
           <Typography variant="h5" component="h4" color="primary">
-            {clear ? houses.length : filtered.length} houses Available on
+            {clear ? houses.length : filtered.length} houses Available on 
             {location}
           </Typography>
           <CardContainer houses={clear ? houses : filtered} />
