@@ -90,7 +90,6 @@ export default function CardComponent({
           to={{
             pathname: `${HOUSES}/${id}`,
             state: {
-              id,
               img,
               title,
               description,

@@ -41,11 +41,11 @@ function App() {
           <Route path={SIGNUP_PAGE}>
             <Register />
           </Route>
-          <Route path={`${HOUSES}/:houseId`}>
+          <Route exact path={`${HOUSES}/:houseId`}>
             <DetailsHouse />
           </Route>
-          <Route path={HOUSES} />
-          <Route path={HOUSES}>
+          <Route exact path={HOUSES} />
+          <Route exact path={HOUSES}>
             <Search />
           </Route>
           <Route path={PROFILE}>

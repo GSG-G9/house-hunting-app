@@ -15,6 +15,7 @@ const {
   getAllHouses,
   getHouseByLocation,
   getNewestHouses,
+  getHouseById,
 } = require('../controller/routes/house');
 
 router.get('/is-auth', authController);
@@ -24,5 +25,6 @@ router.post('/login', loginValidation, loginController);
 router.get('/houses', getAllHouses);
 router.get('/newest-houses', getNewestHouses);
 router.get('/houses/:location', getHouseByLocation);
+router.get('/houses/:houseId', getHouseById);
 
 module.exports = router;
