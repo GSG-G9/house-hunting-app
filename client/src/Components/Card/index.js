@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { PropTypes } from 'prop-types';
+import Axios from 'axios';
 
 import { Card } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -12,6 +14,8 @@ import BathtubIcon from '@material-ui/icons/Bathtub';
 import HotelIcon from '@material-ui/icons/Hotel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 import { locations } from '../../Utils/staticData';
 
@@ -21,6 +25,7 @@ const { shape, string, number } = PropTypes;
 
 export default function CardComponent({
   house: {
+    id: houseId,
     image: img,
     title,
     description,
@@ -30,7 +35,29 @@ export default function CardComponent({
     price,
   },
 }) {
+  const [fav, setFav] = useState();
+  const [error, setError] = useState();
+  const [open, setOpen] = useState(false);
+
   const classes = useStyles();
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const addToFav = async () => {
+    try {
+      const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
+      setOpen(true);
+      setFav(data);
+    } catch (err) {
+      setOpen(true);
+      setError(err.message);
+    }
+  };
 
   const getCityName = (locationId) => {
     const { city } = locations.find(({ id }) => id === locationId);
@@ -82,8 +109,26 @@ export default function CardComponent({
       <CardActions className={classes.cardAction}>
         <Button className={classes.border}>more details</Button>
         <Button>
-          <FavoriteBorderIcon className={classes.favIcon} />
+          <FavoriteBorderIcon
+            className={classes.favIcon}
+            id={houseId}
+            onClick={addToFav}
+          />
         </Button>
+        {fav && (
+          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+              {fav.message}
+            </Alert>
+          </Snackbar>
+        )}
+        {error && (
+          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              {error}
+            </Alert>
+          </Snackbar>
+        )}
       </CardActions>
     </Card>
   );
