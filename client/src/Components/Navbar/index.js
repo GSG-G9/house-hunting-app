@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -7,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/lab/Alert';
 
 import Button from '../Button';
 import LinkItem from '../LinkItem';
@@ -22,16 +23,14 @@ import {
   ABOUT_US,
   CONTACT_US,
 } from '../../Utils/routes.constant';
-import { AuthContext } from '../../Context/Autherization';
-
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import AuthContext from '../../Context/AuthContext';
 
 function Navbar() {
   const classes = useStyles();
-  const { isAuth, setIsAuth } = useContext(AuthContext);
-  const [isLoading, setisLoading] = useState(false);
+  const history = useHistory();
+  const { isAuth, setRefresh } = useContext(AuthContext);
+
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -44,13 +43,15 @@ function Navbar() {
 
   const handleClick = async () => {
     try {
-      setisLoading(true);
+      setLoading(true);
       await Axios('api/v1/logout');
-      setIsAuth(false);
-      setisLoading(false);
+      setRefresh(true);
+      setLoading(false);
+      setOpen(true);
+      history.push(HOME_PAGE);
     } catch (err) {
       setError('Internal server Error');
-      setisLoading(false);
+      setLoading(false);
     }
   };
   return (
@@ -107,8 +108,8 @@ function Navbar() {
             </>
           )}
           <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success">
-              LogOut Successfully!
+            <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
+              {error || 'LogOut Successfully!'}
             </Alert>
           </Snackbar>
         </Toolbar>

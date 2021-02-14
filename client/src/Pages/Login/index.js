@@ -12,13 +12,13 @@ import Button from '../../Components/Button';
 import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.svg';
 import { HOME_PAGE } from '../../Utils/routes.constant';
 
-import { AuthContext } from '../../Context/Autherization';
+import AuthContext from '../../Context/AuthContext';
 import useStyles from './style';
 
 function Login() {
   const classes = useStyles();
   const history = useHistory();
-  const { setIsAuth } = useContext(AuthContext);
+  const { setRefresh } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,10 +59,10 @@ function Login() {
         abortEarly: false,
       });
       await Axios.post('api/v1/login', userData);
-      setOpen(true);
       clear();
       setIsLoading(false);
-      setIsAuth(true);
+      setRefresh(true);
+      setOpen(true);
       history.push(HOME_PAGE);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
