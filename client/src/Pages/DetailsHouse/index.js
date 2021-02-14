@@ -112,7 +112,7 @@ function DetailsHouse() {
             </Grid>
           </Grid>
           <Grid lg="12" container>
-            <RelatedHouse location={house.location_id} />
+            <RelatedHouse location={house.location} />
           </Grid>
         </>
       )}
