@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import Axios from 'axios';
 import {
   Container,
   Divider,
@@ -30,7 +30,7 @@ function Landing() {
   const fetchingData = async (isCurrent, { url, limit, skip }, cb) => {
     try {
       setLoading(true);
-      const { data } = await axios.get(
+      const { data } = await Axios.get(
         `${url}?limit=${limit || 6}&skip=${skip || 0}`
       );
       if (isCurrent) {
@@ -39,7 +39,7 @@ function Landing() {
       }
     } catch (error) {
       setLoading(false);
-      setErrorMsg(error.response.data);
+      setErrorMsg('internal server error');
     }
   };
 

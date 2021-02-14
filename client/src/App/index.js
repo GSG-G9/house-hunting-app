@@ -41,10 +41,6 @@ function App() {
           <Route path={SIGNUP_PAGE}>
             <Register />
           </Route>
-          <Route exact path={`${HOUSES}/:houseId`}>
-            <DetailsHouse />
-          </Route>
-          <Route exact path={HOUSES} />
           <Route exact path={HOUSES}>
             <Search />
           </Route>
@@ -53,6 +49,9 @@ function App() {
           </Route>
           <Route path={FAVORITE}>
             <Favorite />
+          </Route>
+          <Route path={`${HOUSES}/:houseId`}>
+            <DetailsHouse />
           </Route>
           <Route path={ABOUT_US} />
           <Route path={CONTACT_US} />

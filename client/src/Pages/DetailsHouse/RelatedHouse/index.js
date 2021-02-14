@@ -24,7 +24,7 @@ function RelatedHouse({ location }) {
       setIsLoading(true);
       const { data } = await axios.get(`/api/v1/houses/${location}`);
       if (isCurrent) {
-        setHouses(data.data);
+        setHouses(data.data.slice(0, 3));
         setIsLoading(false);
       }
     } catch (error) {

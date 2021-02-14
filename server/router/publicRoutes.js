@@ -24,7 +24,7 @@ router.post('/login', loginValidation, loginController);
 
 router.get('/houses', getAllHouses);
 router.get('/newest-houses', getNewestHouses);
-router.get('/houses/id/:houseId', getHouseById);
+router.get('/house/:houseId', getHouseById);
 router.get('/houses/:location', getHouseByLocation);
 
 module.exports = router;
