@@ -105,7 +105,7 @@ function SearchPage() {
       ) : (
         <div className={classes.container}>
           <Typography variant="h5" component="h4" color="primary">
-            {clear ? houses.length : filtered.length} houses Available on
+            {clear ? houses.length : filtered.length} houses Available on:
             {location}
           </Typography>
           <CardContainer houses={clear ? houses : filtered} />
