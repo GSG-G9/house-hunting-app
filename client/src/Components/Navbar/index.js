@@ -5,6 +5,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import Button from '../Button';
 import LinkItem from '../LinkItem';
@@ -21,18 +24,33 @@ import {
 } from '../../Utils/routes.constant';
 import { AuthContext } from '../../Context/Autherization';
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function Navbar() {
   const classes = useStyles();
   const { isAuth, setIsAuth } = useContext(AuthContext);
-
+  const [isLoading, setisLoading] = useState(false);
   const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const handleClick = async () => {
     try {
+      setisLoading(true);
       await Axios('api/v1/logout');
       setIsAuth(false);
+      setisLoading(false);
     } catch (err) {
-      setError(err);
+      setError('Internal server Error');
+      setisLoading(false);
     }
   };
   return (
@@ -80,10 +98,19 @@ function Navbar() {
                 color="secondary"
                 onClick={handleClick}
               >
-                Logout
+                {isLoading ? (
+                  <CircularProgress size={25} color="secondary" />
+                ) : (
+                  'LogOut'
+                )}
               </Button>
             </>
           )}
+          <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+              LogOut Successfully!
+            </Alert>
+          </Snackbar>
         </Toolbar>
       </Container>
     </AppBar>

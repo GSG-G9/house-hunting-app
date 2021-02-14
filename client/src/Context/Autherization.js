@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext } from 'react';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [id, setId] = useState('');
   const [isAuth, setIsAuth] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -12,7 +12,6 @@ function AuthProvider({ children }) {
     try {
       const { data } = await Axios('api/v1/is-auth');
       setIsAuth(data.isAuth);
-      setId(data.userId);
     } catch (error) {
       setErrorMsg(error);
     }
@@ -20,13 +19,15 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, [isAuth]);
 
   return (
-    <AuthContext.Provider value={{ setIsAuth, isAuth }}>
+    <AuthContext.Provider value={{ setIsAuth, isAuth, errorMsg }}>
       {children}
     </AuthContext.Provider>
   );
 }
-
+AuthProvider.propTypes = {
+  children: PropTypes.func.isRequired,
+};
 export default AuthProvider;

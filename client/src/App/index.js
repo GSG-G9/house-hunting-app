@@ -36,18 +36,18 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Layout>
-            <PublicRoute exact path={HOME_PAGE}>
+            <Route exact path={HOME_PAGE}>
               <Landing />
-            </PublicRoute>
-            <PublicRoute path={LOGIN_PAGE}>
+            </Route>
+            <Route path={LOGIN_PAGE}>
               <Login />
-            </PublicRoute>
-            <PublicRoute path={SIGNUP_PAGE}>
+            </Route>
+            <Route path={SIGNUP_PAGE}>
               <Register />
-            </PublicRoute>
-            <PublicRoute path={HOUSES}>
+            </Route>
+            <Route path={HOUSES}>
               <Search />
-            </PublicRoute>
+            </Route>
             <PrivateRoute path={PROFILE}>
               <Profile />
             </PrivateRoute>

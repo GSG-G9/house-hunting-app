@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
 
@@ -19,5 +20,8 @@ function PrivateRoute({ component: Component, ...rest }) {
     </Route>
   );
 }
+PrivateRoute.propTypes = {
+  Component: PropTypes.func.isRequired,
+};
 
 export default PrivateRoute;
