@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import {
   Typography,
@@ -13,7 +14,7 @@ import Button from '../../../Components/Button';
 
 import useStyles from './style';
 
-function UserInfo() {
+function UserInfo({ getUserName }) {
   const classes = useStyles();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState('');
@@ -25,6 +26,7 @@ function UserInfo() {
       const { data } = await axios.get(`api/v1/users`);
       if (isCurrent) {
         setUser(data.data);
+        getUserName(data.data.username);
         setLoading(false);
       }
     } catch (error) {
@@ -114,5 +116,9 @@ function UserInfo() {
     </div>
   );
 }
+
+UserInfo.propTypes = {
+  getUserName: PropTypes.func.isRequired,
+};
 
 export default UserInfo;
