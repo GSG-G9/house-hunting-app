@@ -42,7 +42,7 @@ export default function CardComponent({
     baCount,
   },
 }) {
-  const [fav, setFav] = useState();
+  const [favorite, setFavorite] = useState();
   const [error, setError] = useState();
   const [open, setOpen] = useState(false);
 
@@ -59,7 +59,7 @@ export default function CardComponent({
     try {
       const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
       setOpen(true);
-      setFav(data);
+      setFavorite(data);
     } catch (err) {
       setOpen(true);
       setError(err.message);
@@ -123,10 +123,10 @@ export default function CardComponent({
             onClick={addToFav}
           />
         </Button>
-        {fav && (
+        {favorite && (
           <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
-              {fav.message}
+              {favorite.message}
             </Alert>
           </Snackbar>
         )}

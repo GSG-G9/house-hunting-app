@@ -81,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
   },
   favIcon: {
     color: '#960C0C',
-    // backgroundColor:'#960C0C',
     cursor: 'pointer',
   },
 }));
