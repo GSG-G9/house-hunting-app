@@ -50,7 +50,7 @@ function UserInfo() {
         <>
           <Grid lg="12" justify="center">
             <Avatar className={classes.avatar}>
-              {user.username.slice(0, 1).toUpperCase()}
+              {user.username && user.username.slice(0, 1).toUpperCase()}
             </Avatar>
           </Grid>
           <Grid justify="center">
@@ -78,9 +78,9 @@ function UserInfo() {
                 </div>
                 <div className={classes.userDataField}>
                   <Typography className={classes.userDataFieldLabel}>
-                    Password:{' '}
+                    Address:{' '}
                   </Typography>
-                  <Typography>{user.password.map(() => '*')}</Typography>
+                  <Typography>{user.address ? user.address : '-'}</Typography>
                 </div>
               </Paper>
             )}

@@ -21,17 +21,22 @@ function a11yProps(index) {
 function SideBar() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const [usename, setUsename] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  function getUserName(username) {
+    setUsename(username);
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.sideBarContainer}>
         <div className={classes.userAvatar}>
           <Avatar className={classes.avatar}>H</Avatar>
-          <Typography variant="h3">User Name</Typography>
+          <Typography variant="h3">{usename && usename}</Typography>
         </div>
         <Tabs
           orientation="vertical"
@@ -62,7 +67,7 @@ function SideBar() {
         </Tabs>
       </div>
       <TabPanel value={value} index={0} className={classes.mainContent}>
-        <UserInfo />
+        <UserInfo getUserName={getUserName} />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.mainContent}>
         houses
