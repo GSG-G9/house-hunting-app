@@ -62,25 +62,33 @@ function UserInfo() {
                   <Typography className={classes.userDataFieldLabel}>
                     Username:{' '}
                   </Typography>
-                  <Typography>{user.username}</Typography>
+                  <Typography className={classes.userDataFieldValue}>
+                    {user.username}
+                  </Typography>
                 </div>
                 <div className={classes.userDataField}>
                   <Typography className={classes.userDataFieldLabel}>
                     Email:{' '}
                   </Typography>
-                  <Typography>{user.email}</Typography>
+                  <Typography className={classes.userDataFieldValue}>
+                    {user.email}
+                  </Typography>
                 </div>
                 <div className={classes.userDataField}>
                   <Typography className={classes.userDataFieldLabel}>
                     Mobile:{' '}
                   </Typography>
-                  <Typography>{user.mobile}</Typography>
+                  <Typography className={classes.userDataFieldValue}>
+                    {user.mobile}
+                  </Typography>
                 </div>
                 <div className={classes.userDataField}>
                   <Typography className={classes.userDataFieldLabel}>
                     Address:{' '}
                   </Typography>
-                  <Typography>{user.address ? user.address : '-'}</Typography>
+                  <Typography className={classes.userDataFieldValue}>
+                    {user.address ? user.address : '-'}
+                  </Typography>
                 </div>
               </Paper>
             )}

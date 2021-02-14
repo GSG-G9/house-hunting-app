@@ -35,11 +35,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     paddingBlock: '0.5em',
+    paddingLeft: '3em',
     borderBottom: '1px solid #c7c7c7',
     justifyContent: 'center',
   },
   userDataFieldLabel: {
-    width: '12%',
+    width: '15%',
+  },
+  userDataFieldValue: {
+    width: '50%',
   },
   btnsBox: {
     marginBlock: '3em',
