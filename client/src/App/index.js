@@ -39,12 +39,14 @@ function App() {
             <Route exact path={HOME_PAGE}>
               <Landing />
             </Route>
-            <Route path={HOUSES}>
+            <Route exact path={HOUSES}>
               <Search />
             </Route>
             <Route path={ABOUT_US} />
             <Route path={CONTACT_US} />
-            <PublicRoute path={`${HOUSES}/:houseId`} component={DetailsHouse} />
+            <Route path={`${HOUSES}/:houseId`}>
+              <DetailsHouse />
+            </Route>
             <PublicRoute path={LOGIN_PAGE} component={Login} />
             <PublicRoute path={SIGNUP_PAGE} component={Register} />
             <PrivateRoute path={PROFILE} component={Profile} />
