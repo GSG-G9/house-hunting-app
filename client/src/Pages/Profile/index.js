@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 import SideBar from './SideBar';
 import useStyles from './style';
 
-function UserProfile() {
+function Profile() {
   const classes = useStyles();
 
   return (
@@ -15,4 +15,4 @@ function UserProfile() {
   );
 }
 
-export default UserProfile;
+export default Profile;
