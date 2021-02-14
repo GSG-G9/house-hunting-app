@@ -18,7 +18,7 @@ import useStyles from './style';
 function Login() {
   const classes = useStyles();
   const history = useHistory();
-  const { setRefresh } = useContext(AuthContext);
+  const { setIsAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,7 +61,7 @@ function Login() {
       await Axios.post('api/v1/login', userData);
       clear();
       setIsLoading(false);
-      setRefresh(true);
+      setIsAuth(true);
       setOpen(true);
       history.push(HOME_PAGE);
     } catch (err) {

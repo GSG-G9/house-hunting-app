@@ -5,21 +5,20 @@ import AuthContext from './AuthContext';
 
 function AuthProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
-  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await Axios('api/v1/is-auth');
-        setIsAuth(data.isAuth);
+        await Axios('api/v1/is-auth');
+        setIsAuth(true);
       } catch (error) {
         setIsAuth(false);
       }
     })();
-  }, [refresh]);
+  }, [isAuth]);
 
   return (
-    <AuthContext.Provider value={{ setRefresh, isAuth }}>
+    <AuthContext.Provider value={{ setIsAuth, isAuth }}>
       {children}
     </AuthContext.Provider>
   );

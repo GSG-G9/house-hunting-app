@@ -28,7 +28,7 @@ import AuthContext from '../../Context/AuthContext';
 function Navbar() {
   const classes = useStyles();
   const history = useHistory();
-  const { isAuth, setRefresh } = useContext(AuthContext);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -45,7 +45,7 @@ function Navbar() {
     try {
       setLoading(true);
       await Axios('api/v1/logout');
-      setRefresh(true);
+      setIsAuth(false);
       setLoading(false);
       setOpen(true);
       history.push(HOME_PAGE);
