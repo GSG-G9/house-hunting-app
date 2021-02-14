@@ -25,13 +25,11 @@ function UserInfo() {
       const { data } = await axios.get(`api/v1/users`);
       if (isCurrent) {
         setUser(data.data);
-        console.log(data.data);
         setLoading(false);
       }
     } catch (error) {
       setLoading(false);
       setErrorMsg(error.response.data);
-      console.log(errorMsg);
     }
   };
 
