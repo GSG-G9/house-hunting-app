@@ -16,6 +16,8 @@ import {
   CONTACT_US,
 } from '../Utils/routes.constant';
 
+import AuthProvider from '../Context/Authorization';
+
 import theme from './theme';
 import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
@@ -24,34 +26,30 @@ import Landing from '../Pages/Landing';
 import Search from '../Pages/Houses';
 import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
+import { PrivateRoute, PublicRoute } from '../Components/Route';
 
 function App() {
   return (
     <Switch>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout>
-          <Route exact path={HOME_PAGE}>
-            <Landing />
-          </Route>
-          <Route path={LOGIN_PAGE}>
-            <Login />
-          </Route>
-          <Route path={SIGNUP_PAGE}>
-            <Register />
-          </Route>
-          <Route path={HOUSES}>
-            <Search />
-          </Route>
-          <Route path={PROFILE}>
-            <Profile />
-          </Route>
-          <Route path={FAVORITE}>
-            <Favorite />
-          </Route>
-          <Route path={ABOUT_US} />
-          <Route path={CONTACT_US} />
-        </Layout>
+        <AuthProvider>
+          <Layout>
+            <Route exact path={HOME_PAGE}>
+              <Landing />
+            </Route>
+            <Route path={HOUSES}>
+              <Search />
+            </Route>
+            <Route path={ABOUT_US} />
+            <Route path={CONTACT_US} />
+            <PublicRoute path={LOGIN_PAGE} component={Login} />
+            <PublicRoute path={SIGNUP_PAGE} component={Register} />
+            <PrivateRoute path={PROFILE} component={Profile} />
+            <PrivateRoute path={FAVORITE} component={Favorite} />
+            <Route />
+          </Layout>
+        </AuthProvider>
       </ThemeProvider>
     </Switch>
   );
