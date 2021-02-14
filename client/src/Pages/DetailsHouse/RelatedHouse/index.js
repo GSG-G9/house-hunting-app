@@ -41,20 +41,6 @@ function RelatedHouse({ location }) {
     };
   }, []);
 
-  let renderElm;
-
-  if (isLoading) {
-    renderElm = (
-      <div className={classes.spinner}>
-        <CircularProgress color="primary" />
-      </div>
-    );
-  } else if (errorMsg.message) {
-    renderElm = <Alert severity="error">{errorMsg.message}</Alert>;
-  } else {
-    renderElm = <CardContainer houses={houses} />;
-  }
-
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Divider className={classes.divider} />
@@ -62,7 +48,16 @@ function RelatedHouse({ location }) {
         <Typography variant="h2" className={classes.sectionTitle}>
           Related
         </Typography>
-        {renderElm || 'No result'}
+        {isLoading && (
+          <div className={classes.spinner}>
+            <CircularProgress color="primary" />
+          </div>
+        )}
+        {errorMsg.message ? (
+          <Alert severity="error">{errorMsg.message}</Alert>
+        ) : (
+          <CardContainer houses={houses} />
+        )}
       </div>
     </Container>
   );
