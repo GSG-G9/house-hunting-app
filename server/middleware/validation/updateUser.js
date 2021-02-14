@@ -1,4 +1,4 @@
-const { object, string, ref } = requir('yub');
+const { object, string } = require('yup');
 
 const boomify = require('../../utils/boomify');
 
@@ -18,7 +18,7 @@ const updateUserValidation = async (req, res, next) => {
         mobile,
         address,
       },
-      { abortEalry: false }
+      { abortEarly: false }
     );
   } catch (error) {
     next(boomify(400, error.errors[0]));
