@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 import Button from '../Button';
 import LinkItem from '../LinkItem';
@@ -18,9 +23,37 @@ import {
   ABOUT_US,
   CONTACT_US,
 } from '../../Utils/routes.constant';
+import AuthContext from '../../Context/AuthContext';
 
 function Navbar() {
   const classes = useStyles();
+  const history = useHistory();
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleClick = async () => {
+    try {
+      setLoading(true);
+      await Axios('api/v1/logout');
+      setIsAuth(false);
+      setLoading(false);
+      setOpen(true);
+      history.push(HOME_PAGE);
+    } catch (err) {
+      setError('Internal server Error');
+      setLoading(false);
+    }
+  };
   return (
     <AppBar position="static" className={classes.root}>
       <Container maxWidth="lg">
@@ -39,26 +72,46 @@ function Navbar() {
           <LinkItem className={classes.linkItem} linkUrl={ABOUT_US}>
             About us
           </LinkItem>
-          <LinkItem className={classes.linkItem} linkUrl={FAVORITE}>
-            Favorite
-          </LinkItem>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick=""
-            href={SIGNUP_PAGE}
-          >
-            SignUp
-          </Button>
-          <LinkItem className={classes.linkItem} linkUrl={LOGIN_PAGE}>
-            Signin
-          </LinkItem>
-          <LinkItem className={classes.linkItem} linkUrl={PROFILE}>
-            Profile
-          </LinkItem>
-          <Button variant="outlined" color="secondary" onClick="">
-            Logout
-          </Button>
+          {!isAuth ? (
+            <>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick=""
+                href={SIGNUP_PAGE}
+              >
+                SignUp
+              </Button>
+              <LinkItem className={classes.linkItem} linkUrl={LOGIN_PAGE}>
+                Signin
+              </LinkItem>
+            </>
+          ) : (
+            <>
+              <LinkItem className={classes.linkItem} linkUrl={PROFILE}>
+                Profile
+              </LinkItem>
+              <LinkItem className={classes.linkItem} linkUrl={FAVORITE}>
+                Favorite
+              </LinkItem>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleClick}
+              >
+                {isLoading ? (
+                  <CircularProgress size={25} color="secondary" />
+                ) : (
+                  'LogOut'
+                )}
+              </Button>
+            </>
+          )}
+          <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
+              {error || 'LogOut Successfully!'}
+            </Alert>
+          </Snackbar>
         </Toolbar>
       </Container>
     </AppBar>
