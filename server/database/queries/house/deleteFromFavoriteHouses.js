@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const deleteFromFavoriteHouse = (houseId, userId) => {
+const deleteFromFavoriteHouses = (houseId, userId) => {
   const sql = {
     text: 'DELETE FROM favorites WHERE house_id = $1 AND user_id = $2;',
     values: [houseId, userId],
@@ -8,4 +8,4 @@ const deleteFromFavoriteHouse = (houseId, userId) => {
   return connection.query(sql);
 };
 
-module.exports = deleteFromFavoriteHouse;
+module.exports = deleteFromFavoriteHouses;
