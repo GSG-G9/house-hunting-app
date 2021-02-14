@@ -50,12 +50,12 @@ export default function CardComponent({
 
   const addToFav = async () => {
     try {
-      const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
+      const { data } = await Axios.post(`api/v1/favorite/${houseId}`);
       setOpen(true);
       setFav(data);
     } catch (err) {
-      setOpen(true);
       setError(err.message);
+      console.log(err.message, 455);
     }
   };
 
@@ -119,13 +119,6 @@ export default function CardComponent({
           <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
               {fav.message}
-            </Alert>
-          </Snackbar>
-        )}
-        {error && (
-          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error">
-              {error}
             </Alert>
           </Snackbar>
         )}
