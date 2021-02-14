@@ -21,14 +21,23 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingInline: '1.7em',
   },
-  border: {
+  detailsLink: {
     backgroundColor: '#EB9235',
     border: '1px solid transparent',
     color: '#f5f5f5',
+    textDecoration: 'none',
+    width: '60%',
+    textAlign: 'center',
+    padding: '0.5em',
+    borderRadius: '3px',
+    transition: 'all 0.25s',
     '&:hover': {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
+      backgroundColor: '#f5f5f5',
+      transition: 'all 0.25s',
     },
   },
   cardTitle: {
