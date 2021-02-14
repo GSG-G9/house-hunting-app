@@ -13,9 +13,8 @@ import BathtubIcon from '@material-ui/icons/Bathtub';
 import HotelIcon from '@material-ui/icons/Hotel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-
+import { fakeImage } from '../../Utils/staticData';
 import { HOUSES } from '../../Utils/routes.constant';
-import { locations } from '../../Utils/staticData';
 
 import useStyles from './style';
 
@@ -23,35 +22,27 @@ const { shape, string, number } = PropTypes;
 
 export default function CardComponent({ house }) {
   const classes = useStyles();
+
   const {
     id,
-    image: img,
+    img,
     title,
     description,
-    location_id: location,
-    room_num: bdCount,
-    bathroom_num: baCount,
-    price,
+    category,
+    location,
+    area,
     username,
     mobile,
-    email,
+    price,
+    bdCount,
+    baCount,
   } = house;
-  const getCityName = (locationId) => {
-    const { city } = locations.find(({ id: _id }) => _id === locationId);
-    return city;
-  };
 
   return (
     <Card className={classes.root} elevation="0">
       <CardActionArea>
         <CardMedia className={classes.media}>
-          <img
-            src={
-              img ||
-              'https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6'
-            }
-            alt="house"
-          />
+          <img src={img || fakeImage} alt="house" />
         </CardMedia>
         <CardContent>
           <div className={classes.cardTitle}>
@@ -60,7 +51,7 @@ export default function CardComponent({ house }) {
             </Typography>
             <Typography className={classes.location}>
               <LocationOnIcon className={classes.icon} />
-              {getCityName(location)}
+              {location}
             </Typography>
           </div>
           <Typography
@@ -68,8 +59,12 @@ export default function CardComponent({ house }) {
             component="p"
             className={classes.description}
           >
-            {description.split(' ').splice(0, 10).join(' ')}
+            {description}
           </Typography>
+          <Typography component="p">
+            house type: {category.toUpperCase()}
+          </Typography>
+          <Typography component="p">area: {area}</Typography>
 
           <div className={classes.iconBox}>
             <Typography>owner name : {username} </Typography>
@@ -90,22 +85,7 @@ export default function CardComponent({ house }) {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardAction}>
-        <Link
-          to={{
-            pathname: `${HOUSES}/${id}`,
-            state: {
-              img,
-              title,
-              description,
-              location,
-              price,
-              username,
-              email,
-              mobile,
-            },
-          }}
-          className={classes.border}
-        >
+        <Link to={`${HOUSES}/${id}`} className={classes.detailsLink}>
           more details
         </Link>
         <Button>
