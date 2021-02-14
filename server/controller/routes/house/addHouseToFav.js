@@ -1,12 +1,17 @@
-const { addHouseToFavList } = require('../../../database/queries/house');
+const {
+  addHouseToFavList,
+  getHousesFromFav,
+} = require('../../../database/queries/house');
 const boomify = require('../../../utils/boomify');
 
 const addHouseToFav = async (req, res, next) => {
   try {
     const { houseId } = req.params;
     const { userId } = req;
-
-    await addHouseToFavList({ houseId, userId });
+    const { rows } = await getHousesFromFav({ houseId });
+    if (rows.length > 0) {
+      throw boomify(409, 'House already added to favorite list');
+    } else await addHouseToFavList({ houseId, userId });
 
     return res.json({
       status: 201,
