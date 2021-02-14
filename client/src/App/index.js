@@ -23,6 +23,7 @@ import Layout from '../Pages/Layout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Landing from '../Pages/Landing';
+import DetailsHouse from '../Pages/DetailsHouse';
 import Search from '../Pages/Houses';
 import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
@@ -38,11 +39,14 @@ function App() {
             <Route exact path={HOME_PAGE}>
               <Landing />
             </Route>
-            <Route path={HOUSES}>
+            <Route exact path={HOUSES}>
               <Search />
             </Route>
             <Route path={ABOUT_US} />
             <Route path={CONTACT_US} />
+            <Route path={`${HOUSES}/:houseId`}>
+              <DetailsHouse />
+            </Route>
             <PublicRoute path={LOGIN_PAGE} component={Login} />
             <PublicRoute path={SIGNUP_PAGE} component={Register} />
             <PrivateRoute path={PROFILE} component={Profile} />

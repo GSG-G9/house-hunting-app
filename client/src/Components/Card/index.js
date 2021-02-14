@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { PropTypes } from 'prop-types';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { Card } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -17,7 +18,9 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-import { locations } from '../../Utils/staticData';
+import { fakeImage } from '../../Utils/staticData';
+
+import { HOUSES } from '../../Utils/routes.constant';
 
 import useStyles from './style';
 
@@ -26,13 +29,17 @@ const { shape, string, number } = PropTypes;
 export default function CardComponent({
   house: {
     id: houseId,
-    image: img,
+    img,
     title,
     description,
-    location_id: location,
-    room_num: bdCount,
-    bathroom_num: baCount,
+    category,
+    location,
+    area,
+    username,
+    mobile,
     price,
+    bdCount,
+    baCount,
   },
 }) {
   const [fav, setFav] = useState();
@@ -50,31 +57,20 @@ export default function CardComponent({
 
   const addToFav = async () => {
     try {
-      const { data } = await Axios.post(`api/v1/favorite/${houseId}`);
+      const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
       setOpen(true);
       setFav(data);
     } catch (err) {
+      setOpen(true);
       setError(err.message);
-      console.log(err.message, 455);
     }
-  };
-
-  const getCityName = (locationId) => {
-    const { city } = locations.find(({ id }) => id === locationId);
-    return city;
   };
 
   return (
     <Card className={classes.root} elevation="0">
       <CardActionArea>
         <CardMedia className={classes.media}>
-          <img
-            src={
-              img ||
-              'https://us.123rf.com/450wm/iriana88w/iriana88w1711/iriana88w171100467/89727643-beautiful-exterior-of-contemporary-home-with-two-car-garage-spaces-at-sunset-northwest-usa.jpg?ver=6'
-            }
-            alt="house"
-          />
+          <img src={img || fakeImage} alt="house" />
         </CardMedia>
         <CardContent>
           <div className={classes.cardTitle}>
@@ -83,7 +79,7 @@ export default function CardComponent({
             </Typography>
             <Typography className={classes.location}>
               <LocationOnIcon className={classes.icon} />
-              {getCityName(location)}
+              {location}
             </Typography>
           </div>
           <Typography
@@ -91,8 +87,18 @@ export default function CardComponent({
             component="p"
             className={classes.description}
           >
-            {description.split(' ').splice(0, 10).join(' ')}
+            {description}
           </Typography>
+          <Typography component="p">
+            house type: {category.toUpperCase()}
+          </Typography>
+          <Typography component="p">area: {area}</Typography>
+
+          <div className={classes.iconBox}>
+            <Typography>owner name : {username} </Typography>
+            <Typography>mobile : {mobile} </Typography>
+          </div>
+
           <div className={classes.cardDetails}>
             <Typography variant="h6">${price}</Typography>
             <div className={classes.iconBox}>
@@ -107,7 +113,9 @@ export default function CardComponent({
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardAction}>
-        <Button className={classes.border}>more details</Button>
+        <Link to={`${HOUSES}/${houseId}`} className={classes.detailsLink}>
+          more details
+        </Link>
         <Button>
           <FavoriteBorderIcon
             className={classes.favIcon}
@@ -119,6 +127,13 @@ export default function CardComponent({
           <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
               {fav.message}
+            </Alert>
+          </Snackbar>
+        )}
+        {error && (
+          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              {error}
             </Alert>
           </Snackbar>
         )}
