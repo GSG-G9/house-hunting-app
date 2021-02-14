@@ -10,7 +10,7 @@ const getUser = async (req, res, next) => {
       throw boomify(500, 'Something went wrong!');
     }
 
-    return res.json({ data: { ...rows[0], password: '' } });
+    return res.json({ statusCode: 200, data: { ...rows[0], password: '' } });
   } catch (error) {
     return next(error);
   }
