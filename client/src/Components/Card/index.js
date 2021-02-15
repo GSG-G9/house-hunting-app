@@ -55,11 +55,11 @@ export default function CardComponent({
     setOpen(false);
   };
 
-  const addToFav = async () => {
+  const addedToFavorite = async () => {
     try {
       const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
       setOpen(true);
-      setFavorite(data);
+      setFavorite(data.message);
     } catch (err) {
       setOpen(true);
       setError(err.message);
@@ -120,23 +120,14 @@ export default function CardComponent({
           <FavoriteBorderIcon
             className={classes.favIcon}
             id={houseId}
-            onClick={addToFav}
+            onClick={addedToFavorite}
           />
         </Button>
-        {favorite && (
-          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success">
-              {favorite.message}
-            </Alert>
-          </Snackbar>
-        )}
-        {error && (
-          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error">
-              {error}
-            </Alert>
-          </Snackbar>
-        )}
+        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
+            {error || favorite}
+          </Alert>
+        </Snackbar>
       </CardActions>
     </Card>
   );
