@@ -34,8 +34,8 @@ export default function CardComponent({ house }) {
     username,
     mobile,
     price,
-    bdCount,
-    baCount,
+    room_num: bdCount,
+    bathroom_num: baCount,
   } = house;
 
   return (
