@@ -7,13 +7,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 import Button from '../../../Components/Button';
+import useStyles from './style';
 
 function Houses() {
+  const classes = useStyles();
+
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -40,18 +43,28 @@ function Houses() {
     };
   }, []);
   return (
-    <div>
+    <div className={classes.root}>
       <Typography variant="h5">My Houses</Typography>
-      <Button> Add new</Button>
       {loading && <CircularProgress size={25} color="primary" />}
       <Table>
-        <TableHead>
-          <TableRow>
-            {houses.map((house) => (
-              <TableCell align="right">{house.title}</TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
+        <TableBody>
+          {houses.map((house) => (
+            <TableRow align="right">
+              <TableCell>
+                <img className={classes.img} src={house.image} alt="house " />
+              </TableCell>
+              <TableCell>{house.room_num} Room </TableCell>
+              <TableCell>{house.price} $ </TableCell>
+              <TableCell>{house.created_at.split(' ')[0]}</TableCell>
+              <TableCell>
+                <EditIcon color="primary" />
+              </TableCell>
+              <TableCell>
+                <DeleteIcon color="primary" />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </div>
   );
