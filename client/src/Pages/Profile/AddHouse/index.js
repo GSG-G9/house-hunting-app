@@ -129,7 +129,7 @@ function AddHouse() {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           The house added Successfully
@@ -259,7 +259,7 @@ function AddHouse() {
           className={classes.button}
           variant="contained"
           color="primary"
-          event={handleSubmit}
+          onClick={handleSubmit}
         >
           {loading ? <CircularProgress size={25} /> : 'Add'}
         </Button>
