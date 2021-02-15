@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   favIcon: {
     color: '#960C0C',
+    cursor: 'pointer',
   },
 }));
 export default useStyles;
