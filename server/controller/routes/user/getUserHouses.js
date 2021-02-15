@@ -1,15 +1,15 @@
-const { addUserHouses } = require('../../../database/queries/user');
+const { getUserHouses } = require('../../../database/queries/user');
 
-const getUserHouses = async (req, res, next) => {
+const getUserHousesController = async (req, res, next) => {
   try {
     const { userId } = req;
-    const { rows } = await addUserHouses({ userId });
-    res.json({
+    const { rows } = await getUserHouses({ userId });
+    return res.json({
       status: 200,
       data: rows,
     });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
-module.exports = getUserHouses;
+module.exports = getUserHousesController;

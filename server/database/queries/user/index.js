@@ -1,6 +1,6 @@
 const checkUserByEmail = require('./checkUserByEmail');
 const addUser = require('./addUser');
 const getUserData = require('./getUserData');
-const addUserHouses = require('./addUserHouses');
+const getUserHouses = require('./getUserHouses');
 
-module.exports = { checkUserByEmail, addUser, getUserData, addUserHouses };
+module.exports = { checkUserByEmail, addUser, getUserData, getUserHouses };

@@ -3,7 +3,7 @@ const logoutController = require('./logout');
 const loginController = require('./login');
 const getUser = require('./getUser');
 const authController = require('./isAuth');
-const getUserHouses = require('./getUserHouses');
+const getUserHousesController = require('./getUserHouses');
 
 module.exports = {
   signupController,
@@ -11,5 +11,5 @@ module.exports = {
   logoutController,
   getUser,
   authController,
-  getUserHouses,
+  getUserHousesController,
 };
