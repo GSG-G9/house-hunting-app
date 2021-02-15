@@ -8,6 +8,7 @@ import Add from '@material-ui/icons/Add';
 import TabPanel from './tabPanel';
 import AddHouse from '../AddHouse';
 import Houses from '../Houses';
+import UserInfo from '../UserInfo';
 
 import useStyles from './style';
 
@@ -21,6 +22,7 @@ function a11yProps(index) {
 function SideBar() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const [username, setUsename] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,7 +33,7 @@ function SideBar() {
       <div className={classes.sideBarContainer}>
         <div className={classes.userAvatar}>
           <Avatar className={classes.avatar}>H</Avatar>
-          <Typography variant="h3">User Name</Typography>
+          <Typography variant="h3">{username && username}</Typography>
         </div>
         <Tabs
           orientation="vertical"
@@ -62,7 +64,7 @@ function SideBar() {
         </Tabs>
       </div>
       <TabPanel value={value} index={0} className={classes.mainContent}>
-        user info
+        <UserInfo getUserName={setUsename} />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.mainContent}>
         <Houses />
