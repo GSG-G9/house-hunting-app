@@ -27,10 +27,6 @@ function SideBar() {
     setValue(newValue);
   };
 
-  function getUserName(_username) {
-    setUsename(_username);
-  }
-
   return (
     <div className={classes.root}>
       <div className={classes.sideBarContainer}>
@@ -67,7 +63,7 @@ function SideBar() {
         </Tabs>
       </div>
       <TabPanel value={value} index={0} className={classes.mainContent}>
-        <UserInfo getUserName={getUserName} />
+        <UserInfo getUserName={setUsename} />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.mainContent}>
         houses

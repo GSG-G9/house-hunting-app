@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import Axios from 'axios';
 import {
   Typography,
   Avatar,
@@ -17,29 +17,28 @@ import useStyles from './style';
 function UserInfo({ getUserName }) {
   const classes = useStyles();
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState('');
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-
-  const fetchingData = async (isCurrent) => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`api/v1/users`);
-      if (isCurrent) {
-        setUser(data.data);
-        getUserName(data.data.username);
-        setLoading(false);
-      }
-    } catch (error) {
-      setLoading(false);
-      setErrorMsg(error.response.data);
-    }
-  };
 
   useEffect(() => {
     let isCurrent = true;
-    fetchingData(isCurrent);
+    (async () => {
+      try {
+        setLoading(true);
+        const { data } = await Axios.get(`api/v1/users`);
+        if (isCurrent) {
+          setUser(data.data);
+          getUserName(data.data.username);
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        setErrorMsg(error.response.data);
+      }
+    })();
     return () => {
       isCurrent = false;
+      setLoading(false);
     };
   }, []);
 
