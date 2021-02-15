@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { PropTypes } from 'prop-types';
 import Axios from 'axios';
@@ -18,16 +18,20 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
+import AuthContext from '../../Context/AuthContext';
 import { fakeImage } from '../../Utils/staticData';
-
 import { HOUSES } from '../../Utils/routes.constant';
 
 import useStyles from './style';
 
 const { shape, string, number } = PropTypes;
 
-export default function CardComponent({
-  house: {
+export default function CardComponent({ house }) {
+  const classes = useStyles();
+
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
+  const {
     id: houseId,
     img,
     title,
@@ -38,15 +42,18 @@ export default function CardComponent({
     username,
     mobile,
     price,
-    bdCount,
-    baCount,
-  },
-}) {
+    room_num: bdCount,
+    bathroom_num: baCount,
+  } = house;
+
   const [favorite, setFavorite] = useState();
   const [error, setError] = useState();
   const [open, setOpen] = useState(false);
 
-  const classes = useStyles();
+  const clear = () => {
+    setFavorite();
+    setError(null);
+  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -58,6 +65,8 @@ export default function CardComponent({
   const addedToFavorite = async () => {
     try {
       const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
+      clear();
+      setIsAuth(false);
       setOpen(true);
       setFavorite(data.message);
     } catch (err) {
@@ -116,18 +125,25 @@ export default function CardComponent({
         <Link to={`${HOUSES}/${houseId}`} className={classes.detailsLink}>
           more details
         </Link>
-        <Button>
-          <FavoriteBorderIcon
-            className={classes.favIcon}
-            id={houseId}
-            onClick={addedToFavorite}
-          />
-        </Button>
-        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-            {error || favorite}
-          </Alert>
-        </Snackbar>
+        {isAuth && (
+          <>
+            <Button>
+              <FavoriteBorderIcon
+                className={classes.favIcon}
+                id={houseId}
+                onClick={addedToFavorite}
+              />
+            </Button>
+            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+              <Alert
+                onClose={handleClose}
+                severity={error ? 'error' : 'success'}
+              >
+                {error || favorite}
+              </Alert>
+            </Snackbar>
+          </>
+        )}
       </CardActions>
     </Card>
   );
