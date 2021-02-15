@@ -8,23 +8,17 @@ function AuthProvider({ children }) {
   const [authLoading, setAuthLoading] = useState();
 
   useEffect(() => {
-    let isCurrent;
     (async () => {
       try {
         setAuthLoading(true);
         await Axios('api/v1/is-auth');
-        if (isCurrent) {
-          setIsAuth(true);
-        }
+        setIsAuth(true);
         setAuthLoading(false);
       } catch (error) {
         setAuthLoading(false);
         setIsAuth(false);
       }
     })();
-    return () => {
-      isCurrent = false;
-    };
   }, [isAuth]);
 
   return (
