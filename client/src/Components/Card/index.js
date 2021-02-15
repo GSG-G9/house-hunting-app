@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+
 import { PropTypes } from 'prop-types';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import { Card } from '@material-ui/core';
@@ -13,6 +15,10 @@ import BathtubIcon from '@material-ui/icons/Bathtub';
 import HotelIcon from '@material-ui/icons/Hotel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
+import AuthContext from '../../Context/AuthContext';
 import { fakeImage } from '../../Utils/staticData';
 import { HOUSES } from '../../Utils/routes.constant';
 
@@ -23,8 +29,10 @@ const { shape, string, number } = PropTypes;
 export default function CardComponent({ house }) {
   const classes = useStyles();
 
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
   const {
-    id,
+    id: houseId,
     img,
     title,
     description,
@@ -34,9 +42,38 @@ export default function CardComponent({ house }) {
     username,
     mobile,
     price,
-    bdCount,
-    baCount,
+    room_num: bdCount,
+    bathroom_num: baCount,
   } = house;
+
+  const [favorite, setFavorite] = useState();
+  const [error, setError] = useState();
+  const [open, setOpen] = useState(false);
+
+  const clear = () => {
+    setFavorite();
+    setError(null);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const addedToFavorite = async () => {
+    try {
+      const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
+      clear();
+      setIsAuth(false);
+      setOpen(true);
+      setFavorite(data.message);
+    } catch (err) {
+      setOpen(true);
+      setError(err.message);
+    }
+  };
 
   return (
     <Card className={classes.root} elevation="0">
@@ -85,12 +122,28 @@ export default function CardComponent({ house }) {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardAction}>
-        <Link to={`${HOUSES}/${id}`} className={classes.detailsLink}>
+        <Link to={`${HOUSES}/${houseId}`} className={classes.detailsLink}>
           more details
         </Link>
-        <Button>
-          <FavoriteBorderIcon className={classes.favIcon} />
-        </Button>
+        {isAuth && (
+          <>
+            <Button>
+              <FavoriteBorderIcon
+                className={classes.favIcon}
+                id={houseId}
+                onClick={addedToFavorite}
+              />
+            </Button>
+            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+              <Alert
+                onClose={handleClose}
+                severity={error ? 'error' : 'success'}
+              >
+                {error || favorite}
+              </Alert>
+            </Snackbar>
+          </>
+        )}
       </CardActions>
     </Card>
   );
