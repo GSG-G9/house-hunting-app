@@ -11,6 +11,7 @@ import {
 import { Alert } from '@material-ui/lab';
 
 import Button from '../../../Components/Button';
+import UpdateUser from '../UpdateUserInfo';
 
 import useStyles from './style';
 
@@ -97,13 +98,7 @@ function UserInfo({ getUserName }) {
         </>
       )}
       <div className={classes.btnsBox}>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.editBtn}
-        >
-          Edit Information
-        </Button>
+        <UpdateUser />
         <Button
           variant="outlined"
           color="secondary"
