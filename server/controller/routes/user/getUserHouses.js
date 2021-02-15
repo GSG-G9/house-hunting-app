@@ -5,7 +5,7 @@ const getUserHousesController = async (req, res, next) => {
     const { userId } = req;
     const { rows } = await getUserHouses({ userId });
     return res.json({
-      status: 200,
+      statusCode: 200,
       data: rows,
     });
   } catch (err) {
