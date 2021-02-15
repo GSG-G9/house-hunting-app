@@ -6,9 +6,9 @@ const updateUserController = async (req, res, next) => {
     const { userId } = req;
 
     await updateUser({ userId, username, email, address, mobile });
-    res.status(200).json({ status: 200, message: 'user updated Successfully' });
+    return res.json({ statusCode: 200, message: 'user updated Successfully' });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
