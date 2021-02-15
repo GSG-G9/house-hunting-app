@@ -1,4 +1,4 @@
-const { updateUser } = require('../../../database/queries');
+const { updateUser } = require('../../../database/queries/user');
 
 const updateUserController = async (req, res, next) => {
   try {
