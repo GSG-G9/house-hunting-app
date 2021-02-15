@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { element } from 'prop-types';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from '@material-ui/core/Box';
 
 import Header from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
@@ -12,7 +13,15 @@ function Layout({ children }) {
   return (
     <>
       {authLoading ? (
-        <CircularProgress size={25} color="secondary" />
+        <Box
+          position="relative"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          top={100}
+        >
+          <CircularProgress size={70} thickness={4} value={100} />
+        </Box>
       ) : (
         <>
           <Header />
