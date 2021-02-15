@@ -51,11 +51,14 @@ const useStyles = makeStyles((theme) => ({
   },
   mainContent: {
     margin: '0 auto',
+    width: '100%',
+    minHeight: '100%',
     '& > div': {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center',
+      minHeight: '100%',
       '& form': {
         display: 'flex',
         flexDirection: 'column',

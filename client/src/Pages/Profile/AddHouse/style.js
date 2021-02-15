@@ -3,13 +3,16 @@ import theme from '../../../App/theme';
 
 const useStyles = makeStyles({
   root: {
+    width: '100%',
     display: 'flex',
-    flexFlow: 'row nowrap',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
-    boxSizing: 'border-box',
-    margin: 'auto',
-    width: 1000,
     minHeight: '100vh',
+    border: '1px solid #c7c7c7',
+    borderRadius: '5px',
+    '& h2': {
+      padding: '1em 2em',
+    },
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
