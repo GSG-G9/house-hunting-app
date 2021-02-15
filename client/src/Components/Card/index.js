@@ -71,7 +71,7 @@ export default function CardComponent({ house }) {
       setFavorite(data.message);
     } catch (err) {
       setOpen(true);
-      setError(err.message);
+      setError(err.response.data.message);
     }
   };
 
