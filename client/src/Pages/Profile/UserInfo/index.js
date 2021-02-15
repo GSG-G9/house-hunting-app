@@ -7,10 +7,13 @@ import {
   Grid,
   Paper,
   CircularProgress,
+  Modal,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import PermMediaIcon from '@material-ui/icons/PermMedia';
 
 import Button from '../../../Components/Button';
+import UserAvatar from './UserAvatar';
 
 import useStyles from './style';
 
@@ -19,6 +22,7 @@ function UserInfo({ getUserName }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     let isCurrent = true;
@@ -42,17 +46,39 @@ function UserInfo({ getUserName }) {
     };
   }, []);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className={classes.root}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <UserAvatar />
+      </Modal>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
         <CircularProgress />
       ) : (
         <>
-          <Grid lg="12" justify="center">
-            <Avatar className={classes.avatar}>
-              {user.username && user.username.slice(0, 1).toUpperCase()}
-            </Avatar>
+          <Grid lg="false" justify="center">
+            <div className={classes.avatarBox}>
+              <Avatar className={classes.avatar}>
+                {user.username && user.username.slice(0, 1).toUpperCase()}
+              </Avatar>
+              <PermMediaIcon
+                className={classes.avatarBtn}
+                onClick={handleOpen}
+              />
+            </div>
           </Grid>
           <Grid justify="center">
             {errorMsg ? (

@@ -16,6 +16,20 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
+  avatarBox: {
+    margin: '0 auto',
+    width: '150px',
+    textAlign: 'right',
+  },
+  avatarBtn: {
+    color: '#757575',
+    cursor: 'pointer',
+    transition: 'all 0.25s',
+    '&:hover': {
+      color: theme.palette.primary.dark,
+      transition: 'all 0.25s',
+    },
+  },
   avatar: {
     width: '5em',
     height: '5em',
