@@ -10,8 +10,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Alert from '@material-ui/lab/Alert';
 
-import Button from '../../../Components/Button';
 import useStyles from './style';
 
 function Houses() {
@@ -34,7 +34,7 @@ function Houses() {
           setHouses(data);
         }
       } catch (err) {
-        setError(err.response.data.message);
+        setError(err.message);
         setLoading(false);
       }
     })();
@@ -48,24 +48,29 @@ function Houses() {
       {loading && <CircularProgress size={25} color="primary" />}
       <Table>
         <TableBody>
-          {houses.map((house) => (
-            <TableRow align="right">
-              <TableCell>
-                <img className={classes.img} src={house.image} alt="house " />
-              </TableCell>
-              <TableCell>{house.room_num} Room </TableCell>
-              <TableCell>{house.price} $ </TableCell>
-              <TableCell>{house.created_at.split(' ')[0]}</TableCell>
-              <TableCell>
-                <EditIcon color="primary" />
-              </TableCell>
-              <TableCell>
-                <DeleteIcon color="primary" />
-              </TableCell>
-            </TableRow>
-          ))}
+          {houses.length > 0 ? (
+            houses.map((house) => (
+              <TableRow align="right">
+                <TableCell>
+                  <img className={classes.img} src={house.image} alt="house " />
+                </TableCell>
+                <TableCell>{house.room_num} Room </TableCell>
+                <TableCell>{house.price} $ </TableCell>
+                <TableCell>{house.created_at.split(' ')[0]}</TableCell>
+                <TableCell>
+                  <EditIcon color="primary" />
+                </TableCell>
+                <TableCell>
+                  <DeleteIcon color="primary" />
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <Alert severity="error"> You Don&apos;t add any House </Alert>
+          )}
         </TableBody>
       </Table>
+      {error && <Alert severity="error"> {error}</Alert>}
     </div>
   );
 }
