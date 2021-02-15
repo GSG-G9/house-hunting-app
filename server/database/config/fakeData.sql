@@ -35,12 +35,4 @@ VALUES
   (2, 1, 'house with 5 rooms', 'Nulla ullamcorper pharetra ligula, nec pharetra tortor fringilla non. Nullam.', 5, 3, 'apartment', 180, 170);
 
 
-INSERT INTO
-  favorites (user_id, house_id)
-VALUES
-  (1, 1),
-  (3, 2),
-  (4, 1),
-  (1, 3);
-
 
