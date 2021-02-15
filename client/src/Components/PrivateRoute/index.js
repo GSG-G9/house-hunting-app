@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
+
+import { PropTypes } from 'prop-types';
 
 import { LOGIN_PAGE } from '../../Utils/routes.constant';
 
@@ -20,3 +21,6 @@ export default function PrivateRoute({ component: Component, ...rest }) {
     </Route>
   );
 }
+PrivateRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+};
