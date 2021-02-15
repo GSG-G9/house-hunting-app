@@ -8,7 +8,7 @@ const addHouseToFav = async (req, res, next) => {
   try {
     const { houseId } = req.params;
     const { userId } = req;
-    const { rows } = await getHousesFromFav({ houseId });
+    const { rows } = await getHousesFromFav({ houseId, userId });
     if (rows.length > 0)
       throw boomify(409, 'House already added to favorite list');
 
