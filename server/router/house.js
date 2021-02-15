@@ -11,6 +11,6 @@ const {
 router.post('/houses', addHouseValidation, addNewHouse);
 router.get('/favorite', getFavoriteList);
 router.get('/favorite/:houseId', addHouseToFav);
-router.delete('/favorite-list/:houseId', deleteFavoriteHouse);
+router.delete('/favorite/:houseId', deleteFavoriteHouse);
 
 module.exports = router;

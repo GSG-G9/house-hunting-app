@@ -1,4 +1,4 @@
-const deleteFromFavoriteHouses = require('../../../database/queries/house');
+const { deleteFromFavoriteHouses } = require('../../../database/queries/house');
 
 const deleteFavoriteHouse = async (req, res, next) => {
   try {
