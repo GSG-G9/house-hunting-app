@@ -31,11 +31,11 @@ import { PrivateRoute, PublicRoute } from '../Components/Route';
 
 function App() {
   return (
-    <Switch>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AuthProvider>
-          <Layout>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
+        <Layout>
+          <Switch>
             <Route exact path={HOME_PAGE}>
               <Landing />
             </Route>
@@ -52,10 +52,10 @@ function App() {
             <PrivateRoute path={PROFILE} component={Profile} />
             <PrivateRoute path={FAVORITE} component={Favorite} />
             <Route />
-          </Layout>
-        </AuthProvider>
-      </ThemeProvider>
-    </Switch>
+          </Switch>
+        </Layout>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

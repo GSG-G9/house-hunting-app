@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
     background: '#FFFFFF',
     width: '85%',
     padding: '3em',
+    height: '100%',
   },
 }));
 

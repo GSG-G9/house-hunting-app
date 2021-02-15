@@ -6,8 +6,9 @@ VALUES
   ('user_4', 'user_4@house.com', '123456asd', 'gaza', '010525456'),
   ('user_5', 'user_5@house.com', '123456asd', 'gaza', '010122514'),
   ('user_6', 'user_6@house.com', '123456asd', 'rafah', '010126656'),
-  ('user_7', 'user_7@house.com', '123456asd', 'khanyunis', '010021620');
-
+  ('user_7', 'user_7@house.com', '123456asd', 'khanyunis', '010021620'),
+  ('yaso', 'yas@gmail.com', '123456789', 'khanyunis', '010021620');
+ 
 INSERT INTO
   locations (location)
 VALUES
@@ -33,13 +34,5 @@ VALUES
   (2, 3, 'house with 5 rooms', 'Nulla ullamcorper pharetra ligula, nec pharetra tortor fringilla non. Nullam.', 5, 3, 'roof', 180, 170),
   (2, 1, 'house with 5 rooms', 'Nulla ullamcorper pharetra ligula, nec pharetra tortor fringilla non. Nullam.', 5, 3, 'apartment', 180, 170);
 
-
-INSERT INTO
-  favorites (user_id, house_id)
-VALUES
-  (1, 1),
-  (3, 2),
-  (4, 1),
-  (1, 3);
 
 
