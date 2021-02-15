@@ -1,6 +1,5 @@
 BEGIN;
 DROP TABLE IF EXISTS users, houses, locations, favorites CASCADE;
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(100)  NOT NULL,
@@ -40,6 +39,7 @@ CREATE TABLE favorites (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id),
   house_id INT REFERENCES houses(id),
+   CONSTRAINT u_f UNIQUE (user_id,house_id),
   created_at TEXT DEFAULT TO_CHAR(CURRENT_TIMESTAMP, 'DD/MM/YYYY HH12:MI:SS:MS:US AM')
 );
 

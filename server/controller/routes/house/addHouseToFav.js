@@ -1,16 +1,10 @@
-const {
-  addHouseToFavList,
-  getHousesFromFav,
-} = require('../../../database/queries/house');
+const { addHouseToFavList } = require('../../../database/queries/house');
 const boomify = require('../../../utils/boomify');
 
 const addHouseToFav = async (req, res, next) => {
   try {
     const { houseId } = req.params;
     const { userId } = req;
-    const { rows } = await getHousesFromFav({ houseId, userId });
-    if (rows.length > 0)
-      throw boomify(409, 'House already added to favorite list');
 
     await addHouseToFavList({ userId, houseId });
 
@@ -19,8 +13,15 @@ const addHouseToFav = async (req, res, next) => {
       message: '  House added  to favorite successfully',
     });
   } catch (err) {
-    if (err.constraint === 'favorites_house_id_fkey')
-      next(boomify(404, 'house not found'));
+    if (err.constraint === 'favorites_house_id_fkey') {
+      return next(boomify(404, 'house not found'));
+    }
+    if (
+      err.message === 'duplicate key value violates unique constraint "u_f"'
+    ) {
+      return next(boomify(409, 'House already added to favorite list '));
+    }
+
     return next(err);
   }
 };
