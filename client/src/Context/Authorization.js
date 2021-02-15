@@ -4,21 +4,25 @@ import PropTypes from 'prop-types';
 import AuthContext from './AuthContext';
 
 function AuthProvider({ children }) {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState();
+  const [authLoading, setAuthLoading] = useState();
 
   useEffect(() => {
     (async () => {
       try {
+        setAuthLoading(true);
         await Axios('api/v1/is-auth');
         setIsAuth(true);
+        setAuthLoading(false);
       } catch (error) {
+        setAuthLoading(false);
         setIsAuth(false);
       }
     })();
   }, [isAuth]);
 
   return (
-    <AuthContext.Provider value={{ setIsAuth, isAuth }}>
+    <AuthContext.Provider value={{ setIsAuth, isAuth, authLoading }}>
       {children}
     </AuthContext.Provider>
   );

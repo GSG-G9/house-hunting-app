@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 import { PropTypes } from 'prop-types';
 import Axios from 'axios';
@@ -18,7 +18,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-import AuthContext from '../../Context/AuthContext';
 import { fakeImage } from '../../Utils/staticData';
 import { HOUSES } from '../../Utils/routes.constant';
 
@@ -28,8 +27,6 @@ const { shape, string, number } = PropTypes;
 
 export default function CardComponent({ house }) {
   const classes = useStyles();
-
-  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   const {
     id: houseId,
@@ -66,12 +63,15 @@ export default function CardComponent({ house }) {
     try {
       const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
       clear();
-      setIsAuth(false);
       setOpen(true);
       setFavorite(data.message);
     } catch (err) {
       setOpen(true);
-      setError(err.message);
+      if (err.response.status === 401) {
+        setError('you should sign in first!!');
+      } else {
+        setError(err.response.data.message);
+      }
     }
   };
 
@@ -125,25 +125,20 @@ export default function CardComponent({ house }) {
         <Link to={`${HOUSES}/${houseId}`} className={classes.detailsLink}>
           more details
         </Link>
-        {isAuth && (
-          <>
-            <Button>
-              <FavoriteBorderIcon
-                className={classes.favIcon}
-                id={houseId}
-                onClick={addedToFavorite}
-              />
-            </Button>
-            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-              <Alert
-                onClose={handleClose}
-                severity={error ? 'error' : 'success'}
-              >
-                {error || favorite}
-              </Alert>
-            </Snackbar>
-          </>
-        )}
+        <>
+          <Button>
+            <FavoriteBorderIcon
+              className={classes.favIcon}
+              id={houseId}
+              onClick={addedToFavorite}
+            />
+          </Button>
+          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
+              {error || favorite}
+            </Alert>
+          </Snackbar>
+        </>
       </CardActions>
     </Card>
   );
