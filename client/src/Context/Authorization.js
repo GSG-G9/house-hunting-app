@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import AuthContext from './AuthContext';
 
 function AuthProvider({ children }) {
-  const [isAuth, setIsAuth] = useState();
-  const [authLoading, setAuthLoading] = useState();
+  const [isAuth, setIsAuth] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -28,6 +28,6 @@ function AuthProvider({ children }) {
   );
 }
 AuthProvider.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 export default AuthProvider;

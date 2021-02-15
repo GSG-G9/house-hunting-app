@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { func } from 'prop-types';
+import { element } from 'prop-types';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -25,7 +25,7 @@ function Layout({ children }) {
 }
 
 Layout.propTypes = {
-  children: func.isRequired,
+  children: element.isRequired,
 };
 
 export default Layout;

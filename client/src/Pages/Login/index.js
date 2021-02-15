@@ -112,7 +112,7 @@ function Login() {
             className={classes.button}
             variant="contained"
             color="primary"
-            event={handleSubmit}
+            onClick={handleSubmit}
           >
             {isLoading ? (
               <CircularProgress size={25} color="secondary" />
