@@ -72,7 +72,12 @@ function Landing() {
       ) : (
         <>
           <div className={classes.header}>
-            <Search onClick={handleSearchBar} />
+            <Search
+              onClick={handleSearchBar}
+              onChange={() => {
+                handleSearchBar();
+              }}
+            />
           </div>
           <div className={classes.housesSection}>
             <Typography variant="h2" className={classes.sectionTitle}>
