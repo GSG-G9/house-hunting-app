@@ -7,7 +7,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import validationSchema from '../../../Utils/validations/updateUser';
 import useStyles from './style';
 
@@ -19,6 +19,8 @@ function UpdateUser() {
   const [address, setAddress] = useState('');
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClick = () => {
     setOpen(true);
   };
@@ -27,11 +29,14 @@ function UpdateUser() {
   };
   const handleSubmit = async () => {
     try {
+      setIsLoading(true);
       const userDate = { username, email, mobile, address };
       await validationSchema.validate(userDate, { abortEarly: false });
       await Axios.patch('api/v1/users', userDate);
+      setIsLoading(false);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
+      setIsLoading(false);
     }
   };
   return (
@@ -84,8 +89,13 @@ function UpdateUser() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
+
           <Button onClick={(handleClose, handleSubmit)} color="primary">
-            Save
+            {isLoading ? (
+              <CircularProgress size={25} color="secondary" />
+            ) : (
+              'Save'
+            )}
           </Button>
         </DialogActions>
       </Dialog>
