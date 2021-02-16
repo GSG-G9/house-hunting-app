@@ -21,10 +21,11 @@ function UpdateUser({ userData, setUpdateUser }) {
   const [username, setUsername] = useState();
   const [mobile, setMobile] = useState();
   const [address, setAddress] = useState();
-  const [openDialog, setOpenDialog] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [successMsg, setSuccessMsg] = useState();
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -60,6 +61,9 @@ function UpdateUser({ userData, setUpdateUser }) {
 
   const handleSubmit = async () => {
     try {
+      setOpenDialog(true);
+      setOpen(false);
+      setSuccessMsg(null);
       setUpdateUser(false);
       setIsLoading(true);
       const user = { username, mobile, address };
@@ -67,11 +71,15 @@ function UpdateUser({ userData, setUpdateUser }) {
       await Axios.patch('api/v1/users', user);
       setIsLoading(false);
       setUpdateUser(true);
-      handleCloseDialog();
-      setOpen(false);
+      setOpenDialog(false);
+      setOpen(true);
+      setSuccessMsg('Updated Successfully!');
+
+      console.log(successMsg);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setIsLoading(false);
+      console.log(err);
     }
   };
   return (
@@ -100,7 +108,6 @@ function UpdateUser({ userData, setUpdateUser }) {
             type="text"
             fullWidth
             value={username}
-            defaultValue={userData.username}
             onChange={handleChange}
           />
           <Input
@@ -112,7 +119,6 @@ function UpdateUser({ userData, setUpdateUser }) {
             type="text"
             fullWidth
             value={address}
-            defaultValue={userData.address}
             onChange={handleChange}
           />
           <Input
@@ -124,7 +130,6 @@ function UpdateUser({ userData, setUpdateUser }) {
             type="number"
             fullWidth
             value={mobile}
-            defaultValue={userData.mobile}
             onChange={handleChange}
           />
         </DialogContent>
@@ -133,10 +138,7 @@ function UpdateUser({ userData, setUpdateUser }) {
             Cancel
           </Button>
 
-          <Button
-            onClick={(handleCloseDialog, handleSubmit, handleClick)}
-            color="primary"
-          >
+          <Button onClick={handleSubmit} color="primary">
             {isLoading ? (
               <CircularProgress size={25} color="secondary" />
             ) : (
@@ -146,7 +148,7 @@ function UpdateUser({ userData, setUpdateUser }) {
         </DialogActions>
         <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
           <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-            {error || 'Updated Successfully!'}
+            {error || successMsg}
           </Alert>
         </Snackbar>
       </Dialog>
