@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import {
-  Container,
-  Divider,
-  Typography,
-  CircularProgress,
-} from '@material-ui/core';
+import { Container, Divider, Typography } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 import { HOUSES } from '../../Utils/routes.constant';
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
+import Loading from '../../Components/Loading';
 
 import useStyles from './style';
 
@@ -80,7 +76,7 @@ function Landing() {
             </Typography>
             {loading ? (
               <div className={classes.spinner}>
-                <CircularProgress color="primary" />
+                <Loading />
               </div>
             ) : (
               <CardContainer
@@ -95,7 +91,7 @@ function Landing() {
             </Typography>
             {loading ? (
               <div className={classes.spinner}>
-                <CircularProgress color="primary" />
+                <Loading />
               </div>
             ) : (
               <CardContainer houses={newHouses} />
