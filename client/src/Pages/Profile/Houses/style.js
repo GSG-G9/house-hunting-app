@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     border: '1px solid #c7c7c7',
     borderRadius: '5px',
+    height: 800,
     '& h2': {
       fontSize: '2.2em',
       padding: '2em 1em',
