@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  img: {
-    width: 150,
-  },
 }));
 
 export default useStyles;
