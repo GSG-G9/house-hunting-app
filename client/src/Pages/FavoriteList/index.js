@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-import { DataGrid } from '@material-ui/data-grid';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Snackbar, CircularProgress } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import CustomButton from '../../Components/Button';
-import columns from './columns';
+import Table from '../../Components/Table';
 import useStyles from './style';
 
 function Favorite() {
@@ -15,35 +14,53 @@ function Favorite() {
   const [houses, setHouses] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const fetchHouses = async (isCurrent) => {
-    try {
-      setIsLoading(true);
-      const {
-        data: { data },
-      } = await Axios('api/v1/favorite');
-      if (isCurrent) {
-        setHouses(data);
-      }
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setErrorMsg(error.message);
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
     }
+    setOpen(false);
   };
 
   useEffect(() => {
     let isCurrent = true;
-    fetchHouses(isCurrent);
+    (async () => {
+      try {
+        setIsLoading(true);
+        const {
+          data: { data },
+        } = await Axios.get('api/v1/favorite');
+        if (isCurrent) {
+          setIsLoading(false);
+          setHouses(data);
+        }
+      } catch (err) {
+        setErrorMsg(err.message);
+        setIsLoading(false);
+      }
+    })();
     return () => {
       isCurrent = false;
     };
-  }, []);
+  }, [refresh]);
+
+  const handleDelete = async (id) => {
+    try {
+      setRefresh(false);
+      await Axios.delete(`/api/v1/favorite/${id}`);
+      setRefresh(true);
+      setOpen(true);
+    } catch (err) {
+      setErrorMsg(err);
+    }
+  };
 
   return (
     <div className={classes.root}>
       <Typography className={classes.title}>My Favorites House</Typography>
-
+      {isLoading && <CircularProgress size={25} color="primary" />}
       {errorMsg ? (
         <Alert className={classes.alert} severity="error">
           {errorMsg}
@@ -57,16 +74,18 @@ function Favorite() {
           >
             Compare
           </CustomButton>
-          <div style={{ height: 400, width: '100%' }}>
-            <DataGrid
-              className={classes.dataGrid}
-              rows={houses}
-              columns={columns}
-              pageSize={5}
-              checkboxSelection
-              loading={isLoading}
+          <div className={classes.tableContainer}>
+            <Table
+              houses={houses}
+              handelDeleteHouse={handleDelete}
+              tableType="favorite"
             />
           </div>
+          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+              Deleted successfully
+            </Alert>
+          </Snackbar>
         </div>
       )}
     </div>

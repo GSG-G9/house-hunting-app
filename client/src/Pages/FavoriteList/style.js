@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 auto',
+    minHeight: '600px',
   },
   title: {
     fontSize: '22px',
@@ -38,6 +39,18 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: '#E52515',
       transition: 'all 0.25s',
+    },
+  },
+  tableContainer: {
+    border: '1px solid #c7c7c7',
+    '& td': {
+      padding: '7px 16px',
+    },
+    '& tbody tr:hover': {
+      backgroundColor: '#E5E5E5',
+    },
+    '& tbody tr:last-child': {
+      border: 'none',
     },
   },
 }));
