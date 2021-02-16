@@ -8,27 +8,21 @@ use these credientials: <br>
 email: Conrad_Rosenbaum38@gmail.com
 password: 123456
 
-### Team Lead:
+## team
 
-- Mariam Isa
+### Lead Mentor :sunglasses:
+* Mariam Isa
 
-### Team Members:
+### Team Members :busts_in_silhouette:
+* Yasmeen Attallah 
+* Adham Haisami
+* Muhammed Abadsa 
 
-- Adham Haisami 
-- Yasmeen Atallah
-- Mohammed Abadsa
-
-
-### Problem:
-
+## Main problem :new_moon_with_face:
 Most of those who intend to get married or who are looking for a house find it very difficult to search and wander around to several areas to find a house that suits them at a price according to their capabilities.
 
-### Solution:
-
+## Solution :bulb:
 Build a house-hunting application that facilitates users to rent houses, most of who looking for a house faced some difficulties, help to choose a suitable house.
-
-
-#### [Our Prototype](https://www.figma.com/file/ikAAUREYQFA0GXxGEUYZRf/home-hunting?node-id=0%3A1)
 
 ## Installation Guide :
 
@@ -106,8 +100,8 @@ This is the schema of our database
 ![dbimage](https://i.imgur.com/1lve6is.png)
 
 
-### User Stories :open_book:
- #### ***As a renter and rented user:***
+## User Stories :open_book:
+***As a renter and rented user:***
 * I can Sign up into the app 
 * I can log in into the app 
 * I can see all available houses to rent
@@ -123,31 +117,36 @@ This is the schema of our database
 As a user, I can see all available houses that able to rent, search to find houses and I can add any liked house to my favorite list and compare the differences between two houses from my favorite list, inside my profile I have my information and control panel for my own houses available to rent.
 
 
+## Prototype :art:
+[Figma Link](https://www.figma.com/file/ikAAUREYQFA0GXxGEUYZRf/home-hunting?node-id=92%3A240)
+![prototype](https://i.imgur.com/wfKGoIT.png)
 
-## Technologies:
+## Technologies :computer:
 
 #### Front-end Technology:
 
 - ReactJS (Hooks).
-- Material UI.
-- UnDraw.
-
+- Material UI
+- UnDraw
 
 #### Back-end Technology:
-- NodeJS.
+
+- Node JS
 - Express.
 
 #### Database Technology:
 - postgress sql.
 
-## Resources
+## Stretch Goals :goal_net:
+* The users can complete the contract and rent the apartment
+* user can see the location of the house on the map and compare between two houses
+* user can see related houses according to a specific area on the map
+* create an admin dashboard
+    * admin can view, edit, delete all users 
+    * admin can view, edit, delete all houses 
+* create chat that allows users to contact and negotiate
 
-https://reactjs.org/docs/getting-started.html
 
-https://expressjs.com
-
-https://www.npmjs.com/package/jsonwebtoken
-
-https://www.npmjs.com/package/bcrypt
-
-
+## Resources :mag:
+* https://cloudinary.com/documentation/developer_overview
+* https://material-ui.com/
