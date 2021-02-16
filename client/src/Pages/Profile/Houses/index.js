@@ -12,13 +12,15 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Alert from '@material-ui/lab/Alert';
 
+import Button from '../../../Components/Button';
 import useStyles from './style';
 
 function Houses() {
   const classes = useStyles();
 
   const [houses, setHouses] = useState([]);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [error, setError] = useState();
 
   useEffect(() => {
@@ -41,14 +43,25 @@ function Houses() {
     return () => {
       isCurrent = false;
     };
-  }, []);
+  }, [refresh]);
+
+  const handleDelete = async (id) => {
+    try {
+      setRefresh(false);
+      await Axios.delete(`/api/v1/houses/${id}`);
+      setRefresh(true);
+    } catch (err) {
+      setError(err);
+    }
+  };
   return (
     <div className={classes.root}>
       <Typography variant="h2">My Houses</Typography>
       {loading && <CircularProgress size={25} color="primary" />}
+      {error && <Alert severity="error">{error}</Alert>}
       <Table>
         <TableBody>
-          {houses.length > 0 ? (
+          {houses.length ? (
             houses.map((house) => (
               <TableRow align="right">
                 <TableCell>
@@ -63,16 +76,22 @@ function Houses() {
                   <EditIcon color="primary" />
                 </TableCell>
                 <TableCell>
-                  <DeleteIcon color="primary" />
+                  <Button
+                    onClick={() => {
+                      handleDelete(house.id);
+                    }}
+                    color="primary"
+                  >
+                    <DeleteIcon color="primary" />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))
           ) : (
-            <Alert severity="info"> No houses added yet </Alert>
+            <Alert severity="info">no houses added yet </Alert>
           )}
         </TableBody>
       </Table>
-      {error && <Alert severity="error"> {error}</Alert>}
     </div>
   );
 }
