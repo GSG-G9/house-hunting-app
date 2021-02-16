@@ -18,7 +18,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-import { fakeImage } from '../../Utils/staticData';
 import { HOUSES } from '../../Utils/routes.constant';
 
 import useStyles from './style';
