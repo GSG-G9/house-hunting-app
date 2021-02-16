@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '100%',
     },
   },
-  descBox: {
+  aboutUsArticle: {
+    paddingInline: '5em',
     '& h2': {
       fontSize: '2.2em',
       fontWeight: 'bold',
@@ -26,31 +27,16 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  contactDetails: {
+  differentArticle: {
+    paddingInline: '5em',
     '& h3': {
-      fontSize: '1.8em',
+      fontSize: '2em',
       paddingBlock: '2em',
-      color: theme.palette.primary.dark,
+      color: theme.palette.secondary.main,
     },
-  },
-  contactIconContainer: {
-    display: 'flex',
-    flexBasis: 'row',
-    flexWrap: 'wrap',
-    padding: '0.5em',
-  },
-  contactIconBox: {
-    display: 'flex',
-    width: '50%',
-    flexWrap: 'wrap',
-    marginBottom: '0.8em',
     '& p': {
-      paddingLeft: '0.8em',
-      fontSize: '1em',
+      fontSize: '1.2em',
       color: theme.palette.primary.main,
-    },
-    '& svg': {
-      color: '#757575',
     },
   },
 }));
