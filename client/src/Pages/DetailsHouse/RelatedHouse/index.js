@@ -46,7 +46,7 @@ function RelatedHouse({ location }) {
         </Typography>
         {isLoading && (
           <div className={classes.spinner}>
-            <Loading size={30} />
+            <Loading />
           </div>
         )}
         {errorMsg.message ? (

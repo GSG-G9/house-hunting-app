@@ -46,7 +46,7 @@ function Houses() {
   return (
     <div className={classes.root}>
       <Typography variant="h2">My Houses</Typography>
-      {loading && <Loading size={30} />}
+      {loading && <Loading />}
       <Table>
         <TableBody>
           {houses.length > 0 ? (

@@ -114,7 +114,7 @@ function Login() {
             color="primary"
             onClick={handleSubmit}
           >
-            {isLoading ? <Loading size={30} /> : 'LogIn'}
+            {isLoading ? <Loading /> : 'LogIn'}
           </Button>
         </form>
       </div>

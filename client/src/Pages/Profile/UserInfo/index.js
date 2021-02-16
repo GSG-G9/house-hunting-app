@@ -41,7 +41,7 @@ function UserInfo({ getUserName }) {
     <div className={classes.root}>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
-        <Loading size={30} />
+        <Loading />
       ) : (
         <>
           <Grid lg="12" justify="center">

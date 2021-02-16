@@ -13,12 +13,14 @@ function Loading({ size }) {
       justifyContent="center"
       top={100}
     >
-      <CircularProgress size={size} color="primary" />
+      <CircularProgress size={`${size}`} color="primary" />
     </Box>
   );
 }
-
+Loading.defaultProps = {
+  size: 30,
+};
 Loading.propTypes = {
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
 };
 export default Loading;

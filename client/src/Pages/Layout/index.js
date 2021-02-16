@@ -11,7 +11,7 @@ function Layout({ children }) {
   return (
     <>
       {authLoading ? (
-        <Loading size={70} />
+        <Loading />
       ) : (
         <Loading>
           <Header />

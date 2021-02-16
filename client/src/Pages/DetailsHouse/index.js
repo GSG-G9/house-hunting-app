@@ -48,7 +48,7 @@ function DetailsHouse() {
 
   return (
     <Container maxWidth="lg" className={classes.root}>
-      {isLoading && <Loading size={30} />}
+      {isLoading && <Loading />}
       {errorMsg.message ? (
         <div className={classes.alertBox}>
           <Alert severity="error">{errorMsg.message}</Alert>

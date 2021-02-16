@@ -76,7 +76,7 @@ function Landing() {
             </Typography>
             {loading ? (
               <div className={classes.spinner}>
-                <Loading size={30} />
+                <Loading />
               </div>
             ) : (
               <CardContainer
@@ -91,7 +91,7 @@ function Landing() {
             </Typography>
             {loading ? (
               <div className={classes.spinner}>
-                <Loading size={30} />
+                <Loading />
               </div>
             ) : (
               <CardContainer houses={newHouses} />

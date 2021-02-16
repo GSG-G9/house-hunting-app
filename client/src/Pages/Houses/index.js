@@ -90,7 +90,7 @@ function SearchPage() {
   return (
     <Container maxWidth="lg" className={classes.header}>
       <Search onClick={handleClick} value={search} onChange={handleChange} />
-      {loading && <Loading size={30} />}
+      {loading && <Loading />}
 
       <Filter
         onChange={handleChange}

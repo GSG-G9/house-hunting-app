@@ -171,7 +171,7 @@ function Register() {
             color="primary"
             onClick={handleSubmit}
           >
-            {loading ? <Loading size={30} /> : 'Sign Up'}
+            {loading ? <Loading /> : 'Sign Up'}
           </Button>
         </form>
       </section>
