@@ -259,7 +259,7 @@ function AddHouse() {
           className={classes.button}
           variant="contained"
           color="primary"
-          event={handleSubmit}
+          onClick={handleSubmit}
         >
           {loading ? <CircularProgress size={25} /> : 'Add'}
         </Button>

@@ -169,7 +169,7 @@ function Register() {
             className={classes.button}
             variant="contained"
             color="primary"
-            event={handleSubmit}
+            onClick={handleSubmit}
           >
             {loading ? <CircularProgress size={25} /> : 'Sign Up'}
           </Button>
