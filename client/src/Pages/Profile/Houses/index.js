@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
+
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+
+import Loading from '../../../Components/Loading';
 
 import Table from '../../../Components/Table';
 import useStyles from './style';
@@ -61,7 +63,7 @@ function Houses() {
   return (
     <div className={classes.root}>
       <Typography variant="h2">My Houses</Typography>
-      {loading && <CircularProgress size={25} color="primary" />}
+      {loading && <Loading />}
       {error ? (
         <Alert severity="error">{error}</Alert>
       ) : (
