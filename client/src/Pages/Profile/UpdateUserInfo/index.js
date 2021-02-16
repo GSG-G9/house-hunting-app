@@ -68,6 +68,7 @@ function UpdateUser({ userData, setUpdateUser }) {
       setIsLoading(false);
       setUpdateUser(true);
       handleCloseDialog();
+      setOpen(false);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setIsLoading(false);
