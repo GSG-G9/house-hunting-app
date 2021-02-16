@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import {
-  Container,
-  Grid,
-  Typography,
-  CircularProgress,
-} from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
@@ -19,6 +14,7 @@ import useStyles from './style';
 import { HOME_PAGE } from '../../Utils/routes.constant';
 import RelatedHouse from './RelatedHouse';
 import { fakeImage } from '../../Utils/staticData';
+import Loading from '../../Components/loading';
 
 function DetailsHouse() {
   const classes = useStyles();
@@ -52,7 +48,7 @@ function DetailsHouse() {
 
   return (
     <Container maxWidth="lg" className={classes.root}>
-      {isLoading && <CircularProgress />}
+      {isLoading && <Loading size={30} />}
       {errorMsg.message ? (
         <div className={classes.alertBox}>
           <Alert severity="error">{errorMsg.message}</Alert>

@@ -4,11 +4,11 @@ import Axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import Container from '@material-ui/core/Container';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
 import Filter from '../../Components/AdvanceSearch';
+import Loading from '../../Components/loading';
 import useStyles from './style';
 
 function SearchPage() {
@@ -90,7 +90,7 @@ function SearchPage() {
   return (
     <Container maxWidth="lg" className={classes.header}>
       <Search onClick={handleClick} value={search} onChange={handleChange} />
-      {loading && <CircularProgress size={25} color="primary" />}
+      {loading && <Loading size={30} />}
 
       <Filter
         onChange={handleChange}

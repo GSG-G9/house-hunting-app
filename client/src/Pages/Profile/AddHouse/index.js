@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 
-import {
-  Typography,
-  MenuItem,
-  CircularProgress,
-  Snackbar,
-} from '@material-ui/core';
+import { Typography, MenuItem, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/addNewHouse';
 import { locations, categories } from '../../../Utils/staticData';
+import Loading from '../../../Components/loading';
 
 import useStyles from './style';
 
@@ -261,7 +257,7 @@ function AddHouse() {
           color="primary"
           onClick={handleSubmit}
         >
-          {loading ? <CircularProgress size={25} /> : 'Add'}
+          {loading ? <Loading size={30} /> : 'Add'}
         </Button>
       </form>
     </div>

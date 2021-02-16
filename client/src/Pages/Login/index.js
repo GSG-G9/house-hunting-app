@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +10,7 @@ import Input from '../../Components/Input';
 import Button from '../../Components/Button';
 import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.svg';
 import { HOME_PAGE } from '../../Utils/routes.constant';
+import Loading from '../../Components/loading';
 
 import AuthContext from '../../Context/AuthContext';
 import useStyles from './style';
@@ -114,11 +114,7 @@ function Login() {
             color="primary"
             onClick={handleSubmit}
           >
-            {isLoading ? (
-              <CircularProgress size={25} color="secondary" />
-            ) : (
-              'LogIn'
-            )}
+            {isLoading ? <Loading size={30} /> : 'LogIn'}
           </Button>
         </form>
       </div>

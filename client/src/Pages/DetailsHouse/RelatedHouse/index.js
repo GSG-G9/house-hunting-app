@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import {
-  Container,
-  Divider,
-  Typography,
-  CircularProgress,
-} from '@material-ui/core';
+import { Container, Divider, Typography } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import CardContainer from '../../../Components/CardContainer';
 import useStyles from './style';
+import Loading from '../../../Components/loading';
 
 function RelatedHouse({ location }) {
   const classes = useStyles();
@@ -50,7 +46,7 @@ function RelatedHouse({ location }) {
         </Typography>
         {isLoading && (
           <div className={classes.spinner}>
-            <CircularProgress color="primary" />
+            <Loading size={30} />
           </div>
         )}
         {errorMsg.message ? (

@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import {
-  Typography,
-  Avatar,
-  Grid,
-  Paper,
-  CircularProgress,
-} from '@material-ui/core';
+import { Typography, Avatar, Grid, Paper } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 import Button from '../../../Components/Button';
+import Loading from '../../../Components/loading';
 
 import useStyles from './style';
 
@@ -46,7 +41,7 @@ function UserInfo({ getUserName }) {
     <div className={classes.root}>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
-        <CircularProgress />
+        <Loading size={30} />
       ) : (
         <>
           <Grid lg="12" justify="center">

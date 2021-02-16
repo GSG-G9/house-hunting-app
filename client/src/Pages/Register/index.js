@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
 import validationSchema from '../../Utils/validations/register';
@@ -11,6 +10,7 @@ import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
 import { HOME_PAGE } from '../../Utils/routes.constant';
+import Loading from '../../Components/loading';
 
 import useStyles from './style';
 
@@ -171,7 +171,7 @@ function Register() {
             color="primary"
             onClick={handleSubmit}
           >
-            {loading ? <CircularProgress size={25} /> : 'Sign Up'}
+            {loading ? <Loading size={30} /> : 'Sign Up'}
           </Button>
         </form>
       </section>

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Alert from '@material-ui/lab/Alert';
+
+import Loading from '../../../Components/loading';
 
 import useStyles from './style';
 
@@ -45,7 +46,7 @@ function Houses() {
   return (
     <div className={classes.root}>
       <Typography variant="h2">My Houses</Typography>
-      {loading && <CircularProgress size={25} color="primary" />}
+      {loading && <Loading size={30} />}
       <Table>
         <TableBody>
           {houses.length > 0 ? (
