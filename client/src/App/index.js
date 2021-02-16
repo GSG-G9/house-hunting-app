@@ -27,6 +27,8 @@ import DetailsHouse from '../Pages/DetailsHouse';
 import Search from '../Pages/Houses';
 import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
+import ContactUs from '../Pages/ContactUs';
+import AboutUs from '../Pages/AboutUs';
 import { PrivateRoute, PublicRoute } from '../Components/Route';
 
 function App() {
@@ -42,8 +44,12 @@ function App() {
             <Route exact path={HOUSES}>
               <Search />
             </Route>
-            <Route path={ABOUT_US} />
-            <Route path={CONTACT_US} />
+            <Route path={ABOUT_US}>
+              <AboutUs />
+            </Route>
+            <Route path={CONTACT_US}>
+              <ContactUs />
+            </Route>
             <Route path={`${HOUSES}/:houseId`}>
               <DetailsHouse />
             </Route>
