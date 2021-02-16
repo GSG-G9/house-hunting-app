@@ -1,9 +1,9 @@
-import * as yup from 'yup';
+import { object, string, number } from 'yup';
 
-const validationSchema = yup.object({
-  username: yup.string(),
-  mobile: yup.number().min(9),
-  address: yup.string(),
+const validationSchema = object({
+  username: string().min(4),
+  mobile: number().min(9),
+  address: string(),
 });
 
 export default validationSchema;

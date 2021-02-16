@@ -8,7 +8,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
 import Input from '../../../Components/Input';
@@ -16,26 +15,15 @@ import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/updateUser';
 import useStyles from './style';
 
-function UpdateUser({ userData, setUpdateUser }) {
+function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
   const classes = useStyles();
   const [username, setUsername] = useState();
   const [mobile, setMobile] = useState();
   const [address, setAddress] = useState();
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
-  const [successMsg, setSuccessMsg] = useState();
+  const [errorMsg, setErrorMsg] = useState();
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
-  const handleClick = () => {
-    setOpen(true);
-  };
   const handleClickDialog = () => {
     setOpenDialog(true);
   };
@@ -61,9 +49,9 @@ function UpdateUser({ userData, setUpdateUser }) {
 
   const handleSubmit = async () => {
     try {
+      setErrorMsg(null);
       setOpenDialog(true);
-      setOpen(false);
-      setSuccessMsg(null);
+      handleCloseAlert();
       setUpdateUser(false);
       setIsLoading(true);
       const user = { username, mobile, address };
@@ -72,14 +60,10 @@ function UpdateUser({ userData, setUpdateUser }) {
       setIsLoading(false);
       setUpdateUser(true);
       setOpenDialog(false);
-      setOpen(true);
-      setSuccessMsg('Updated Successfully!');
-
-      console.log(successMsg);
+      handleClickAlert();
     } catch (err) {
-      setError(err.response ? err.response.data.message : err.errors[0]);
+      setErrorMsg(err.response ? err.response.data.message : err.errors[0]);
       setIsLoading(false);
-      console.log(err);
     }
   };
   return (
@@ -134,23 +118,29 @@ function UpdateUser({ userData, setUpdateUser }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
+          <Button
+            onClick={handleCloseDialog}
+            color="secondary"
+            variant="outlined"
+          >
             Cancel
           </Button>
 
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={handleSubmit} color="primary" variant="contained">
             {isLoading ? (
               <CircularProgress size={25} color="secondary" />
             ) : (
               'Save'
             )}
           </Button>
+          <br />
+          <br />
+          {errorMsg && (
+            <Alert className={classes.alert} severity="error">
+              {errorMsg}
+            </Alert>
+          )}
         </DialogActions>
-        <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-            {error || successMsg}
-          </Alert>
-        </Snackbar>
       </Dialog>
     </div>
   );
@@ -158,6 +148,8 @@ function UpdateUser({ userData, setUpdateUser }) {
 
 UpdateUser.propTypes = {
   setUpdateUser: PropTypes.func.isRequired,
+  handleClickAlert: PropTypes.func.isRequired,
+  handleCloseAlert: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     username: PropTypes.string,
     mobile: PropTypes.number,

@@ -10,6 +10,7 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import Button from '../../../Components/Button';
 import UpdateUser from '../UpdateUserInfo';
@@ -21,16 +22,32 @@ import AuthContext from '../../../Context/AuthContext';
 function UserInfo({ getUserName }) {
   const classes = useStyles();
   const history = useHistory();
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { setIsAuth } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [isUpdate, setIsUpdate] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [alertError, setAlertError] = useState();
+  const [setDelErr] = useState();
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  const handleClick = () => {
+    setOpen(true);
+  };
 
   const handleDelete = async () => {
-    await Axios.delete('api/v1/users');
-    history.push(HOME_PAGE);
-    setIsAuth(false);
+    try {
+      await Axios.delete('api/v1/users');
+      history.push(HOME_PAGE);
+      setIsAuth(false);
+    } catch (error) {
+      setDelErr(error.response ? error.response.data.message : error.errors[0]);
+    }
   };
 
   useEffect(() => {
@@ -111,7 +128,10 @@ function UserInfo({ getUserName }) {
       )}
       <div className={classes.btnsBox}>
         <UpdateUser
+          handleClickAlert={handleClick}
+          handleCloseAlert={handleClose}
           setUpdateUser={setIsUpdate}
+          setErr={setAlertError}
           userData={{
             username: user.username,
             address: user.address,
@@ -126,6 +146,14 @@ function UserInfo({ getUserName }) {
         >
           Delete Account
         </Button>
+        <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity={alertError ? 'error' : 'success'}
+          >
+            {alertError || 'User updated successfully'}
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );
