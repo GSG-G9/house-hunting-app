@@ -146,7 +146,7 @@ export default function CardComponent({ house }) {
 
 CardComponent.propTypes = {
   house: shape({
-    img: string.isRequired,
+    img: string,
     title: string.isRequired,
     description: string.isRequired,
     location: string.isRequired,

@@ -14,19 +14,19 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '2em',
   },
   sectionTitle: {
-    fontSize: '22px',
+    fontSize: 22,
     fontWeight: 'bolder',
     color: theme.palette.primary.main,
     borderBottom: `3px solid ${theme.palette.primary.main}`,
-    width: '200px',
+    width: 200,
     marginLeft: '3em',
   },
   divider: {
-    height: '2px',
+    height: 2,
   },
   spinner: {
     width: '100%',
-    minHeight: '200px',
+    minHeight: 2,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
