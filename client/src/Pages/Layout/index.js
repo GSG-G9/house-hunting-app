@@ -11,13 +11,13 @@ function Layout({ children }) {
   return (
     <>
       {authLoading ? (
-        <Loading />
+        <Loading size={70} />
       ) : (
-        <Loading>
+        <>
           <Header />
           {children}
           <Footer />
-        </Loading>
+        </>
       )}
     </>
   );
