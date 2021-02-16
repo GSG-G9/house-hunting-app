@@ -7,6 +7,7 @@ const {
   addHouseToFav,
   deleteFavoriteHouse,
   deleteHouseController,
+  updateHouseController,
 } = require('../controller/routes/house');
 
 router.post('/houses', addHouseValidation, addNewHouse);
@@ -14,5 +15,6 @@ router.get('/favorite', getFavoriteList);
 router.get('/favorite/:houseId', addHouseToFav);
 router.delete('/favorite/:houseId', deleteFavoriteHouse);
 router.delete('/houses/:houseId', deleteHouseController);
+router.patch('/houses/:houseId', updateHouseController);
 
 module.exports = router;
