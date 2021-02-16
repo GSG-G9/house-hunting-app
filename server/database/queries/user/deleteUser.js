@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const deleteUser = ({ userId }) => {
+const deleteUser = (userId) => {
   const sql = {
     text: 'DELETE FROM users WHERE id=$1',
     values: [userId],

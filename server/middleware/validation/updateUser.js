@@ -6,7 +6,6 @@ const updateUserValidation = async (req, res, next) => {
   try {
     const schema = object().shape({
       username: string(),
-      email: string().email(),
       mobile: string().min(9),
       address: string(),
     });
