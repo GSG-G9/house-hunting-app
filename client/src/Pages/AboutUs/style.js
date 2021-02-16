@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2.2em',
       fontWeight: 'bold',
       paddingBlock: '2em',
-      color: theme.palette.primary.dark,
+      color: theme.palette.primary.main,
     },
     '& p': {
       fontSize: '1.5em',
