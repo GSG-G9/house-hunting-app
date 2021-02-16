@@ -7,8 +7,7 @@ VALUES
   ('user_5', 'user_5@house.com', '123456asd', 'gaza', '010122514'),
   ('user_6', 'user_6@house.com', '123456asd', 'rafah', '010126656'),
   ('user_7', 'user_7@house.com', '123456asd', 'khanyunis', '010021620'),
-  ('yaso', 'yas@gmail.com', '123456789', 'khanyunis', '010021620');
- 
+   
 INSERT INTO
   locations (location)
 VALUES
