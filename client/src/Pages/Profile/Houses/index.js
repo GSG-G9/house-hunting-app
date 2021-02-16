@@ -63,7 +63,7 @@ function Houses() {
   return (
     <div className={classes.root}>
       <Typography variant="h2">My Houses</Typography>
-      {loading && <Loading />}
+      {loading && <Loading className={classes.spin} />}
       {error ? (
         <Alert severity="error">{error}</Alert>
       ) : (

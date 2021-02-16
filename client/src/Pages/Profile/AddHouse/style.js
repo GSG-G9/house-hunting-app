@@ -73,5 +73,12 @@ const useStyles = makeStyles({
     width: 500,
     height: 50,
   },
+  spin: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 100,
+  },
 });
 export default useStyles;

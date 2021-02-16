@@ -257,7 +257,7 @@ function AddHouse() {
           color="primary"
           onClick={handleSubmit}
         >
-          {loading ? <Loading /> : 'Add'}
+          {loading ? <Loading color="primary" /> : 'Add'}
         </Button>
       </form>
     </div>

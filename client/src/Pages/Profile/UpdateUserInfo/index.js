@@ -13,8 +13,9 @@ import Alert from '@material-ui/lab/Alert';
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/register';
-import useStyles from '../UserInfo/style';
 import Loading from '../../../Components/Loading';
+
+import useStyles from '../UserInfo/style';
 
 function UpdateUser({ userData, setUpdateUser }) {
   const classes = useStyles();
@@ -137,7 +138,7 @@ function UpdateUser({ userData, setUpdateUser }) {
             onClick={(handleCloseDialog, handleSubmit, handleClick)}
             color="primary"
           >
-            {isLoading ? <Loading /> : 'Save'}
+            {isLoading ? <Loading className={classes.spin} /> : 'Save'}
           </Button>
         </DialogActions>
         <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>

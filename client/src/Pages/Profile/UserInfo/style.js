@@ -66,6 +66,13 @@ const useStyles = makeStyles((theme) => ({
       transition: 'all 0.25s',
     },
   },
+  spin: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 100,
+  },
 }));
 
 export default useStyles;
