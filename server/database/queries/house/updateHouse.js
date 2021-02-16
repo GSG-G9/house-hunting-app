@@ -7,12 +7,13 @@ const updateHouse = ({
   description,
   title,
   locationId,
+  bathNo,
   userId,
   houseId,
 }) => {
   const sql = {
     text:
-      'UPDATE houses SET room_num=$1 ,category=$2 , price=$2 ,description = $3,title=$4 ,location_id = $5 WHERE user_id =$6 AND id=$7;',
+      'UPDATE houses SET room_num=$1 ,category=$2 , price=$3 ,description = $4,title=$5 ,location_id = $6 ,bathroom_num=$7 WHERE user_id =$8 AND id=$9;',
     values: [
       roomNo,
       category,
@@ -20,6 +21,7 @@ const updateHouse = ({
       description,
       title,
       locationId,
+      bathNo,
       userId,
       houseId,
     ],

@@ -1,6 +1,9 @@
 const router = require('express').Router();
 
-const { addHouseValidation } = require('../middleware/validation');
+const {
+  addHouseValidation,
+  updateHouseValidation,
+} = require('../middleware/validation');
 const {
   addNewHouse,
   getFavoriteList,
@@ -15,6 +18,6 @@ router.get('/favorite', getFavoriteList);
 router.get('/favorite/:houseId', addHouseToFav);
 router.delete('/favorite/:houseId', deleteFavoriteHouse);
 router.delete('/houses/:houseId', deleteHouseController);
-router.patch('/houses/:houseId', updateHouseController);
+router.patch('/houses/:houseId', updateHouseValidation, updateHouseController);
 
 module.exports = router;
