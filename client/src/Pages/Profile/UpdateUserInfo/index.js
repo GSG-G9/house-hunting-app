@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
+import { PropTypes } from 'prop-types';
+
 import Axios from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
@@ -17,16 +21,27 @@ function UpdateUser({ userData, setUpdateUser }) {
   const [username, setUsername] = useState();
   const [mobile, setMobile] = useState();
   const [address, setAddress] = useState();
-  const [open, setOpen] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   const handleClick = () => {
     setOpen(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleClickDialog = () => {
+    setOpenDialog(true);
   };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   const handleChange = ({ target }) => {
     const { value, name } = target;
     switch (name) {
@@ -41,7 +56,6 @@ function UpdateUser({ userData, setUpdateUser }) {
         break;
       default:
     }
-    console.log(value);
   };
 
   const handleSubmit = async () => {
@@ -49,13 +63,11 @@ function UpdateUser({ userData, setUpdateUser }) {
       setUpdateUser(false);
       setIsLoading(true);
       const user = { username, mobile, address };
-      console.log(user);
       await validationSchema.validate(user, { abortEarly: false });
       await Axios.patch('api/v1/users', user);
       setIsLoading(false);
-      console.log('Update Successfully');
       setUpdateUser(true);
-      handleClose();
+      handleCloseDialog();
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setIsLoading(false);
@@ -67,11 +79,15 @@ function UpdateUser({ userData, setUpdateUser }) {
         variant="contained"
         color="secondary"
         className={classes.editBtn}
-        onClick={handleClick}
+        onClick={handleClickDialog}
       >
         Update info
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-label="update-info">
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        aria-label="update-info"
+      >
         <DialogTitle>Update informations</DialogTitle>
         <DialogContent>
           <Input
@@ -112,11 +128,14 @@ function UpdateUser({ userData, setUpdateUser }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCloseDialog} color="primary">
             Cancel
           </Button>
 
-          <Button onClick={(handleClose, handleSubmit)} color="primary">
+          <Button
+            onClick={(handleCloseDialog, handleSubmit, handleClick)}
+            color="primary"
+          >
             {isLoading ? (
               <CircularProgress size={25} color="secondary" />
             ) : (
@@ -124,9 +143,23 @@ function UpdateUser({ userData, setUpdateUser }) {
             )}
           </Button>
         </DialogActions>
+        <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
+            {error || 'Updated Successfully!'}
+          </Alert>
+        </Snackbar>
       </Dialog>
     </div>
   );
 }
+
+UpdateUser.propTypes = {
+  setUpdateUser: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    username: PropTypes.string,
+    mobile: PropTypes.number,
+    address: PropTypes.string,
+  }).isRequired,
+};
 
 export default UpdateUser;

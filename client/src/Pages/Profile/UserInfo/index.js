@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import {
@@ -12,15 +13,26 @@ import { Alert } from '@material-ui/lab';
 
 import Button from '../../../Components/Button';
 import UpdateUser from '../UpdateUserInfo';
+import { HOME_PAGE } from '../../../Utils/routes.constant';
 
 import useStyles from './style';
+import AuthContext from '../../../Context/AuthContext';
 
 function UserInfo({ getUserName }) {
   const classes = useStyles();
+  const history = useHistory();
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [isUpdate, setIsUpdate] = useState(false);
+
+  const handleDelete = async () => {
+    await Axios.delete('api/v1/users');
+    history.push(HOME_PAGE);
+    setIsAuth(false);
+  };
+
   useEffect(() => {
     let isCurrent = true;
     (async () => {
@@ -107,11 +119,12 @@ function UserInfo({ getUserName }) {
           }}
         />
         <Button
+          onClick={handleDelete}
           variant="outlined"
           color="secondary"
           className={classes.deleteBtn}
         >
-          Delete Information
+          Delete Account
         </Button>
       </div>
     </div>
