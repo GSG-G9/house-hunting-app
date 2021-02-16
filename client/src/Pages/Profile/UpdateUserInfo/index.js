@@ -7,7 +7,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
@@ -15,6 +14,7 @@ import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/register';
 import useStyles from '../UserInfo/style';
+import Loading from '../../../Components/Loading';
 
 function UpdateUser({ userData, setUpdateUser }) {
   const classes = useStyles();
@@ -137,11 +137,7 @@ function UpdateUser({ userData, setUpdateUser }) {
             onClick={(handleCloseDialog, handleSubmit, handleClick)}
             color="primary"
           >
-            {isLoading ? (
-              <CircularProgress size={25} color="secondary" />
-            ) : (
-              'Save'
-            )}
+            {isLoading ? <Loading /> : 'Save'}
           </Button>
         </DialogActions>
         <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
