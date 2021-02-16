@@ -109,8 +109,13 @@ This is the schema of our database
 * I want to search by different locations, prices and the number of room in the house
 * I can add houses to my favourite list
 * I need to create my own profile
+<<<<<<< HEAD
 * I need to compare between two houses
 * I need control panel to manage my houses
+=======
+* I need a control panel to manage my houses
+
+>>>>>>> 84724e42390b1713a5a02ace3008897bc178d1eb
 
 ## User Journey :airplane:
 
