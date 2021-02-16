@@ -55,7 +55,7 @@ function Houses() {
       {error ? (
         <Alert severity="error">{error}</Alert>
       ) : (
-        <Table houses={houses} onClick={handleDelete} />
+        <Table houses={houses} handelDeleteHouse={handleDelete} />
       )}
     </div>
   );
