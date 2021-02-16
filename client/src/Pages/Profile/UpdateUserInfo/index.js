@@ -13,8 +13,8 @@ import Alert from '@material-ui/lab/Alert';
 
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
-import validationSchema from '../../../Utils/validations/updateUser';
-import useStyles from './style';
+import validationSchema from '../../../Utils/validations/register';
+import useStyles from '../UserInfo/style';
 
 function UpdateUser({ userData, setUpdateUser }) {
   const classes = useStyles();

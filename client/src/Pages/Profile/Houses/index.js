@@ -3,25 +3,11 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import Typography from '@material-ui/core/Typography';
-<<<<<<< HEAD
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-=======
 import CircularProgress from '@material-ui/core/CircularProgress';
->>>>>>> eadae087a695774a22908f462b0b06d416428a4e
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 
-<<<<<<< HEAD
-import Loading from '../../../Components/loading';
-
-=======
 import Table from '../../../Components/Table';
->>>>>>> eadae087a695774a22908f462b0b06d416428a4e
 import useStyles from './style';
 
 function Houses() {
@@ -75,36 +61,6 @@ function Houses() {
   return (
     <div className={classes.root}>
       <Typography variant="h2">My Houses</Typography>
-<<<<<<< HEAD
-      {loading && <Loading />}
-      <Table>
-        <TableBody>
-          {houses.length > 0 ? (
-            houses.map((house) => (
-              <TableRow align="right">
-                <TableCell>
-                  <img className={classes.img} src={house.image} alt="house " />
-                </TableCell>
-                <TableCell>
-                  {house.area} m <sup>2</sup>
-                </TableCell>
-                <TableCell>{house.price} $ </TableCell>
-                <TableCell>{house.created_at.split(' ')[0]}</TableCell>
-                <TableCell>
-                  <EditIcon color="primary" />
-                </TableCell>
-                <TableCell>
-                  <DeleteIcon color="primary" />
-                </TableCell>
-              </TableRow>
-            ))
-          ) : (
-            <Alert severity="info"> No houses added yet </Alert>
-          )}
-        </TableBody>
-      </Table>
-      {error && <Alert severity="error"> {error}</Alert>}
-=======
       {loading && <CircularProgress size={25} color="primary" />}
       {error ? (
         <Alert severity="error">{error}</Alert>
@@ -116,7 +72,6 @@ function Houses() {
           Deleted successfully
         </Alert>
       </Snackbar>
->>>>>>> eadae087a695774a22908f462b0b06d416428a4e
     </div>
   );
 }

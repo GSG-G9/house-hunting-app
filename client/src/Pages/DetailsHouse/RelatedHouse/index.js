@@ -6,7 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 
 import CardContainer from '../../../Components/CardContainer';
 import useStyles from './style';
-import Loading from '../../../Components/loading';
+import Loading from '../../../Components/Loading';
 
 function RelatedHouse({ location }) {
   const classes = useStyles();

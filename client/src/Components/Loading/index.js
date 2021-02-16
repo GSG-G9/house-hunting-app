@@ -13,7 +13,7 @@ function Loading({ size }) {
       justifyContent="center"
       top={100}
     >
-      <CircularProgress size={`${size}`} color="primary" />
+      <CircularProgress size={size} color="primary" />
     </Box>
   );
 }

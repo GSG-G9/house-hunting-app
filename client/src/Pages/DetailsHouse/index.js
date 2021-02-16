@@ -14,7 +14,7 @@ import useStyles from './style';
 import { HOME_PAGE } from '../../Utils/routes.constant';
 import RelatedHouse from './RelatedHouse';
 import { fakeImage } from '../../Utils/staticData';
-import Loading from '../../Components/loading';
+import Loading from '../../Components/Loading';
 
 function DetailsHouse() {
   const classes = useStyles();

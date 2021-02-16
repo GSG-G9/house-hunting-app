@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
 import Filter from '../../Components/AdvanceSearch';
-import Loading from '../../Components/loading';
+import Loading from '../../Components/Loading';
 import useStyles from './style';
 
 function SearchPage() {

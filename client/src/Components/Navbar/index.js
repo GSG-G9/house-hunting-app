@@ -12,7 +12,7 @@ import Alert from '@material-ui/lab/Alert';
 import Button from '../Button';
 import LinkItem from '../LinkItem';
 import useStyles from './style';
-import Loading from '../loading';
+import Loading from '../Loading';
 
 import {
   HOME_PAGE,

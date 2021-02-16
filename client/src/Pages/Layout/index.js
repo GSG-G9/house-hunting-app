@@ -1,23 +1,24 @@
 import React, { useContext } from 'react';
 import { element } from 'prop-types';
-
+import Alert from '@material-ui/lab/Alert';
 import Header from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import AuthContext from '../../Context/AuthContext';
-import Loading from '../../Components/loading';
+import Loading from '../../Components/Loading';
 
 function Layout({ children }) {
-  const { authLoading } = useContext(AuthContext);
+  const { authLoading, error } = useContext(AuthContext);
   return (
     <>
+      {error && <Alert severity="error">{error}</Alert>}
       {authLoading ? (
-        <Loading />
+        <Loading size={70} />
       ) : (
-        <Loading>
+        <>
           <Header />
           {children}
           <Footer />
-        </Loading>
+        </>
       )}
     </>
   );

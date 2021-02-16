@@ -5,7 +5,7 @@ import { Typography, Avatar, Grid, Paper } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 import Button from '../../../Components/Button';
-import Loading from '../../../Components/loading';
+import Loading from '../../../Components/Loading';
 
 import useStyles from './style';
 
@@ -89,24 +89,24 @@ function UserInfo({ getUserName }) {
               </Paper>
             )}
           </Grid>
+          <div className={classes.btnsBox}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.editBtn}
+            >
+              Edit Information
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.deleteBtn}
+            >
+              Delete Information
+            </Button>
+          </div>
         </>
       )}
-      <div className={classes.btnsBox}>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.editBtn}
-        >
-          Edit Information
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          className={classes.deleteBtn}
-        >
-          Delete Information
-        </Button>
-      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/addNewHouse';
 import { locations, categories } from '../../../Utils/staticData';
-import Loading from '../../../Components/loading';
+import Loading from '../../../Components/Loading';
 
 import useStyles from './style';
 

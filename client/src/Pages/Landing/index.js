@@ -7,7 +7,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import { HOUSES } from '../../Utils/routes.constant';
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
-import Loading from '../../Components/loading';
+import Loading from '../../Components/Loading';
 
 import useStyles from './style';
 

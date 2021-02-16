@@ -10,7 +10,7 @@ import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
 import { HOME_PAGE } from '../../Utils/routes.constant';
-import Loading from '../../Components/loading';
+import Loading from '../../Components/Loading';
 
 import useStyles from './style';
 
