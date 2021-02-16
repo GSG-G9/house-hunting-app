@@ -12,7 +12,7 @@ import useStyles from './style';
 function Houses() {
   const classes = useStyles();
 
-  const [houses, setHouses] = useState();
+  const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [error, setError] = useState();
