@@ -46,7 +46,6 @@ function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
       default:
     }
   };
-
   const handleSubmit = async () => {
     try {
       setErrorMsg(null);
