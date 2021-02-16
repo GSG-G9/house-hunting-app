@@ -5,6 +5,7 @@ import Axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import Table from '../../../Components/Table';
 import useStyles from './style';
@@ -15,7 +16,15 @@ function Houses() {
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [open, setOpen] = useState(false);
   const [error, setError] = useState();
+
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   useEffect(() => {
     let isCurrent = true;
@@ -44,6 +53,7 @@ function Houses() {
       setRefresh(false);
       await Axios.delete(`/api/v1/houses/${id}`);
       setRefresh(true);
+      setOpen(true);
     } catch (err) {
       setError(err);
     }
@@ -57,6 +67,11 @@ function Houses() {
       ) : (
         <Table houses={houses} handelDeleteHouse={handleDelete} />
       )}
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Deleted successfully
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
