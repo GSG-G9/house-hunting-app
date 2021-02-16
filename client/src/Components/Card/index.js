@@ -36,8 +36,6 @@ export default function CardComponent({ house }) {
     category,
     location,
     area,
-    username,
-    mobile,
     price,
     room_num: bdCount,
     bathroom_num: baCount,
@@ -96,18 +94,12 @@ export default function CardComponent({ house }) {
             component="p"
             className={classes.description}
           >
-            {description}
+            {description.split(' ').splice(0, 10).join(' ')}
           </Typography>
           <Typography component="p">
             house type: {category.toUpperCase()}
           </Typography>
           <Typography component="p">area: {area}</Typography>
-
-          <div className={classes.iconBox}>
-            <Typography>owner name : {username} </Typography>
-            <Typography>mobile : {mobile} </Typography>
-          </div>
-
           <div className={classes.cardDetails}>
             <Typography variant="h6">${price}</Typography>
             <div className={classes.iconBox}>
