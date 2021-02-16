@@ -12,7 +12,7 @@ import Alert from '@material-ui/lab/Alert';
 import useStyles from './style';
 import Button from '../Button';
 
-function TableComponent({ houses, onClick }) {
+function TableComponent({ houses, handelDeleteHouse }) {
   const classes = useStyles();
   return (
     <Table>
@@ -34,7 +34,7 @@ function TableComponent({ houses, onClick }) {
               <TableCell>
                 <Button
                   onClick={() => {
-                    onClick(house.id);
+                    handelDeleteHouse(house.id);
                   }}
                   color="primary"
                 >
@@ -52,6 +52,6 @@ function TableComponent({ houses, onClick }) {
 }
 TableComponent.propTypes = {
   houses: PropTypes.instanceOf(Array).isRequired,
-  onClick: PropTypes.func.isRequired,
+  handelDeleteHouse: PropTypes.func.isRequired,
 };
 export default TableComponent;
