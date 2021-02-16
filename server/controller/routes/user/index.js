@@ -5,6 +5,7 @@ const getUser = require('./getUser');
 const authController = require('./isAuth');
 const getUserHousesController = require('./getUserHouses');
 const updateUserController = require('./updateUser');
+const deleteUserController = require('./deleteUser');
 
 module.exports = {
   signupController,
@@ -14,4 +15,5 @@ module.exports = {
   authController,
   getUserHousesController,
   updateUserController,
+  deleteUserController,
 };
