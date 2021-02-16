@@ -1,10 +1,10 @@
 const connection = require('../../config/connection');
 
-const updateUser = ({ userId, username, email, address, mobile }) => {
+const updateUser = ({ userId, username, address, mobile }) => {
   const sql = {
     text:
-      'UPDATE users SET username = $1, email = $2, address = $3, mobile = $4 WHERE id = $5 RETURNING *',
-    values: [username, email, address, mobile, userId],
+      'UPDATE users SET username = $1, address = $2, mobile = $3 WHERE id = $4;',
+    values: [username, address, mobile, userId],
   };
   return connection.query(sql);
 };
