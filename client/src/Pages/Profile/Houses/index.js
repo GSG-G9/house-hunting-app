@@ -44,7 +44,7 @@ function Houses() {
   }, []);
   return (
     <div className={classes.root}>
-      <Typography variant="h5">My Houses</Typography>
+      <Typography variant="h2">My Houses</Typography>
       {loading && <CircularProgress size={25} color="primary" />}
       <Table>
         <TableBody>
@@ -54,7 +54,9 @@ function Houses() {
                 <TableCell>
                   <img className={classes.img} src={house.image} alt="house " />
                 </TableCell>
-                <TableCell>{house.room_num} Room </TableCell>
+                <TableCell>
+                  {house.area} m <sup>2</sup>
+                </TableCell>
                 <TableCell>{house.price} $ </TableCell>
                 <TableCell>{house.created_at.split(' ')[0]}</TableCell>
                 <TableCell>
@@ -66,7 +68,7 @@ function Houses() {
               </TableRow>
             ))
           ) : (
-            <Alert severity="error"> You Don&apos;t add any House </Alert>
+            <Alert severity="info"> No houses added yet </Alert>
           )}
         </TableBody>
       </Table>

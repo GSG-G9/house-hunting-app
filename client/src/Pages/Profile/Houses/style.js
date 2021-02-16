@@ -2,8 +2,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: 200,
-    color: theme.palette.primary.main,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    width: '100%',
+    minHeight: '100%',
+    border: '1px solid #c7c7c7',
+    borderRadius: '5px',
+    '& h2': {
+      fontSize: '2.2em',
+      padding: '2em 1em',
+      fontWeight: 'bold',
+      color: theme.palette.primary.main,
+    },
   },
   img: {
     width: 150,
