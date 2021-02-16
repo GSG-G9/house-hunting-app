@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    margin: '0 auto',
   },
   title: {
     fontSize: '22px',
@@ -26,6 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     alignSelf: 'center',
+  },
+  dataGrid: {
+    width: '100%',
+  },
+  trashIcon: {
+    color: '#757575',
+    cursor: 'pointer',
+    transition: 'all 0.25s',
+    '&:hover': {
+      color: '#E52515',
+      transition: 'all 0.25s',
+    },
   },
 }));
 

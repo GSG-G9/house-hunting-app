@@ -57,8 +57,9 @@ function Favorite() {
           >
             Compare
           </CustomButton>
-          <div style={{ height: 400 }}>
+          <div style={{ height: 400, width: '100%' }}>
             <DataGrid
+              className={classes.dataGrid}
               rows={houses}
               columns={columns}
               pageSize={5}

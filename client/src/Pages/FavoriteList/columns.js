@@ -1,3 +1,9 @@
+import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Axios from 'axios';
+
+import useStyles from './style';
+
 export default [
   { field: 'title', headerName: 'Title', width: 200 },
   { field: 'category', headerName: 'Type', width: 130 },
@@ -25,5 +31,23 @@ export default [
     headerName: 'Area',
     type: 'number',
     width: 100,
+  },
+  {
+    field: '',
+    headerName: '',
+    sortable: false,
+    disableClickEventBubbling: true,
+    width: 100,
+    renderCell: (params) => {
+      const classes = useStyles();
+      const handleDelete = async () => {
+        const { row } = params;
+        await Axios.delete(`/api/v1/favorite/${row.id}`);
+      };
+
+      return (
+        <DeleteIcon onClick={handleDelete} className={classes.trashIcon} />
+      );
+    },
   },
 ];
