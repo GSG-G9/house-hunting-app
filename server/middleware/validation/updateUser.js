@@ -4,6 +4,7 @@ const boomify = require('../../utils/boomify');
 
 const updateUserValidation = async (req, res, next) => {
   try {
+    console.log(req.body);
     const schema = object().shape({
       username: string(),
       mobile: string().min(9),

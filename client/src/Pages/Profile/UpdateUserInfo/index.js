@@ -12,12 +12,11 @@ import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/updateUser';
 import useStyles from './style';
 
-function UpdateUser() {
+function UpdateUser({ userData, setUpdateUser }) {
   const classes = useStyles();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState();
   const [mobile, setMobile] = useState();
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -28,13 +27,35 @@ function UpdateUser() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    switch (name) {
+      case 'username':
+        setUsername(value);
+        break;
+      case 'mobile':
+        setMobile(value);
+        break;
+      case 'address':
+        setAddress(value);
+        break;
+      default:
+    }
+    console.log(value);
+  };
+
   const handleSubmit = async () => {
     try {
+      setUpdateUser(false);
       setIsLoading(true);
-      const userDate = { username, email, mobile, address };
-      await validationSchema.validate(userDate, { abortEarly: false });
-      await Axios.patch('api/v1/users', userDate);
+      const user = { username, mobile, address };
+      console.log(user);
+      await validationSchema.validate(user, { abortEarly: false });
+      await Axios.patch('api/v1/users', user);
       setIsLoading(false);
+      console.log('Update Successfully');
+      setUpdateUser(true);
+      handleClose();
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setIsLoading(false);
@@ -57,25 +78,37 @@ function UpdateUser() {
             autoFocus
             margin="dense"
             id="name"
+            name="username"
             label="username"
             type="text"
             fullWidth
+            value={username}
+            defaultValue={userData.username}
+            onChange={handleChange}
           />
           <Input
             autoFocus
             margin="dense"
             id="address"
+            name="address"
             label="address"
             type="text"
             fullWidth
+            value={address}
+            defaultValue={userData.address}
+            onChange={handleChange}
           />
           <Input
             autoFocus
             margin="dense"
             id="mobile"
+            name="mobile"
             label="mobile"
             type="number"
             fullWidth
+            value={mobile}
+            defaultValue={userData.mobile}
+            onChange={handleChange}
           />
         </DialogContent>
         <DialogActions>

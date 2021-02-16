@@ -20,7 +20,7 @@ function UserInfo({ getUserName }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-
+  const [isUpdate, setIsUpdate] = useState(false);
   useEffect(() => {
     let isCurrent = true;
     (async () => {
@@ -34,14 +34,14 @@ function UserInfo({ getUserName }) {
         }
       } catch (error) {
         setLoading(false);
-        setErrorMsg(error.response.data);
+        setErrorMsg(error.response.data.message);
       }
     })();
     return () => {
       isCurrent = false;
       setLoading(false);
     };
-  }, []);
+  }, [isUpdate]);
 
   return (
     <div className={classes.root}>
@@ -98,7 +98,14 @@ function UserInfo({ getUserName }) {
         </>
       )}
       <div className={classes.btnsBox}>
-        <UpdateUser />
+        <UpdateUser
+          setUpdateUser={setIsUpdate}
+          userData={{
+            username: user.username,
+            address: user.address,
+            mobile: user.mobile,
+          }}
+        />
         <Button
           variant="outlined"
           color="secondary"
