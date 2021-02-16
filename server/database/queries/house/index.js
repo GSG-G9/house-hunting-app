@@ -7,6 +7,7 @@ const getNewestHousesData = require('./getNewestHousesData');
 const addHouseToFavList = require('./addHouseToFavList');
 const deleteFromFavoriteHouses = require('./deleteFromFavoriteHouses');
 const deleteHouse = require('./deleteHouse');
+const updateHouse = require('./updateHouse');
 
 module.exports = {
   getAllHousesData,
@@ -18,4 +19,5 @@ module.exports = {
   addHouseToFavList,
   deleteFromFavoriteHouses,
   deleteHouse,
+  updateHouse,
 };

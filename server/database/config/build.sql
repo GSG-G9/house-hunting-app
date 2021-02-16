@@ -29,7 +29,7 @@ CREATE TABLE houses (
   availability BOOLEAN DEFAULT true,
   room_num INT,
   bathroom_num INT,
-  price DECIMAL(8,2),
+   DECIMAL(8,2),
   area DECIMAL(8,2),
   image TEXT,
   created_at TEXT DEFAULT TO_CHAR(CURRENT_TIMESTAMP, 'DD/MM/YYYY HH12:MI:SS:MS:US AM')

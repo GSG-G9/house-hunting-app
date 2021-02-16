@@ -1,5 +1,8 @@
-const updateHouseController = (req, res, next) => {
+const { updateHouse } = require('../../../database/queries/house');
+
+const updateHouseController = async (req, res, next) => {
   try {
+    await updateHouse();
     return res.json({
       status: 200,
       message: 'hi from update house',
