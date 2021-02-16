@@ -9,14 +9,15 @@ const updateUserController = async (req, res, next) => {
     const { username, email, address, mobile } = req.body;
     const { userId } = req;
 
-    const { rows: row } = await checkUserByEmail({ email });
+    const {
+      rows: [data],
+    } = await checkUserByEmail({ email });
 
-    if (row[0].id !== userId) {
-      console.log(row.id, userId, 'ggggg');
-      console.log(row, 'llllllllll');
+    const userData = data || { id: -1 };
+
+    if (userData.id !== -1 && userData.id !== userId) {
       throw boomify(409, 'Email already exists');
     }
-
     const { rows } = await updateUser({
       userId,
       username,
@@ -25,14 +26,13 @@ const updateUserController = async (req, res, next) => {
       mobile,
     });
     if (!rows.length) {
-      throw boomify(500, 'faild to update user info');
+      throw boomify(500, 'failed to update user info');
     }
     return res.json({
       statusCode: 200,
       message: 'user updated Successfully',
     });
   } catch (error) {
-    console.log(error);
     return next(error);
   }
 };
