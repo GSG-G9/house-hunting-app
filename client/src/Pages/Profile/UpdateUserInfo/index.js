@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 import Axios from 'axios';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import Input from '../../../Components/Input';
+import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/updateUser';
 import useStyles from './style';
 
@@ -52,7 +53,7 @@ function UpdateUser() {
       <Dialog open={open} onClose={handleClose} aria-label="update-info">
         <DialogTitle>Update informations</DialogTitle>
         <DialogContent>
-          <TextField
+          <Input
             autoFocus
             margin="dense"
             id="name"
@@ -60,15 +61,7 @@ function UpdateUser() {
             type="text"
             fullWidth
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email"
-            type="email"
-            fullWidth
-          />
-          <TextField
+          <Input
             autoFocus
             margin="dense"
             id="address"
@@ -76,7 +69,7 @@ function UpdateUser() {
             type="text"
             fullWidth
           />
-          <TextField
+          <Input
             autoFocus
             margin="dense"
             id="mobile"
