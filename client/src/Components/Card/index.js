@@ -30,7 +30,7 @@ export default function CardComponent({ house }) {
 
   const {
     id: houseId,
-    img,
+    image,
     title,
     description,
     category,
@@ -79,7 +79,7 @@ export default function CardComponent({ house }) {
     <Card className={classes.root} elevation="0">
       <CardActionArea>
         <CardMedia className={classes.media}>
-          <img src={img || fakeImage} alt="house" />
+          <img src={image} alt="house" />
         </CardMedia>
         <CardContent>
           <div className={classes.cardTitle}>
