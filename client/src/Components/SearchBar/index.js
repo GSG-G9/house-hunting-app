@@ -20,6 +20,7 @@ function SearchBar({ onClick, value, onChange }) {
         value={value}
         onChange={onChange}
         name="search"
+        className={classes.searchInput}
       />
 
       <Button className={classes.button} onClick={onClick}>
