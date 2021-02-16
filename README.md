@@ -18,7 +18,6 @@ Build a house-hunting application that facilitates users to rent houses, most of
 * I want to search by different locations, prices and the number of room in the house
 * I can add houses to my favorite list
 * I need to create my own profile
-* I need to compare between two houses
 * I need a control panel to manage my houses
 
 
