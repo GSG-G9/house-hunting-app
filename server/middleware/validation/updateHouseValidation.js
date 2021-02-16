@@ -11,7 +11,7 @@ const updateHouseValidation = async (req, res, next) => {
         .required(),
       locationId: number().required().positive(),
       roomNo: number().required().positive().integer().min(1),
-      bathrooms: number().required().positive().integer().min(1),
+      bathNo: number().required().positive().integer().min(1),
       category: string().required(),
       price: number().required().positive(),
       area: number().required().min(10),

@@ -11,8 +11,10 @@ const updateHouseController = async (req, res, next) => {
       title,
       locationId,
       bathNo,
-      userId,
+      area,
+      image,
     } = req.body;
+    const { userId } = req;
     await updateHouse({
       roomNo,
       category,
@@ -21,13 +23,14 @@ const updateHouseController = async (req, res, next) => {
       title,
       locationId,
       bathNo,
+      area,
+      image,
       userId,
       houseId,
     });
-    console.log(houseId, 'param', req.body.userId, 13);
     return res.json({
       status: 200,
-      message: 'hi from update house',
+      message: 'updated successfully',
     });
   } catch (err) {
     return next(err);
