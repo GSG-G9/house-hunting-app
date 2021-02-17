@@ -4,11 +4,10 @@ const boomify = require('../../utils/boomify');
 
 const updateUserValidation = async (req, res, next) => {
   try {
-    console.log(req.body);
     const schema = object().shape({
-      username: string(),
+      username: string().required(),
       mobile: string().min(9),
-      address: string(),
+      address: string().required(),
     });
     await schema.validate(req.body, { abortEarly: false });
     next();
