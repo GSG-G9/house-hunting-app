@@ -15,27 +15,27 @@ function RelatedHouse({ location }) {
   const [houses, setHouses] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
 
-  const fetchingData = async (isCurrent) => {
-    try {
-      setIsLoading(true);
-      const { data } = await axios.get(`/api/v1/houses/${location}`);
-      if (isCurrent) {
-        setHouses(data.data.slice(0, 3));
-        setIsLoading(false);
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setErrorMsg(error.response.data);
-    }
-  };
-
   useEffect(() => {
     let isCurrent = true;
-    fetchingData(isCurrent);
+    if (location) {
+      (async () => {
+        try {
+          setIsLoading(true);
+          const { data } = await axios.get(`/api/v1/houses/${location}`);
+          if (isCurrent) {
+            setHouses(data.data.slice(0, 3));
+            setIsLoading(false);
+          }
+        } catch (error) {
+          setIsLoading(false);
+          setErrorMsg(error.response.data);
+        }
+      })();
+    }
     return () => {
       isCurrent = false;
     };
-  }, []);
+  }, [location]);
 
   return (
     <Container maxWidth="lg" className={classes.root}>
