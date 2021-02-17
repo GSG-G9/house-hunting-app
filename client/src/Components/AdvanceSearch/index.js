@@ -48,7 +48,7 @@ function Filter({
       >
         <MenuItem value="apartment">Apartment</MenuItem>
         <MenuItem value="roof">Roof</MenuItem>
-        <MenuItem value="classis">Classic</MenuItem>
+        <MenuItem value="classic">Classic</MenuItem>
         <MenuItem value="studio">Studio</MenuItem>
       </Select>
       <InputLabel>Rooms</InputLabel>
