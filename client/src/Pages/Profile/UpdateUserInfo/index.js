@@ -63,6 +63,7 @@ function UpdateUser({
       handleCloseAlert();
       setUpdateUser(false);
       setIsLoading(true);
+      clear();
       const user = { username, mobile, address };
       await validationSchema.validate(user, { abortEarly: false });
       await Axios.patch('api/v1/users', user);
@@ -71,15 +72,14 @@ function UpdateUser({
       setOpenDialog(false);
       handleClickAlert();
     } catch (err) {
+      setIsLoading(false);
+      clear();
       if (err.errors) {
         setErrorMsg(err.errors[0]);
-        setIsLoading(false);
       } else {
         setErr(
           err.response ? err.response.data.message : 'Some error happened'
         );
-        setIsLoading(false);
-        clear();
         handleCloseDialog();
       }
     }
@@ -145,7 +145,7 @@ function UpdateUser({
           </Button>
 
           <Button onClick={handleSubmit} color="primary" variant="contained">
-            {isLoading ? <Loading size={25} color="secondary" /> : 'Save'}
+            {isLoading ? <Loading color="secondary" /> : 'Save'}
           </Button>
 
           {errorMsg && (
