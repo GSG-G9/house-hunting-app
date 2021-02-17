@@ -55,7 +55,7 @@ function DetailsHouse() {
     return () => {
       isCurrent = false;
     };
-  }, []);
+  }, [houseId]);
 
   const addToFavorite = async () => {
     try {
