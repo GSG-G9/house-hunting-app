@@ -5,14 +5,15 @@ import AuthContext from './AuthContext';
 
 function AuthProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState();
   const [authLoading, setAuthLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
+        setError(null);
         setAuthLoading(true);
-        await Axios('api/v1/is-auth');
+        await Axios('/api/v1/is-auth');
         setIsAuth(true);
         setAuthLoading(false);
       } catch (err) {
@@ -20,7 +21,9 @@ function AuthProvider({ children }) {
         if (err.response.status === 401) {
           setIsAuth(false);
         } else {
-          setError('internal server error');
+          setError(
+            err.response ? err.response.data.message : 'internal server error'
+          );
         }
       }
     })();
@@ -33,6 +36,6 @@ function AuthProvider({ children }) {
   );
 }
 AuthProvider.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.func.isRequired,
 };
 export default AuthProvider;
