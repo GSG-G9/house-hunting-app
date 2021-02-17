@@ -4,6 +4,7 @@ const updateUser = require('./updateUser');
 const getUserData = require('./getUserData');
 const getUserHouses = require('./getUserHouses');
 const deleteUser = require('./deleteUser');
+const updateUserImageData = require('./updateUserImageData');
 
 module.exports = {
   checkUserByEmail,
@@ -12,4 +13,5 @@ module.exports = {
   updateUser,
   getUserHouses,
   deleteUser,
+  updateUserImageData,
 };

@@ -10,8 +10,8 @@ const app = express();
 
 app.set('PORT', process.env.PORT || 8080);
 const middleware = [
-  express.json(),
-  express.urlencoded({ extended: false }),
+  express.json({ limit: '50mb' }),
+  express.urlencoded({ extended: false, limit: '50mb' }),
   cookieParser(),
   express.static(join(__dirname, '..', 'client', 'build')),
   logger('dev'),
