@@ -64,7 +64,7 @@ export default function CardComponent({ house }) {
       setIsLoading(false);
     } catch (err) {
       setOpen(true);
-      setIsLoading(true);
+      setIsLoading(false);
       setError(err.response ? err.response.data.message : 'internal error');
     }
   };
