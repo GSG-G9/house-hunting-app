@@ -5,8 +5,8 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import Alert from '@material-ui/lab/Alert';
 
 import useStyles from './style';
@@ -16,21 +16,32 @@ function TableComponent({ houses, handelDeleteHouse }) {
   const classes = useStyles();
   return (
     <Table>
+      <TableHead className={classes.tableHead}>
+        <TableRow>
+          <TableCell>#</TableCell>
+          <TableCell align="center">Category</TableCell>
+          <TableCell align="center">Area</TableCell>
+          <TableCell align="center">Price</TableCell>
+          <TableCell align="center">#Room</TableCell>
+          <TableCell align="center">#Bathroom</TableCell>
+          <TableCell align="center"> Action </TableCell>
+        </TableRow>
+      </TableHead>
       <TableBody>
         {houses.length ? (
-          houses.map((house) => (
+          houses.map((house, idx) => (
             <TableRow align="right">
+              <TableCell>{idx}</TableCell>
               <TableCell>
-                <img className={classes.img} src={house.image} alt="house " />
+                {house.category.slice(0, 1).toUpperCase() +
+                  house.category.slice(1)}
               </TableCell>
               <TableCell>
-                {house.area} m <sup>2</sup>
+                {house.area} m<sup>2</sup>
               </TableCell>
               <TableCell>{house.price} $ </TableCell>
-              <TableCell>{house.created_at.split(' ')[0]}</TableCell>
-              <TableCell>
-                <EditIcon color="primary" />
-              </TableCell>
+              <TableCell>{house.room_num}</TableCell>
+              <TableCell>{house.bathroom_num}</TableCell>
               <TableCell>
                 <Button
                   onClick={() => {
@@ -44,7 +55,9 @@ function TableComponent({ houses, handelDeleteHouse }) {
             </TableRow>
           ))
         ) : (
-          <Alert severity="info">no houses added yet </Alert>
+          <Alert severity="info" className={classes.alertMsg}>
+            No houses added yet{' '}
+          </Alert>
         )}
       </TableBody>
     </Table>
