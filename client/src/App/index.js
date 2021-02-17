@@ -58,7 +58,9 @@ function App() {
             <PublicRoute path={SIGNUP_PAGE} component={Register} />
             <PrivateRoute path={PROFILE} component={Profile} />
             <PrivateRoute path={FAVORITE} component={Favorite} />
-            <Route component={NotFound} />
+            <Route>
+              <NotFound />
+            </Route>
           </Switch>
         </Layout>
       </AuthProvider>
