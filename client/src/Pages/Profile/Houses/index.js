@@ -67,11 +67,7 @@ function Houses() {
       {error ? (
         <Alert severity="error">{error}</Alert>
       ) : (
-        <Table
-          houses={houses}
-          handelDeleteHouse={handleDelete}
-          tableType="houses"
-        />
+        <Table houses={houses} handelDeleteHouse={handleDelete} />
       )}
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">

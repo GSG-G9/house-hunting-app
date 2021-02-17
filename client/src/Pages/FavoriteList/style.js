@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tableContainer: {
-    border: '1px solid #c7c7c7',
     marginBlock: '4em',
     width: '80%',
     marginInline: '4em',
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '7px 16px',
     },
     '& tbody tr:hover': {
-      backgroundColor: '#E5E5E5',
+      backgroundColor: '#F0F0F0',
     },
     '& tbody tr:last-child': {
       border: 'none',

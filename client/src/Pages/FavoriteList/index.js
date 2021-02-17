@@ -4,10 +4,9 @@ import Axios from 'axios';
 import { Container, Typography, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
-import Table from '../../Components/Table';
+import FavTable from '../../Components/FavTable';
 import useStyles from './style';
 import Loading from '../../Components/Loading';
-import { FAVORITE } from '../../Utils/routes.constant';
 
 function Favorite() {
   const classes = useStyles();
@@ -32,7 +31,7 @@ function Favorite() {
         setIsLoading(true);
         const {
           data: { data },
-        } = await Axios.get(`api/v1/${FAVORITE}`);
+        } = await Axios.get(`api/v1/favorite`);
         if (isCurrent) {
           setIsLoading(false);
           setHouses(data);
@@ -50,7 +49,7 @@ function Favorite() {
   const handleDelete = async (id) => {
     try {
       setRefresh(false);
-      await Axios.delete(`/api/v1/${FAVORITE}/${id}`);
+      await Axios.delete(`/api/v1/favorite/${id}`);
       setRefresh(true);
       setOpen(true);
     } catch (err) {
@@ -69,11 +68,7 @@ function Favorite() {
       ) : (
         <>
           <div className={classes.tableContainer}>
-            <Table
-              houses={houses}
-              handelDeleteHouse={handleDelete}
-              tableType="favorite"
-            />
+            <FavTable houses={houses} handelDeleteHouse={handleDelete} />
           </div>
           <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
