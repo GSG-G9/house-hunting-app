@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { PropTypes } from 'prop-types';
 import Axios from 'axios';
@@ -17,6 +17,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import AuthContext from '../../Context/AuthContext';
 
 import { HOUSES } from '../../Utils/routes.constant';
 
@@ -25,6 +26,8 @@ import useStyles from './style';
 const { shape, string, number } = PropTypes;
 
 export default function CardComponent({ house }) {
+  const { isAuth } = useContext(AuthContext);
+
   const classes = useStyles();
 
   const {
@@ -127,13 +130,15 @@ export default function CardComponent({ house }) {
           more details
         </Link>
         <>
-          <Button>
-            <FavoriteBorderIcon
-              className={classes.favIcon}
-              id={houseId}
-              onClick={addedToFavorite}
-            />
-          </Button>
+          {isAuth && (
+            <Button>
+              <FavoriteBorderIcon
+                className={classes.favIcon}
+                id={houseId}
+                onClick={addedToFavorite}
+              />
+            </Button>
+          )}
           <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
               {error || favorite}

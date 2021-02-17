@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { Container, Grid, Typography, Snackbar } from '@material-ui/core';
@@ -15,8 +15,10 @@ import { HOME_PAGE } from '../../Utils/routes.constant';
 import RelatedHouse from './RelatedHouse';
 import { fakeImage } from '../../Utils/staticData';
 import Loading from '../../Components/Loading';
+import AuthContext from '../../Context/AuthContext';
 
 function DetailsHouse() {
+  const { isAuth } = useContext(AuthContext);
   const classes = useStyles();
   const [house, setHouse] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -134,14 +136,16 @@ function DetailsHouse() {
                 </Typography>
               </div>
               <div className={classes.descBtn}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.favriteBtn}
-                  onClick={addedToFavorite}
-                >
-                  <Add /> favorite
-                </Button>
+                {isAuth && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.favriteBtn}
+                    onClick={addedToFavorite}
+                  >
+                    <Add /> favorite
+                  </Button>
+                )}
                 <Link to={`${HOME_PAGE}`} className={classes.backLink}>
                   Back
                 </Link>
