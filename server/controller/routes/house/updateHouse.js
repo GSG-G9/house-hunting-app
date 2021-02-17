@@ -5,7 +5,6 @@ const updateHouseController = async (req, res, next) => {
     const { houseId } = req.params;
     const { userId } = req;
     await updateHouse({ houseId, userId, ...req.body });
-    console.log(req.body, 5);
     return res.json({
       status: 200,
       message: 'updated successfully',
