@@ -15,6 +15,7 @@ function UserInfo({ getUserName }) {
   const classes = useStyles();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -38,7 +39,7 @@ function UserInfo({ getUserName }) {
       isCurrent = false;
       setLoading(false);
     };
-  }, []);
+  }, [refresh]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,7 +57,7 @@ function UserInfo({ getUserName }) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <UserAvatar />
+        <UserAvatar setRefresh={setRefresh} setOpen={setOpen} />
       </Modal>
       <Typography variant="h2">User Information</Typography>
       {loading ? (

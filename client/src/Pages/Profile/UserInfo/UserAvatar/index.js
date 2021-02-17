@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Axios from 'axios';
 import { Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -6,7 +7,7 @@ import { Alert } from '@material-ui/lab';
 import Button from '../../../../Components/Button';
 import useStyles from './style';
 
-export default function index() {
+function UserAvatar({ setRefresh, setOpen }) {
   const classes = useStyles();
   const [previewSource, setPreviewSource] = useState();
   // eslint-disable-next-line no-unused-vars
@@ -30,9 +31,11 @@ export default function index() {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-      await Axios.post('/api/v1/upload', { data: base64EncodedImage });
+      await Axios.patch('/api/v1/upload', { data: base64EncodedImage });
       setInputFileState('');
       setPreviewSource('');
+      setRefresh(true);
+      setOpen(false);
       setErrorMsg('Image uploaded successfully');
     } catch (err) {
       setErrorMsg('Something went wrong!');
@@ -85,3 +88,10 @@ export default function index() {
     </div>
   );
 }
+
+UserAvatar.propTypes = {
+  setRefresh: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired,
+};
+
+export default UserAvatar;
