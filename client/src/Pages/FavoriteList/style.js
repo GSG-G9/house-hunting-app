@@ -6,6 +6,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    margin: '0 auto',
+    minHeight: '600px',
   },
   title: {
     fontSize: '22px',
@@ -26,6 +28,32 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     alignSelf: 'center',
+  },
+  dataGrid: {
+    width: '100%',
+  },
+  trashIcon: {
+    color: '#757575',
+    cursor: 'pointer',
+    transition: 'all 0.25s',
+    '&:hover': {
+      color: '#E52515',
+      transition: 'all 0.25s',
+    },
+  },
+  tableContainer: {
+    marginBlock: '4em',
+    width: '80%',
+    marginInline: '4em',
+    '& td': {
+      padding: '7px 16px',
+    },
+    '& tbody tr:hover': {
+      backgroundColor: '#F0F0F0',
+    },
+    '& tbody tr:last-child': {
+      border: 'none',
+    },
   },
 }));
 
