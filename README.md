@@ -72,7 +72,7 @@ As a user, I can see all available houses that able to rent, search to find hous
 2. Add the following in it **This step is so important!!**
 
 ```
-  SECRET_KEY='AB#%&HD'
+SECRET_KEY=AB#%&HD
 
 DATABASE_URL=postgres://team2:0000@localhost:5432/househunting
 
