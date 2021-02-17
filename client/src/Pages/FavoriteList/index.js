@@ -37,7 +37,7 @@ function Favorite() {
           setHouses(data);
         }
       } catch (err) {
-        setErrorMsg(err.response.data.messagee);
+        setErrorMsg(err.response.data.message);
         setIsLoading(false);
       }
     })();
