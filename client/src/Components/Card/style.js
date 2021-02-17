@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     '& img': {
       maxHeight: '200px',
       minWidth: '100%',
+      objectFit: 'cover',
     },
   },
   cardAction: {
