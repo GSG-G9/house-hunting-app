@@ -29,6 +29,7 @@ import Favorite from '../Pages/FavoriteList';
 import Profile from '../Pages/Profile';
 import ContactUs from '../Pages/ContactUs';
 import AboutUs from '../Pages/AboutUs';
+import NotFound from '../Pages/NotFound';
 import { PrivateRoute, PublicRoute } from '../Components/Route';
 
 function App() {
@@ -57,7 +58,9 @@ function App() {
             <PublicRoute path={SIGNUP_PAGE} component={Register} />
             <PrivateRoute path={PROFILE} component={Profile} />
             <PrivateRoute path={FAVORITE} component={Favorite} />
-            <Route />
+            <Route>
+              <NotFound />
+            </Route>
           </Switch>
         </Layout>
       </AuthProvider>
