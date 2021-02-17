@@ -65,8 +65,10 @@ function UserInfo({ getUserName }) {
         <>
           <Grid lg="false" justify="center">
             <div className={classes.avatarBox}>
-              <Avatar className={classes.avatar}>
-                {user.username && user.username.slice(0, 1).toUpperCase()}
+              <Avatar className={classes.avatar} src={user.image && user.image}>
+                {!user.image &&
+                  user.username &&
+                  user.username.slice(0, 1).toUpperCase()}
               </Avatar>
               <PermMediaIcon
                 className={classes.avatarBtn}

@@ -15,6 +15,6 @@ router.get('/users', getUser);
 router.get('/logout', logoutController);
 router.patch('/users', updateUserValidation, updateUserController);
 router.delete('/users', deleteUserController);
-router.patch('/users/avatar', updateUserImage);
+router.patch('/upload', updateUserImage);
 
 module.exports = router;

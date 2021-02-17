@@ -30,7 +30,7 @@ export default function index() {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-      await Axios.post('/api/v1/upload', { data: base64EncodedImage });
+      await Axios.patch('/api/v1/upload', { data: base64EncodedImage });
       setInputFileState('');
       setPreviewSource('');
       setErrorMsg('Image uploaded successfully');
