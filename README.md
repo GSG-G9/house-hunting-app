@@ -34,6 +34,11 @@ As a user, I can see all available houses that able to rent, search to find hous
 [Figma Link](https://www.figma.com/file/ikAAUREYQFA0GXxGEUYZRf/home-hunting?node-id=92%3A240)
 ![prototype](https://i.imgur.com/wfKGoIT.png)
 
+
+## DATABASE Schema :file_cabinet:
+[dbdigram](https://dbdiagram.io/d/5ee9bcf79ea313663b3aa9ed)
+![dbimage](https://i.imgur.com/1lve6is.png)
+
 ## Installation Guide :
 
 1. Clone this repo.
@@ -102,10 +107,6 @@ TEST_DB_URL=postgres://team2:123456@localhost:5432/househunting_test
 ```
     npm test
 ```
-
-## DATABASE Schema :file_cabinet:
-[dbdigram](https://dbdiagram.io/d/5ee9bcf79ea313663b3aa9ed)
-![dbimage](https://i.imgur.com/1lve6is.png)
 
 ## Technologies :computer:
 
