@@ -122,7 +122,7 @@ TEST_DB_URL=postgres://team2:123456@localhost:5432/househunting_test
 - Express.
 
 #### Database Technology:
-- postgress sql.
+- PostgreSQL.
 
 ## Stretch Goals :goal_net:
 * The users can complete the contract and rent the apartment
