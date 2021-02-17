@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     width: '80%',
     padding: '0',
     border: '1px solid #c7c7c7',
+    minHeight: '600px',
   },
   alertBox: {
     marginBlock: '3em',

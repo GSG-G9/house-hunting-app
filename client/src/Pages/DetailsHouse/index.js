@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Container, Grid, Typography, Snackbar } from '@material-ui/core';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
@@ -21,7 +21,23 @@ function DetailsHouse() {
   const [house, setHouse] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
+  const [favHouseError, setFavHouseError] = useState();
+  const [favorite, setFavorite] = useState();
+  const [open, setOpen] = useState(false);
+
   const { houseId } = useParams();
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const clear = () => {
+    setFavorite();
+    setErrorMsg(null);
+  };
 
   const fetchingData = async (isCurrent) => {
     try {
@@ -37,6 +53,22 @@ function DetailsHouse() {
     }
   };
 
+  const addedToFavorite = async () => {
+    try {
+      const { data } = await Axios.get(`/api/v1/favorite/${houseId}`);
+      clear();
+      setOpen(true);
+      setFavorite(data.message);
+    } catch (err) {
+      setOpen(true);
+      if (err.response.status === 401) {
+        setFavHouseError('You should sign in first!!');
+      } else {
+        setFavHouseError(err.response.data.message);
+      }
+    }
+  };
+
   useEffect(() => {
     let isCurrent = true;
     fetchingData(isCurrent);
@@ -49,13 +81,21 @@ function DetailsHouse() {
   return (
     <Container maxWidth="lg" className={classes.root}>
       {isLoading && <Loading />}
-      {errorMsg.message ? (
+      {errorMsg ? (
         <div className={classes.alertBox}>
-          <Alert severity="error">{errorMsg.message}</Alert>
+          <Alert severity="error">{errorMsg}</Alert>
         </div>
       ) : (
         <>
           <Grid container>
+            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+              <Alert
+                onClose={handleClose}
+                severity={favHouseError ? 'error' : 'success'}
+              >
+                {favHouseError || favorite}
+              </Alert>
+            </Snackbar>
             <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
               <div className={classes.imageBox}>
                 <img src={house.image || fakeImage} alt="house" />
@@ -98,6 +138,7 @@ function DetailsHouse() {
                   variant="contained"
                   color="primary"
                   className={classes.favriteBtn}
+                  onClick={addedToFavorite}
                 >
                   <Add /> favorite
                 </Button>
