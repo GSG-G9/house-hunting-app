@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import { Typography, Avatar, Grid, Paper } from '@material-ui/core';
+import { Typography, Avatar, Grid, Paper, Modal } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import PermMediaIcon from '@material-ui/icons/PermMedia';
 
 import Button from '../../../Components/Button';
+import UserAvatar from './UserAvatar';
 import Loading from '../../../Components/Loading';
 
 import useStyles from './style';
@@ -13,7 +15,9 @@ function UserInfo({ getUserName }) {
   const classes = useStyles();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     let isCurrent = true;
@@ -35,19 +39,41 @@ function UserInfo({ getUserName }) {
       isCurrent = false;
       setLoading(false);
     };
-  }, []);
+  }, [refresh]);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <UserAvatar setRefresh={setRefresh} setOpen={setOpen} />
+      </Modal>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
         <Loading className={classes.spin} />
       ) : (
         <>
-          <Grid lg="12" justify="center">
-            <Avatar className={classes.avatar}>
-              {user.username && user.username.slice(0, 1).toUpperCase()}
-            </Avatar>
+          <Grid lg="false" justify="center">
+            <div className={classes.avatarBox}>
+              <Avatar className={classes.avatar}>
+                {user.username && user.username.slice(0, 1).toUpperCase()}
+              </Avatar>
+              <PermMediaIcon
+                className={classes.avatarBtn}
+                onClick={handleOpen}
+              />
+            </div>
           </Grid>
           <Grid justify="center">
             {errorMsg ? (
