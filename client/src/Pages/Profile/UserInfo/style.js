@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     border: '1px solid #c7c7c7',
     borderRadius: '5px',
+    height: 600,
     '& h2': {
       fontSize: '2.2em',
       padding: '2em 1em',
@@ -78,6 +79,13 @@ const useStyles = makeStyles((theme) => ({
       color: '#F5F5F5',
       transition: 'all 0.25s',
     },
+  },
+  spin: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 100,
   },
 }));
 

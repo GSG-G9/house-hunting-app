@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import {
-  Typography,
-  Avatar,
-  Grid,
-  Paper,
-  CircularProgress,
-  Modal,
-} from '@material-ui/core';
+import { Typography, Avatar, Grid, Paper, Modal } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import PermMediaIcon from '@material-ui/icons/PermMedia';
 
 import Button from '../../../Components/Button';
 import UserAvatar from './UserAvatar';
+import Loading from '../../../Components/Loading';
 
 import useStyles from './style';
 
@@ -66,7 +60,7 @@ function UserInfo({ getUserName }) {
       </Modal>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
-        <CircularProgress />
+        <Loading className={classes.spin} />
       ) : (
         <>
           <Grid lg="false" justify="center">
@@ -120,24 +114,24 @@ function UserInfo({ getUserName }) {
               </Paper>
             )}
           </Grid>
+          <div className={classes.btnsBox}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.editBtn}
+            >
+              Edit Information
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.deleteBtn}
+            >
+              Delete Information
+            </Button>
+          </div>
         </>
       )}
-      <div className={classes.btnsBox}>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.editBtn}
-        >
-          Edit Information
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          className={classes.deleteBtn}
-        >
-          Delete Information
-        </Button>
-      </div>
     </div>
   );
 }
