@@ -62,8 +62,9 @@ function UserAvatar({ setRefresh, setOpen }) {
       <div className={classes.formContainer}>
         <form className={classes.avtarForm} onSubmit={handleSubmitImage}>
           <label htmlFor="file-input-select">
-            Chose file
+            Choose file
             <input
+              accept="image/*"
               type="file"
               name="image"
               id="file-input-select"
