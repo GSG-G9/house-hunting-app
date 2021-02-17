@@ -132,8 +132,7 @@ function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
               'Save'
             )}
           </Button>
-          <br />
-          <br />
+
           {errorMsg && (
             <Alert className={classes.alert} severity="error">
               {errorMsg}
