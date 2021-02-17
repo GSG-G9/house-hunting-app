@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import {
-  Typography,
-  Avatar,
-  Grid,
-  Paper,
-  CircularProgress,
-} from '@material-ui/core';
+import { Typography, Avatar, Grid, Paper } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 import Button from '../../../Components/Button';
+import Loading from '../../../Components/Loading';
 
 import useStyles from './style';
 
@@ -46,7 +41,7 @@ function UserInfo({ getUserName }) {
     <div className={classes.root}>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
-        <CircularProgress />
+        <Loading className={classes.spin} />
       ) : (
         <>
           <Grid lg="12" justify="center">
@@ -94,24 +89,24 @@ function UserInfo({ getUserName }) {
               </Paper>
             )}
           </Grid>
+          <div className={classes.btnsBox}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.editBtn}
+            >
+              Edit Information
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.deleteBtn}
+            >
+              Delete Information
+            </Button>
+          </div>
         </>
       )}
-      <div className={classes.btnsBox}>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.editBtn}
-        >
-          Edit Information
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          className={classes.deleteBtn}
-        >
-          Delete Information
-        </Button>
-      </div>
     </div>
   );
 }

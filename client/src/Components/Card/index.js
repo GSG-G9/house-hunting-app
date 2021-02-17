@@ -18,7 +18,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-import { fakeImage } from '../../Utils/staticData';
 import { HOUSES } from '../../Utils/routes.constant';
 
 import useStyles from './style';
@@ -30,7 +29,7 @@ export default function CardComponent({ house }) {
 
   const {
     id: houseId,
-    img,
+    image,
     title,
     description,
     category,
@@ -77,7 +76,7 @@ export default function CardComponent({ house }) {
     <Card className={classes.root} elevation="0">
       <CardActionArea>
         <CardMedia className={classes.media}>
-          <img src={img || fakeImage} alt="house" />
+          <img src={image} alt="house" />
         </CardMedia>
         <CardContent>
           <div className={classes.cardTitle}>
@@ -96,10 +95,20 @@ export default function CardComponent({ house }) {
           >
             {description.split(' ').splice(0, 10).join(' ')}
           </Typography>
-          <Typography component="p">
-            house type: {category.toUpperCase()}
-          </Typography>
-          <Typography component="p">area: {area}</Typography>
+          <div className={classes.houseType}>
+            <Typography component="p">
+              House Type:{' '}
+              <span className={classes.blueText}>
+                {category.slice(0, 1).toUpperCase() + category.slice(1)}
+              </span>
+            </Typography>
+            <Typography component="p">
+              Area:{' '}
+              <span className={classes.blueText}>
+                {area} m<sup>2</sup>
+              </span>
+            </Typography>
+          </div>
           <div className={classes.cardDetails}>
             <Typography variant="h6">${price}</Typography>
             <div className={classes.iconBox}>

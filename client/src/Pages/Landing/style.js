@@ -8,7 +8,12 @@ const useStyles = makeStyles((theme) => ({
   header: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: 10,
+    alignItems: 'flex-end',
+    paddingBottom: '5em',
+    minHeight: '450px',
+    backgroundImage: 'url("./image/hp-hero-desktop.webp")',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
   },
   housesSection: {
     paddingTop: '2em',
@@ -33,6 +38,15 @@ const useStyles = makeStyles((theme) => ({
   },
   alertContainer: {
     marginTop: '2em',
+  },
+  searchBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '50%',
+    height: '100px',
+    borderRadius: '4px',
+    backgroundColor: '#15151515',
   },
 }));
 

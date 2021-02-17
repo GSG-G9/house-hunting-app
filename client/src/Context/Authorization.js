@@ -5,6 +5,7 @@ import AuthContext from './AuthContext';
 
 function AuthProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
+  const [error, setError] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
 
   useEffect(() => {
@@ -14,15 +15,19 @@ function AuthProvider({ children }) {
         await Axios('api/v1/is-auth');
         setIsAuth(true);
         setAuthLoading(false);
-      } catch (error) {
+      } catch (err) {
         setAuthLoading(false);
-        setIsAuth(false);
+        if (err.response.status === 401) {
+          setIsAuth(false);
+        } else {
+          setError('internal server error');
+        }
       }
     })();
   }, [isAuth]);
 
   return (
-    <AuthContext.Provider value={{ setIsAuth, isAuth, authLoading }}>
+    <AuthContext.Provider value={{ setIsAuth, isAuth, authLoading, error }}>
       {children}
     </AuthContext.Provider>
   );

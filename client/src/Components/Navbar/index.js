@@ -6,13 +6,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
 import Button from '../Button';
 import LinkItem from '../LinkItem';
 import useStyles from './style';
+import Loading from '../Loading';
+
 import {
   HOME_PAGE,
   LOGIN_PAGE,
@@ -99,11 +100,7 @@ function Navbar() {
                 color="secondary"
                 onClick={handleClick}
               >
-                {isLoading ? (
-                  <CircularProgress size={25} color="secondary" />
-                ) : (
-                  'LogOut'
-                )}
+                {isLoading ? <Loading /> : 'LogOut'}
               </Button>
             </>
           )}
