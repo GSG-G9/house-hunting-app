@@ -7,6 +7,9 @@ const useStyles = makeStyles(() => ({
   container: {
     marginTop: 60,
   },
+  search: {
+    marginTop: 20,
+  },
 }));
 
 export default useStyles;

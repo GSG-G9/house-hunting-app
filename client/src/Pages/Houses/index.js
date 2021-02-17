@@ -89,9 +89,12 @@ function SearchPage() {
 
   return (
     <Container maxWidth="lg" className={classes.header}>
-      <Search onClick={handleClick} value={search} onChange={handleChange} />
-      {loading && <Loading />}
-
+      <Search
+        className={classes.search}
+        onClick={handleClick}
+        value={search}
+        onChange={handleChange}
+      />
       <Filter
         onChange={handleChange}
         handlePrice={handlePrice}
@@ -100,6 +103,8 @@ function SearchPage() {
         roomValue={rooms}
         locationValue={location}
       />
+      {loading && <Loading />}
+
       {error ? (
         <Alert severity="error"> Internal server Error : 500 </Alert>
       ) : (
