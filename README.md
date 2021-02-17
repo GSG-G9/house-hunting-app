@@ -2,27 +2,37 @@
 house-hunting App that facilitates to access and rent available homes
 
 ## Live demo :tv: 
-[Heroku link , Click here to visit our app](https://git.heroku.com/house-hunting-app.git)
+[Heroku link , Click here to visit our app](https://house-hunting-app.herokuapp.com/)
 
 use these credientials: <br>
 email: Conrad_Rosenbaum38@gmail.com
 password: 123456
-
-## team
-
-### Lead Mentor :sunglasses:
-* Mariam Isa
-
-### Team Members :busts_in_silhouette:
-* Yasmeen Attallah 
-* Adham Haisami
-* Muhammed Abadsa 
 
 ## Main problem :new_moon_with_face:
 Most of those who intend to get married or who are looking for a house find it very difficult to search and wander around to several areas to find a house that suits them at a price according to their capabilities.
 
 ## Solution :bulb:
 Build a house-hunting application that facilitates users to rent houses, most of who looking for a house faced some difficulties, help to choose a suitable house.
+
+## User Stories :open_book:
+***As a renter and rented user:***
+* I can Sign up into the app 
+* I can log in into the app 
+* I can see all available houses to rent
+* I can see specific information about any house
+* I want to search by different locations, prices and the number of room in the house
+* I can add houses to my favourite list
+* I need to create my own profile
+* I need control panel to manage my houses
+
+## User Journey :airplane:
+
+As a user, I can see all available houses that able to rent, search to find houses and I can add any liked house to my favorite list and see the differences between two houses from my favorite list, inside my profile I have my information and control panel for my own houses available to rent.
+
+
+## Prototype :art:
+[Figma Link](https://www.figma.com/file/ikAAUREYQFA0GXxGEUYZRf/home-hunting?node-id=92%3A240)
+![prototype](https://i.imgur.com/wfKGoIT.png)
 
 ## Installation Guide :
 
@@ -97,27 +107,6 @@ TEST_DB_URL=postgres://team2:123456@localhost:5432/househunting_test
 [dbdigram](https://dbdiagram.io/d/5ee9bcf79ea313663b3aa9ed)
 ![dbimage](https://i.imgur.com/1lve6is.png)
 
-## User Stories :open_book:
-***As a renter and rented user:***
-* I can Sign up into the app 
-* I can log in into the app 
-* I can see all available houses to rent
-* I can see specific information about any house
-* I want to search by different locations, prices and the number of room in the house
-* I can add houses to my favourite list
-* I need to create my own profile
-* I need to compare between two houses
-* I need control panel to manage my houses
-
-## User Journey :airplane:
-
-As a user, I can see all available houses that able to rent, search to find houses and I can add any liked house to my favorite list and compare the differences between two houses from my favorite list, inside my profile I have my information and control panel for my own houses available to rent.
-
-
-## Prototype :art:
-[Figma Link](https://www.figma.com/file/ikAAUREYQFA0GXxGEUYZRf/home-hunting?node-id=92%3A240)
-![prototype](https://i.imgur.com/wfKGoIT.png)
-
 ## Technologies :computer:
 
 #### Front-end Technology:
@@ -142,6 +131,17 @@ As a user, I can see all available houses that able to rent, search to find hous
     * admin can view, edit, delete all users 
     * admin can view, edit, delete all houses 
 * create chat that allows users to contact and negotiate
+
+
+## team
+
+### Lead Mentor :sunglasses:
+* Mariam Isa
+
+### Team Members :busts_in_silhouette:
+* Yasmeen Attallah 
+* Adham Haisami
+* Muhammed Abadsa 
 
 
 ## Resources :mag:
