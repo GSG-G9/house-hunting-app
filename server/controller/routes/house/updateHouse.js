@@ -3,31 +3,9 @@ const { updateHouse } = require('../../../database/queries/house');
 const updateHouseController = async (req, res, next) => {
   try {
     const { houseId } = req.params;
-    const {
-      roomNo,
-      category,
-      price,
-      description,
-      title,
-      locationId,
-      bathNo,
-      area,
-      image,
-    } = req.body;
     const { userId } = req;
-    await updateHouse({
-      roomNo,
-      category,
-      price,
-      description,
-      title,
-      locationId,
-      bathNo,
-      area,
-      image,
-      userId,
-      houseId,
-    });
+    await updateHouse({ houseId, userId, ...req.body });
+    console.log(req.body, 5);
     return res.json({
       status: 200,
       message: 'updated successfully',
