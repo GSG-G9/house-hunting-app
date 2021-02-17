@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     '& img': {
       maxHeight: '200px',
       minWidth: '100%',
+      objectFit: 'cover',
     },
   },
   cardAction: {
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     '& h6': {
       fontWeight: 'bold',
     },
@@ -82,6 +83,21 @@ const useStyles = makeStyles((theme) => ({
   favIcon: {
     color: '#960C0C',
     cursor: 'pointer',
+  },
+  houseType: {
+    paddingBlock: '10px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '& p': {
+      fontWeight: 'bold',
+      color: theme.palette.primary.main,
+    },
+  },
+  blueText: {
+    fontWeight: 'normal',
+    color: theme.palette.primary.light,
+    fontSize: '1em',
   },
 }));
 export default useStyles;

@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import {
-  Container,
-  Divider,
-  Typography,
-  CircularProgress,
-} from '@material-ui/core';
+import { Container, Divider, Typography } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 import { HOUSES } from '../../Utils/routes.constant';
 import CardContainer from '../../Components/CardContainer';
 import Search from '../../Components/SearchBar';
+import Loading from '../../Components/Loading';
 
 import useStyles from './style';
 
@@ -61,49 +57,53 @@ function Landing() {
   }, []);
 
   return (
-    <Container maxWidth="lg" className={classes.root}>
-      {errorMsg.message ? (
-        <div className={classes.alertContainer}>
-          <Alert severity="error">
-            <AlertTitle>Error</AlertTitle>
-            {errorMsg.message}
-          </Alert>
+    <>
+      <div className={classes.header}>
+        <div className={classes.searchBox}>
+          <Search onClick={handleSearchBar} />
         </div>
-      ) : (
-        <>
-          <div className={classes.header}>
-            <Search onClick={handleSearchBar} />
+      </div>
+      <Container maxWidth="lg" className={classes.root}>
+        {errorMsg.message ? (
+          <div className={classes.alertContainer}>
+            <Alert severity="error">
+              <AlertTitle>Error</AlertTitle>
+              {errorMsg.message}
+            </Alert>
           </div>
-          <div className={classes.housesSection}>
-            <Typography variant="h2" className={classes.sectionTitle}>
-              Top-rated
-            </Typography>
-            {loading ? (
-              <div className={classes.spinner}>
-                <CircularProgress color="primary" />
-              </div>
-            ) : (
-              <CardContainer
-                houses={houses.sort((a, b) => a.rating - b.rating)}
-              />
-            )}
-          </div>
-          <Divider className={classes.divider} />
-          <div className={classes.housesSection}>
-            <Typography variant="h2" className={classes.sectionTitle}>
-              Newest
-            </Typography>
-            {loading ? (
-              <div className={classes.spinner}>
-                <CircularProgress color="primary" />
-              </div>
-            ) : (
-              <CardContainer houses={newHouses} />
-            )}
-          </div>
-        </>
-      )}
-    </Container>
+        ) : (
+          <>
+            <div className={classes.housesSection}>
+              <Typography variant="h2" className={classes.sectionTitle}>
+                Top-rated
+              </Typography>
+              {loading ? (
+                <div className={classes.spinner}>
+                  <Loading />
+                </div>
+              ) : (
+                <CardContainer
+                  houses={houses.sort((a, b) => a.rating - b.rating)}
+                />
+              )}
+            </div>
+            <Divider className={classes.divider} />
+            <div className={classes.housesSection}>
+              <Typography variant="h2" className={classes.sectionTitle}>
+                Newest
+              </Typography>
+              {loading ? (
+                <div className={classes.spinner}>
+                  <Loading />
+                </div>
+              ) : (
+                <CardContainer houses={newHouses} />
+              )}
+            </div>
+          </>
+        )}
+      </Container>
+    </>
   );
 }
 

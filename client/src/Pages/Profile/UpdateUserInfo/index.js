@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 
 import { PropTypes } from 'prop-types';
-
 import Axios from 'axios';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 
 import Input from '../../../Components/Input';
 import Button from '../../../Components/Button';
 import validationSchema from '../../../Utils/validations/updateUser';
-import useStyles from './style';
+import Loading from '../../../Components/Loading';
 
-function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
+import useStyles from '../UserInfo/style';
+
+function UpdateUser({
+  setUpdateUser,
+  handleClickAlert,
+  handleCloseAlert,
+  setErr,
+}) {
   const classes = useStyles();
   const [username, setUsername] = useState();
   const [mobile, setMobile] = useState();
@@ -30,7 +36,11 @@ function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-
+  const clear = () => {
+    setUsername();
+    setMobile();
+    setAddress();
+  };
   const handleChange = ({ target }) => {
     const { value, name } = target;
     switch (name) {
@@ -61,8 +71,17 @@ function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
       setOpenDialog(false);
       handleClickAlert();
     } catch (err) {
-      setErrorMsg(err.response ? err.response.data.message : err.errors[0]);
-      setIsLoading(false);
+      if (err.errors) {
+        setErrorMsg(err.errors[0]);
+        setIsLoading(false);
+      } else {
+        setErr(
+          err.response ? err.response.data.message : 'Some error happened'
+        );
+        setIsLoading(false);
+        clear();
+        handleCloseDialog();
+      }
     }
   };
   return (
@@ -110,7 +129,7 @@ function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
             id="mobile"
             name="mobile"
             label="mobile"
-            type="number"
+            type="text"
             fullWidth
             value={mobile}
             onChange={handleChange}
@@ -126,11 +145,7 @@ function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
           </Button>
 
           <Button onClick={handleSubmit} color="primary" variant="contained">
-            {isLoading ? (
-              <CircularProgress size={25} color="secondary" />
-            ) : (
-              'Save'
-            )}
+            {isLoading ? <Loading size={25} color="secondary" /> : 'Save'}
           </Button>
 
           {errorMsg && (
@@ -148,6 +163,7 @@ UpdateUser.propTypes = {
   setUpdateUser: PropTypes.func.isRequired,
   handleClickAlert: PropTypes.func.isRequired,
   handleCloseAlert: PropTypes.func.isRequired,
+  setErr: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     username: PropTypes.string,
     mobile: PropTypes.number,

@@ -2,20 +2,15 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import {
-  Typography,
-  Avatar,
-  Grid,
-  Paper,
-  CircularProgress,
-} from '@material-ui/core';
+import { Typography, Avatar, Grid } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import Snackbar from '@material-ui/core/Snackbar';
 
 import Button from '../../../Components/Button';
 import UpdateUser from '../UpdateUserInfo';
 import { HOME_PAGE } from '../../../Utils/routes.constant';
-
+import Loading from '../../../Components/Loading';
+import ViewUserInfo from './ViewUserinfo';
 import useStyles from './style';
 import AuthContext from '../../../Context/AuthContext';
 
@@ -76,7 +71,7 @@ function UserInfo({ getUserName }) {
     <div className={classes.root}>
       <Typography variant="h2">User Information</Typography>
       {loading ? (
-        <CircularProgress />
+        <Loading className={classes.spin} />
       ) : (
         <>
           <Grid lg="12" justify="center">
@@ -88,40 +83,7 @@ function UserInfo({ getUserName }) {
             {errorMsg ? (
               <Alert variant="error">{errorMsg}</Alert>
             ) : (
-              <Paper elevation="0" className={classes.userData}>
-                <div className={classes.userDataField}>
-                  <Typography className={classes.userDataFieldLabel}>
-                    Username:{' '}
-                  </Typography>
-                  <Typography className={classes.userDataFieldValue}>
-                    {user.username}
-                  </Typography>
-                </div>
-                <div className={classes.userDataField}>
-                  <Typography className={classes.userDataFieldLabel}>
-                    Email:{' '}
-                  </Typography>
-                  <Typography className={classes.userDataFieldValue}>
-                    {user.email}
-                  </Typography>
-                </div>
-                <div className={classes.userDataField}>
-                  <Typography className={classes.userDataFieldLabel}>
-                    Mobile:{' '}
-                  </Typography>
-                  <Typography className={classes.userDataFieldValue}>
-                    {user.mobile}
-                  </Typography>
-                </div>
-                <div className={classes.userDataField}>
-                  <Typography className={classes.userDataFieldLabel}>
-                    Address:{' '}
-                  </Typography>
-                  <Typography className={classes.userDataFieldValue}>
-                    {user.address ? user.address : '-'}
-                  </Typography>
-                </div>
-              </Paper>
+              <ViewUserInfo user={user} />
             )}
           </Grid>
         </>
