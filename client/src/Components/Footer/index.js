@@ -7,12 +7,14 @@ import useStyles from './style';
 function Footer() {
   const classes = useStyles();
   return (
-    <footer className={classes.footer}>
-      <Container maxWidth="lg">
-        <CopyrightIcon />
-        <p>2021 all copyright reserved</p>
-      </Container>
-    </footer>
+    <div className={classes.root}>
+      <footer className={classes.footer}>
+        <Container maxWidth="lg">
+          <CopyrightIcon />
+          <p>2021 all copyright reserved</p>
+        </Container>
+      </footer>
+    </div>
   );
 }
 
