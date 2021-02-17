@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
     },
   },
+  alertMsg: {
+    margin: '0.5em',
+  },
 }));
 
 export default useStyles;

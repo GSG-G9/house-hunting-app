@@ -8,7 +8,7 @@ const deleteFavoriteHouse = async (req, res, next) => {
     const { rows } = await deleteFromFavoriteHouses({ houseId, userId });
 
     if (!rows.length) {
-      throw boomify(404, 'house not on favorite list');
+      throw boomify(404, 'House not on favorite list');
     }
     return res.json({
       statusCode: 200,

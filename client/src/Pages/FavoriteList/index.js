@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-import { Typography, Snackbar, CircularProgress } from '@material-ui/core';
+import { Container, Typography, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
-import CustomButton from '../../Components/Button';
 import Table from '../../Components/Table';
 import useStyles from './style';
+import Loading from '../../Components/Loading';
+import { FAVORITE } from '../../Utils/routes.constant';
 
 function Favorite() {
   const classes = useStyles();
@@ -31,13 +32,13 @@ function Favorite() {
         setIsLoading(true);
         const {
           data: { data },
-        } = await Axios.get('api/v1/favorite');
+        } = await Axios.get(`api/v1/${FAVORITE}`);
         if (isCurrent) {
           setIsLoading(false);
           setHouses(data);
         }
       } catch (err) {
-        setErrorMsg(err.message);
+        setErrorMsg(err.response.data.messagee);
         setIsLoading(false);
       }
     })();
@@ -49,31 +50,24 @@ function Favorite() {
   const handleDelete = async (id) => {
     try {
       setRefresh(false);
-      await Axios.delete(`/api/v1/favorite/${id}`);
+      await Axios.delete(`/api/v1/${FAVORITE}/${id}`);
       setRefresh(true);
       setOpen(true);
     } catch (err) {
-      setErrorMsg(err);
+      setErrorMsg(err.response.data.message);
     }
   };
 
   return (
-    <div className={classes.root}>
+    <Container maxWidth="lg" className={classes.root}>
       <Typography className={classes.title}>My Favorites House</Typography>
-      {isLoading && <CircularProgress size={25} color="primary" />}
+      {isLoading && <Loading color="secondary" />}
       {errorMsg ? (
         <Alert className={classes.alert} severity="error">
           {errorMsg}
         </Alert>
       ) : (
-        <div>
-          <CustomButton
-            className={classes.button}
-            variant="contained"
-            color="secondary"
-          >
-            Compare
-          </CustomButton>
+        <>
           <div className={classes.tableContainer}>
             <Table
               houses={houses}
@@ -86,9 +80,9 @@ function Favorite() {
               Deleted successfully
             </Alert>
           </Snackbar>
-        </div>
+        </>
       )}
-    </div>
+    </Container>
   );
 }
 

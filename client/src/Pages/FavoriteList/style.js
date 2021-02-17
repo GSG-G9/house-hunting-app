@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
   tableContainer: {
     border: '1px solid #c7c7c7',
+    marginBlock: '4em',
+    width: '80%',
+    marginInline: '4em',
     '& td': {
       padding: '7px 16px',
     },

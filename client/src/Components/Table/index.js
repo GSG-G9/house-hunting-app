@@ -77,7 +77,9 @@ function TableComponent({ houses, handelDeleteHouse, tableType }) {
             </TableRow>
           ))
         ) : (
-          <Alert severity="info">no houses added yet </Alert>
+          <Alert severity="info" className={classes.alertMsg}>
+            No houses added yet{' '}
+          </Alert>
         )}
       </TableBody>
     </Table>
