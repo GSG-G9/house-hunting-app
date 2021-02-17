@@ -21,10 +21,10 @@ function DetailsHouse() {
   const { isAuth } = useContext(AuthContext);
   const classes = useStyles();
   const [house, setHouse] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingFavorite, setIsLoadingFavorite] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [favHouseError, setFavHouseError] = useState();
-  const [favorite, setFavorite] = useState();
   const [open, setOpen] = useState(false);
 
   const { houseId } = useParams();
@@ -36,49 +36,42 @@ function DetailsHouse() {
     setOpen(false);
   };
 
-  const clear = () => {
-    setFavorite();
-    setErrorMsg(null);
-  };
-
-  const fetchingData = async (isCurrent) => {
-    try {
-      setIsLoading(true);
-      const { data } = await Axios.get(`/api/v1/house/${houseId}`);
-      if (isCurrent) {
-        setHouse(data.data);
-        setIsLoading(false);
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setErrorMsg(error.response.data);
-    }
-  };
-
-  const addedToFavorite = async () => {
-    try {
-      const { data } = await Axios.get(`/api/v1/favorite/${houseId}`);
-      clear();
-      setOpen(true);
-      setFavorite(data.message);
-    } catch (err) {
-      setOpen(true);
-      if (err.response.status === 401) {
-        setFavHouseError('You should sign in first!!');
-      } else {
-        setFavHouseError(err.response.data.message);
-      }
-    }
-  };
-
   useEffect(() => {
     let isCurrent = true;
-    fetchingData(isCurrent);
+    (async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await Axios.get(`/api/v1/house/${houseId}`);
+        if (isCurrent) {
+          setHouse(data.data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setIsLoading(false);
+        setErrorMsg(error.response.data);
+      }
+    })();
 
     return () => {
       isCurrent = false;
     };
   }, []);
+
+  const addToFavorite = async () => {
+    try {
+      setIsLoadingFavorite(true);
+      await Axios.get(`/api/v1/favorite/${houseId}`);
+      setErrorMsg(null);
+      setOpen(true);
+      setIsLoadingFavorite(false);
+    } catch (err) {
+      setOpen(true);
+      setIsLoadingFavorite(false);
+      setFavHouseError(
+        err.response ? err.response.data.message : 'internal error'
+      );
+    }
+  };
 
   return (
     <Container maxWidth="lg" className={classes.root}>
@@ -95,7 +88,7 @@ function DetailsHouse() {
                 onClose={handleClose}
                 severity={favHouseError ? 'error' : 'success'}
               >
-                {favHouseError || favorite}
+                {favHouseError || 'house added to favorite'}
               </Alert>
             </Snackbar>
             <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
@@ -141,9 +134,15 @@ function DetailsHouse() {
                     variant="contained"
                     color="primary"
                     className={classes.favriteBtn}
-                    onClick={addedToFavorite}
+                    onClick={addToFavorite}
                   >
-                    <Add /> favorite
+                    {isLoadingFavorite ? (
+                      <Loading color="secondary" />
+                    ) : (
+                      <>
+                        <Add /> favorite{' '}
+                      </>
+                    )}
                   </Button>
                 )}
                 <Link to={`${HOME_PAGE}`} className={classes.backLink}>

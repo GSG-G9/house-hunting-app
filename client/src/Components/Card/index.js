@@ -22,6 +22,7 @@ import AuthContext from '../../Context/AuthContext';
 import { HOUSES } from '../../Utils/routes.constant';
 
 import useStyles from './style';
+import Loading from '../Loading';
 
 const { shape, string, number } = PropTypes;
 
@@ -43,14 +44,9 @@ export default function CardComponent({ house }) {
     bathroom_num: baCount,
   } = house;
 
-  const [favorite, setFavorite] = useState();
   const [error, setError] = useState();
   const [open, setOpen] = useState(false);
-
-  const clear = () => {
-    setFavorite();
-    setError(null);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -59,19 +55,17 @@ export default function CardComponent({ house }) {
     setOpen(false);
   };
 
-  const addedToFavorite = async () => {
+  const addToFavorite = async () => {
     try {
-      const { data } = await Axios.get(`api/v1/favorite/${houseId}`);
-      clear();
+      setIsLoading(true);
+      await Axios.get(`/api/v1/favorite/${houseId}`);
+      setError(null);
       setOpen(true);
-      setFavorite(data.message);
+      setIsLoading(false);
     } catch (err) {
       setOpen(true);
-      if (err.response.status === 401) {
-        setError('you should sign in first!!');
-      } else {
-        setError(err.response.data.message);
-      }
+      setIsLoading(true);
+      setError(err.response ? err.response.data.message : 'internal error');
     }
   };
 
@@ -135,13 +129,14 @@ export default function CardComponent({ house }) {
               <FavoriteBorderIcon
                 className={classes.favIcon}
                 id={houseId}
-                onClick={addedToFavorite}
+                onClick={addToFavorite}
               />
+              {isLoading && <Loading />}
             </Button>
           )}
           <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert onClose={handleClose} severity={error ? 'error' : 'success'}>
-              {error || favorite}
+              {error || 'house added to favorite'}
             </Alert>
           </Snackbar>
         </>
