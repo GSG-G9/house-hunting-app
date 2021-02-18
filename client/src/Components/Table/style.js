@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   img: {
     width: 150,
+    height: 100,
+    objectFit: 'fill',
   },
   deleteBtn: {
     color: '#757575',
