@@ -6,6 +6,7 @@ const authController = require('./isAuth');
 const getUserHousesController = require('./getUserHouses');
 const updateUserController = require('./updateUser');
 const deleteUserController = require('./deleteUser');
+const updateUserImage = require('./updateUserImage');
 
 module.exports = {
   signupController,
@@ -16,4 +17,5 @@ module.exports = {
   getUserHousesController,
   updateUserController,
   deleteUserController,
+  updateUserImage,
 };
