@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'column',
     width: '50%',
     height: '100px',
     borderRadius: '4px',
