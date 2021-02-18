@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import Alert from '@material-ui/lab/Alert';
 
 import useStyles from './style';
@@ -29,9 +28,6 @@ function TableComponent({ houses, handelDeleteHouse }) {
               </TableCell>
               <TableCell>{house.price} $ </TableCell>
               <TableCell>{house.created_at.split(' ')[0]}</TableCell>
-              <TableCell>
-                <EditIcon color="primary" />
-              </TableCell>
               <TableCell>
                 <Button
                   onClick={() => {
