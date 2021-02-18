@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sideBarContainer: {
-    width: 400,
+    width: 350,
     backgroundColor: theme.palette.primary.main,
   },
 }));
