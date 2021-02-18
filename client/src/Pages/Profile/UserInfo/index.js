@@ -13,6 +13,7 @@ import Loading from '../../../Components/Loading';
 import ViewUserInfo from './ViewUserinfo';
 import useStyles from './style';
 import AuthContext from '../../../Context/AuthContext';
+import DeleteAccount from './DeleteAcount';
 
 function UserInfo({ getUserName }) {
   const classes = useStyles();
@@ -24,7 +25,7 @@ function UserInfo({ getUserName }) {
   const [isUpdate, setIsUpdate] = useState(false);
   const [open, setOpen] = useState(false);
   const [alertError, setAlertError] = useState();
-  const [setDelErr] = useState();
+  const [delErr, setDelErr] = useState();
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -108,6 +109,11 @@ function UserInfo({ getUserName }) {
         >
           Delete Account
         </Button>
+        <DeleteAccount
+          variant="outlined"
+          color="secondary"
+          className={classes.deleteBtn}
+        />
         <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
           <Alert
             onClose={handleClose}
