@@ -104,7 +104,7 @@ function AddHouse() {
 
       await validationSchema.validate(houseData, { abortEarly: false });
 
-      await Axios.post(`api/v1/houses`, houseData);
+      await Axios.post(`/api/v1/houses`, houseData);
 
       setLoading(false);
       clear();

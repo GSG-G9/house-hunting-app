@@ -72,7 +72,7 @@ function SearchPage() {
         setLoading(true);
         const {
           data: { data },
-        } = await Axios.get(`api/v1/houses/${location}`);
+        } = await Axios.get(`/api/v1/houses/${location}`);
         if (isCurrent) {
           setLoading(false);
           setHouses(data);

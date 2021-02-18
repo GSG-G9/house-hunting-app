@@ -31,7 +31,7 @@ function Favorite() {
         setIsLoading(true);
         const {
           data: { data },
-        } = await Axios.get(`api/v1/favorite`);
+        } = await Axios.get(`/api/v1/favorite`);
         if (isCurrent) {
           setIsLoading(false);
           setHouses(data);
