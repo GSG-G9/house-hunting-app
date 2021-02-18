@@ -60,7 +60,9 @@ function Favorite() {
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Typography className={classes.title}>My Favorites House</Typography>
-      {isLoading && <Loading color="secondary" />}
+      <div className={classes.loadingBox}>
+        {isLoading && <Loading color="secondary" />}
+      </div>
       {errorMsg ? (
         <Alert className={classes.alert} severity="error">
           {errorMsg}

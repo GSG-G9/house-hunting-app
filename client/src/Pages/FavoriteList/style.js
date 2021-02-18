@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tableContainer: {
-    marginBlock: '4em',
+    marginBlock: '1.5em',
     width: '80%',
     marginInline: '4em',
     '& td': {
@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     '& tbody tr:last-child': {
       border: 'none',
     },
+  },
+  loadingBox: {
+    minHeight: '50px',
   },
 }));
 

@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Alert from '@material-ui/lab/Alert';
 
 import useStyles from './style';
 import Button from '../Button';
@@ -16,7 +15,7 @@ function TableComponent({ houses, handelDeleteHouse }) {
   return (
     <Table>
       <TableBody>
-        {houses.length ? (
+        {houses.length &&
           houses.map((house) => (
             <TableRow align="right">
               <TableCell>
@@ -39,10 +38,7 @@ function TableComponent({ houses, handelDeleteHouse }) {
                 </Button>
               </TableCell>
             </TableRow>
-          ))
-        ) : (
-          <Alert severity="info">no houses added yet </Alert>
-        )}
+          ))}
       </TableBody>
     </Table>
   );
