@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Container, Typography } from '@material-ui/core';
 
+import { ReactComponent as Image } from '../../Utils/images/about_us.svg';
 import useStyles from './style';
 
 function ContactUs() {

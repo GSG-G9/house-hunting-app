@@ -5,7 +5,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
-
+import { ReactComponent as Image } from '../../Utils/images/contact_us.svg';
 import useStyles from './style';
 
 function ContactUs() {
@@ -21,7 +21,7 @@ function ContactUs() {
           lg="6"
           className={clasess.imageContainer}
         >
-          <img src="./image/undraw_contact_us_15o2.svg" alt="contact" />
+          <Image />
         </Grid>
         <Grid item xs="12" sm="12" md="6" lg="6" className={clasess.desc}>
           <div className={clasess.descBox}>
