@@ -35,7 +35,7 @@ function Houses() {
         setLoading(true);
         const {
           data: { data },
-        } = await Axios.get('api/v1/user/houses');
+        } = await Axios.get('/api/v1/user/houses');
         if (isCurrent) {
           setLoading(false);
           setHouses(data);

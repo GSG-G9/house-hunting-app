@@ -23,7 +23,6 @@ function UserInfo({ getUserName }) {
   const [errorMsg, setErrorMsg] = useState('');
   const [isUpdate, setIsUpdate] = useState(false);
   const [open, setOpen] = useState(false);
-  const [alertError, setAlertError] = useState();
   const [setDelErr] = useState();
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -37,7 +36,7 @@ function UserInfo({ getUserName }) {
 
   const handleDelete = async () => {
     try {
-      await Axios.delete('api/v1/users');
+      await Axios.delete('/api/v1/users');
       history.push(HOME_PAGE);
       setIsAuth(false);
     } catch (error) {
@@ -50,7 +49,7 @@ function UserInfo({ getUserName }) {
     (async () => {
       try {
         setLoading(true);
-        const { data } = await Axios.get(`api/v1/users`);
+        const { data } = await Axios.get(`/api/v1/users`);
         if (isCurrent) {
           setUser(data.data);
           getUserName(data.data.username);
@@ -93,7 +92,6 @@ function UserInfo({ getUserName }) {
           handleClickAlert={handleClick}
           handleCloseAlert={handleClose}
           setUpdateUser={setIsUpdate}
-          setErr={setAlertError}
           userData={{
             username: user.username,
             address: user.address,
@@ -109,11 +107,8 @@ function UserInfo({ getUserName }) {
           Delete Account
         </Button>
         <Snackbar open={open} autoHideDuration={8000} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity={alertError ? 'error' : 'success'}
-          >
-            {alertError || 'User updated successfully'}
+          <Alert onClose={handleClose} severity="success">
+            User updated successfully
           </Alert>
         </Snackbar>
       </div>

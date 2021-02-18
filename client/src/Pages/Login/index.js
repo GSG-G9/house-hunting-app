@@ -58,7 +58,7 @@ function Login() {
       await validationSchema.validate(userData, {
         abortEarly: false,
       });
-      await Axios.post('api/v1/login', userData);
+      await Axios.post('/api/v1/login', userData);
       clear();
       setIsLoading(false);
       setIsAuth(true);
