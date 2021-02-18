@@ -94,7 +94,12 @@ function DetailsHouse() {
             <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
               <div className={classes.imageBox}>
                 {!isLoading ? (
-                  <img src={house.image || fakeImage} alt="house" />
+                  <img
+                    width="100%"
+                    height="100%"
+                    src={house.image || fakeImage}
+                    alt="house"
+                  />
                 ) : (
                   <Loading />
                 )}
