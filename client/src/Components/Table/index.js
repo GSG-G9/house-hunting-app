@@ -19,7 +19,7 @@ function TableComponent({ houses, handelDeleteHouse }) {
       <TableBody>
         {houses.length ? (
           houses.map((house) => (
-            <TableRow align="right" className={classes.root}>
+            <TableRow align="right">
               <TableCell>
                 <img className={classes.img} src={house.image} alt="house " />
               </TableCell>
