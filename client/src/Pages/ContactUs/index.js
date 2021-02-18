@@ -21,7 +21,7 @@ function ContactUs() {
           lg="6"
           className={clasess.imageContainer}
         >
-          <Image />
+          <Image width="500" />
         </Grid>
         <Grid item xs="12" sm="12" md="6" lg="6" className={clasess.desc}>
           <div className={clasess.descBox}>

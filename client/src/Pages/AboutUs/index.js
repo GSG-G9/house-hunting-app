@@ -17,7 +17,7 @@ function ContactUs() {
           lg="6"
           className={clasess.imageContainer}
         >
-          <img src="./image/undraw_best_place_r685.svg" alt="about" />
+          <Image width="500" height="200" />
         </Grid>
         <Grid item lg="false" className={clasess.desc}>
           <article className={clasess.aboutUsArticle}>

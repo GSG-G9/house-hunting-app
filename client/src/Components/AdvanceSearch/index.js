@@ -5,7 +5,7 @@ import { func, number, string } from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 
 import SelectItems from '../Select';
-import { categories, locationFilter } from '../../Utils/staticData';
+import { categoryFilter, locationFilter } from '../../Utils/staticData';
 import Input from '../Input';
 import useStyles from './style';
 
@@ -29,7 +29,7 @@ function Filter({
       />
 
       <SelectItems
-        listItems={categories}
+        listItems={categoryFilter}
         label="category"
         onChange={onChange}
         value={catValue}
