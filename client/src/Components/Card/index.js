@@ -22,8 +22,8 @@ import AuthContext from '../../Context/AuthContext';
 import { HOUSES } from '../../Utils/routes.constant';
 import { fakeImage } from '../../Utils/staticData';
 
-import useStyles from './style';
 import Loading from '../Loading';
+import useStyles from './style';
 
 const { shape, string, number } = PropTypes;
 

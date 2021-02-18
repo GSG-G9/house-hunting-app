@@ -5,17 +5,13 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     display: 'flex',
+    height: 750,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    minHeight: '100vh',
     border: '1px solid #c7c7c7',
     borderRadius: '5px',
     '& h2': {
       padding: '1em 2em',
     },
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
   },
   img: {
     alignSelf: 'center',
@@ -27,7 +23,6 @@ const useStyles = makeStyles({
   formSection: {
     justifySelf: 'flex-end',
     minWidth: '50%',
-    marginTop: 80,
   },
   header: {
     marginBottom: 20,

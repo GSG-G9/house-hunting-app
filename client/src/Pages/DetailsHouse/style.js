@@ -22,12 +22,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   imageBox: {
-    padding: '0.5em',
-    borderRadius: '0.3em',
     overflow: 'hidden',
+    width: '100%',
+    height: 600,
     '& img': {
-      maxWidth: '100%',
-      height: 500,
+      width: '100%',
+      padding: 20,
+      height: '100%',
+      objectFit: 'cover',
     },
   },
   desc: {

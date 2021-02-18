@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBlock: '5em',
     paddingInline: '2em',
     width: '85%',
-    minHeight: '600px',
+    height: 750,
   },
   imageContainer: {
     display: 'flex',
