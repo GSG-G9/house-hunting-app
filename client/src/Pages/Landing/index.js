@@ -60,6 +60,12 @@ function Landing() {
     <>
       <div className={classes.header}>
         <div className={classes.searchBox}>
+          <Typography
+            variant="h2"
+            style={{ color: 'white', fontSize: 25, marginBottom: 20 }}
+          >
+            lets find a home thats perfect for you{' '}
+          </Typography>
           <Search onClick={handleSearchBar} />
         </div>
       </div>
