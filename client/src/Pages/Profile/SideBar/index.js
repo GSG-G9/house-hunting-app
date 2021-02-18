@@ -34,7 +34,9 @@ function SideBar() {
       <div className={classes.sideBarContainer}>
         <div className={classes.userAvatar}>
           <Avatar className={classes.avatar}>H</Avatar>
-          <Typography variant="h3">{username || <Loading color="secondary" />}</Typography>
+          <Typography variant="h3">
+            {username || <Loading color="secondary" />}
+          </Typography>
         </div>
         <Tabs
           orientation="vertical"
