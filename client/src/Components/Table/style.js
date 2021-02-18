@@ -1,11 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    width: '100%',
+  },
   img: {
-    width: 150,
-    height: 100,
+    width: 120,
+    height: 80,
     objectFit: 'fill',
   },
+
   deleteBtn: {
     color: '#757575',
     transition: 'all 0.25s',
