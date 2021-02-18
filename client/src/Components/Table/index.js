@@ -15,7 +15,7 @@ function TableComponent({ houses, handelDeleteHouse }) {
   return (
     <Table>
       <TableBody>
-        {houses.length &&
+        {houses.length !== 0 &&
           houses.map((house) => (
             <TableRow align="right">
               <TableCell>
