@@ -16,12 +16,7 @@ import Loading from '../../../Components/Loading';
 
 import useStyles from '../UserInfo/style';
 
-function UpdateUser({
-  setUpdateUser,
-  handleClickAlert,
-  handleCloseAlert,
-  setErr,
-}) {
+function UpdateUser({ setUpdateUser, handleClickAlert, handleCloseAlert }) {
   const classes = useStyles();
   const [username, setUsername] = useState();
   const [mobile, setMobile] = useState();
@@ -163,7 +158,6 @@ UpdateUser.propTypes = {
   setUpdateUser: PropTypes.func.isRequired,
   handleClickAlert: PropTypes.func.isRequired,
   handleCloseAlert: PropTypes.func.isRequired,
-  setErr: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     username: PropTypes.string,
     mobile: PropTypes.number,
