@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 auto',
-    minHeight: '600px',
+    minHeight: 750,
   },
   title: {
     fontSize: '22px',

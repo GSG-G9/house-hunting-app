@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.primary.contrastText}`,
   },
   media: {
-    maxHeight: '200px',
+    maxHeight: 200,
+    height: 200,
     overflow: 'hidden',
     '& img': {
       maxHeight: '200px',
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     paddingInline: '1.7em',
   },
   detailsLink: {
-    backgroundColor: '#EB9235',
+    backgroundColor: theme.palette.secondary.main,
     border: '1px solid transparent',
     color: '#f5f5f5',
     textDecoration: 'none',

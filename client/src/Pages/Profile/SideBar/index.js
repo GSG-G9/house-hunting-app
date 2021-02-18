@@ -11,6 +11,7 @@ import Houses from '../Houses';
 import UserInfo from '../UserInfo';
 
 import useStyles from './style';
+import Loading from '../../../Components/Loading';
 
 function a11yProps(index) {
   return {
@@ -22,7 +23,7 @@ function a11yProps(index) {
 function SideBar() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [username, setUsename] = useState('');
+  const [username, setUsername] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -33,7 +34,7 @@ function SideBar() {
       <div className={classes.sideBarContainer}>
         <div className={classes.userAvatar}>
           <Avatar className={classes.avatar}>H</Avatar>
-          <Typography variant="h3">{username && username}</Typography>
+          <Typography variant="h3">{username || <Loading />}</Typography>
         </div>
         <Tabs
           orientation="vertical"
@@ -64,7 +65,7 @@ function SideBar() {
         </Tabs>
       </div>
       <TabPanel value={value} index={0} className={classes.mainContent}>
-        <UserInfo getUserName={setUsename} />
+        <UserInfo getUserName={setUsername} />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.mainContent}>
         <Houses />

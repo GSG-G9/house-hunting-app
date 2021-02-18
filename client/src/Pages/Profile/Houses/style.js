@@ -6,10 +6,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     flexDirection: 'column',
     width: '100%',
-    minHeight: '100%',
+    height: 750,
+    overflowY: 'scroll',
     border: '1px solid #c7c7c7',
     borderRadius: '5px',
-    height: 800,
     '& h2': {
       fontSize: '2.2em',
       padding: '2em 1em',

@@ -2,14 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
     width: '100%',
-    minHeight: '100%',
+    height: 750,
     border: '1px solid #c7c7c7',
     borderRadius: '5px',
-    height: 600,
     '& h2': {
       fontSize: '2.2em',
       padding: '2em 1em',
@@ -24,12 +20,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#a52525',
   },
   userData: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '3em',
     color: '#757575',
+    marginTop: 60,
   },
   userDataField: {
     width: '100%',

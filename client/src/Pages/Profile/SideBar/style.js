@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    minHeight: '700px',
+    height: 800,
     backgroundColor: '#FFFFFF',
   },
   tabs: {
@@ -52,13 +52,8 @@ const useStyles = makeStyles((theme) => ({
   mainContent: {
     margin: '0 auto',
     width: '100%',
-    minHeight: '100%',
+    height: '80vh',
     '& > div': {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      minHeight: '100%',
       '& form': {
         display: 'flex',
         flexDirection: 'column',
@@ -68,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sideBarContainer: {
-    width: '25%',
+    width: 400,
     backgroundColor: theme.palette.primary.main,
   },
 }));
