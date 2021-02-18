@@ -93,7 +93,11 @@ function DetailsHouse() {
             </Snackbar>
             <Grid xs="12" sm="12" md="6" lg="6" className={classes.imgSection}>
               <div className={classes.imageBox}>
-                <img src={house.image || fakeImage} alt="house" />
+                {!isLoading ? (
+                  <img src={house.image || fakeImage} alt="house" />
+                ) : (
+                  <Loading />
+                )}
               </div>
             </Grid>
             <Grid xs="12" sm="12" md="6" lg="6" className={classes.desc}>
