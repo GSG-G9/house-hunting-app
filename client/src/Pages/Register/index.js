@@ -9,7 +9,7 @@ import validationSchema from '../../Utils/validations/register';
 import { ReactComponent as SearchImg } from '../../Utils/images/house_searching.svg';
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
-import { HOME_PAGE } from '../../Utils/routes.constant';
+import { LOGIN_PAGE } from '../../Utils/routes.constant';
 import Loading from '../../Components/Loading';
 
 import useStyles from './style';
@@ -83,7 +83,7 @@ function Register() {
       setOpen(true);
       clear();
       setLoading(false);
-      history.push(HOME_PAGE);
+      history.push(LOGIN_PAGE);
     } catch (err) {
       setError(err.response ? err.response.data.message : err.errors[0]);
       setLoading(false);

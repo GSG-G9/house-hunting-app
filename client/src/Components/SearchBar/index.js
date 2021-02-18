@@ -8,10 +8,10 @@ import Button from '../Button';
 
 import useStyles from './style';
 
-function SearchBar({ onClick, value, onChange }) {
+function SearchBar({ onClick, value, onChange, ...rest }) {
   const classes = useStyles();
   return (
-    <>
+    <div {...rest}>
       <Input
         type="search"
         variant="outlined"
@@ -26,7 +26,7 @@ function SearchBar({ onClick, value, onChange }) {
       <Button className={classes.button} onClick={onClick}>
         <SearchIcon />
       </Button>
-    </>
+    </div>
   );
 }
 SearchBar.propTypes = {
