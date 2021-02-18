@@ -5,8 +5,8 @@ house-hunting App that facilitates to access and rent available homes
 [Heroku link , Click here to visit our app](https://house-hunting-app.herokuapp.com/)
 
 use these credientials: <br>
-email: Conrad_Rosenbaum38@gmail.com
-password: 123456
+email: guest@guest.com
+password: 123456789
 
 ## Main problem :new_moon_with_face:
 Most of those who intend to get married or who are looking for a house find it very difficult to search and wander around to several areas to find a house that suits them at a price according to their capabilities.
