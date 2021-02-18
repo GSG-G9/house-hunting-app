@@ -61,27 +61,19 @@ function UpdateUser({
       setErrorMsg(null);
       setOpenDialog(true);
       handleCloseAlert();
-      setUpdateUser(false);
       setIsLoading(true);
-      clear();
       const user = { username, mobile, address };
       await validationSchema.validate(user, { abortEarly: false });
+      setUpdateUser(false);
       await Axios.patch('api/v1/users', user);
+      clear();
       setIsLoading(false);
       setUpdateUser(true);
       setOpenDialog(false);
       handleClickAlert();
     } catch (err) {
       setIsLoading(false);
-      clear();
-      if (err.errors) {
-        setErrorMsg(err.errors[0]);
-      } else {
-        setErr(
-          err.response ? err.response.data.message : 'Some error happened'
-        );
-        handleCloseDialog();
-      }
+      setErrorMsg(err.response ? err.response.data.message : err.errors[0]);
     }
   };
   return (

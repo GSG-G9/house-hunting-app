@@ -13,6 +13,6 @@ router.get('/user/houses', getUserHousesController);
 router.get('/users', getUser);
 router.get('/logout', logoutController);
 router.patch('/users', updateUserValidation, updateUserController);
-router.delete('/users', deleteUserController);
+router.delete('/users', deleteUserController, logoutController);
 
 module.exports = router;
