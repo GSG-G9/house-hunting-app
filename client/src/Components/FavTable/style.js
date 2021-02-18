@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   alertMsg: {
-    margin: '0.5em',
+    textAlign: 'center',
   },
   deleteBtn: {
     color: '#757575',

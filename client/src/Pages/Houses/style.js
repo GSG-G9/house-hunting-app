@@ -6,6 +6,10 @@ const useStyles = makeStyles(() => ({
   },
   container: {
     marginTop: 60,
+    minHeight: 500,
+  },
+  search: {
+    marginTop: 20,
   },
 }));
 

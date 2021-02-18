@@ -2,24 +2,15 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
+    marginBottom: 0,
+    marginTop: 90,
+    width: '100%',
+    textAlign: 'center',
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.primary.contrastText,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 80,
-    width: '100%',
-    height: '40px',
-    backgroundColor: theme.palette.primary.dark,
-    '& div': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    '& *': {
-      color: theme.palette.primary.contrastText,
-    },
-    '& p': {
-      paddingLeft: '5px',
-    },
   },
 }));
 

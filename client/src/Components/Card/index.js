@@ -20,9 +20,10 @@ import Alert from '@material-ui/lab/Alert';
 import AuthContext from '../../Context/AuthContext';
 
 import { HOUSES } from '../../Utils/routes.constant';
+import { fakeImage } from '../../Utils/staticData';
 
-import useStyles from './style';
 import Loading from '../Loading';
+import useStyles from './style';
 
 const { shape, string, number } = PropTypes;
 
@@ -73,7 +74,7 @@ export default function CardComponent({ house }) {
     <Card className={classes.root} elevation="0">
       <CardActionArea>
         <CardMedia className={classes.media}>
-          <img src={image} alt="house" />
+          <img src={image || fakeImage} alt="house" />
         </CardMedia>
         <CardContent>
           <div className={classes.cardTitle}>

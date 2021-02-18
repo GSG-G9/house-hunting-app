@@ -7,10 +7,14 @@ import { HOME_PAGE } from '../../Utils/routes.constant';
 import AuthContext from '../../Context/AuthContext';
 
 function PublicRoute({ component: Component, ...rest }) {
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, authLoading } = useContext(AuthContext);
   return (
     <Route {...rest}>
-      {!isAuth ? <Component /> : <Redirect to={{ pathname: HOME_PAGE }} />}
+      {!isAuth && !authLoading ? (
+        <Component />
+      ) : (
+        <Redirect to={{ pathname: HOME_PAGE }} />
+      )}
     </Route>
   );
 }

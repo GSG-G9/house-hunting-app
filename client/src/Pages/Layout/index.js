@@ -16,11 +16,11 @@ function Layout({ children }) {
       {authLoading ? (
         <Loading size={70} className={classes.spin} />
       ) : (
-        <>
+        <div className={classes.root}>
           <Header />
           {children}
-          <Footer />
-        </>
+          <Footer className={classes.footer} />
+        </div>
       )}
     </>
   );

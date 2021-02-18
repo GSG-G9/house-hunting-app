@@ -18,7 +18,7 @@ function AddHouse() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [locationId, setLocationId] = useState(1);
-  const [category, setCategory] = useState('Apartment');
+  const [category, setCategory] = useState('apartment');
   const [rooms, setRooms] = useState(1);
   const [bathrooms, setBathRooms] = useState(1);
   const [price, setPrice] = useState(100);
